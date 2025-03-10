@@ -9,27 +9,27 @@ function FacultyAdvisor() {
     {
         name: "DR. SARITA KALLA",
         position: "CO-CHAIRPERSON",
-        image: "/k",
+        image: "https://res.cloudinary.com/dsh447lvk/image/upload/v1741645172/lxiwhjyn7qn7btnl7bud.jpg",
     },
     {
       name: "DR. A.K. MUNGRAY",
       position: "CHAIRPERSON",
-      image: "/f", 
+      image: "https://res.cloudinary.com/dsh447lvk/image/upload/v1741644917/ktj68n4e8h6agfvvoyqg.jpg", 
     },
     {
       name: "DR. KISHOR P UPLA",
       position: "CO-CHAIRPERSON",
-      image: "/j",
+      image: "https://res.cloudinary.com/dsh447lvk/image/upload/v1741645174/rdnkksloud492o8z1tvq.jpg",
     },
     {
       name: "DR. SURESH DAHIYA",
       position: "CO-CHAIRPERSON",
-      image: "/g",
+      image: "https://res.cloudinary.com/dsh447lvk/image/upload/v1741645505/jybihikophnqz1reny38.webp",
     },
     {
       name: "DR. VIVEK D. KALYANKAR",
       position: "CO-CHAIRPERSON",
-      image: "/fac",
+      image: "https://res.cloudinary.com/dsh447lvk/image/upload/v1741645513/tmnypxzweb9o5tk8yuap.jpg",
     }
   ];
 
@@ -99,13 +99,13 @@ function FacultyAdvisor() {
             {facultyAdvisors.slice(0, 3).map((faculty, index) => (
               <div key={index} className="w-full sm:w-72 bg-white rounded-lg overflow-hidden shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 hover:translate-y-[-5px] group">
                 {/* Faculty Image */}
-                <div className="relative h-64 w-full bg-gradient-to-br from-blue-50 to-gray-100 overflow-hidden">
+                <div className="relative h-72 w-full bg-gradient-to-br from-blue-50 to-gray-100 overflow-hidden">
                   <div className="absolute inset-0 flex items-center justify-center">
                     <Image
                       src={faculty.image}
                       alt={faculty.name}
-                      width={200}
-                      height={200}
+                      width={240}
+                      height={240}
                       className="rounded-full object-cover border-4 border-white shadow-md group-hover:scale-[1.03] transition-transform duration-300"
                       onError={(e) => {
                         // Fallback for missing images
@@ -139,13 +139,13 @@ function FacultyAdvisor() {
             {facultyAdvisors.slice(3, 5).map((faculty, index) => (
               <div key={index} className="w-full sm:w-72 bg-white rounded-lg overflow-hidden shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 hover:translate-y-[-5px] group">
                 {/* Faculty Image */}
-                <div className="relative h-64 w-full bg-gradient-to-br from-blue-50 to-gray-100 overflow-hidden">
+                <div className="relative h-72 w-full bg-gradient-to-br from-blue-50 to-gray-100 overflow-hidden">
                   <div className="absolute inset-0 flex items-center justify-center">
                     <Image
                       src={faculty.image}
                       alt={faculty.name}
-                      width={200}
-                      height={200}
+                      width={240}
+                      height={240}
                       className="rounded-full object-cover border-4 border-white shadow-md group-hover:scale-[1.03] transition-transform duration-300"
                       onError={(e) => {
                         // Fallback for missing images

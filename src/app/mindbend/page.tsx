@@ -70,6 +70,7 @@ function Mindbend() {
             <Jccas/>
             <br />
             <Convenors/>
+            <br />
         </div>
       </div>
 

@@ -9,12 +9,12 @@ function Jccas() {
     {
         name: "S R JAY KIKANI",
         position: "U22CS119",
-        image: "/k",
+        image: "https://res.cloudinary.com/dsh447lvk/image/upload/v1741643701/q1oaqhrryxb77znpmz9j.jpg",
     },
     {
       name: "VATSAL SACHANIYA",
       position: "U22ME014",
-      image: "/f", 
+      image: "https://res.cloudinary.com/dsh447lvk/image/upload/v1741644373/swulufmjwrxess2oam9h.jpg", 
     },
     {
       name: "DARSHIT DESAI",
@@ -24,12 +24,12 @@ function Jccas() {
     {
       name: "UJJWAL GUPTA",
       position: "U22ME061",
-      image: "/g",
+      image: "https://res.cloudinary.com/dsh447lvk/image/upload/v1741642394/ifnr0jsny5vkls98srh4.png",
     },
     {
       name: "RIDHAYU GOSAI",
       position: "U22EE008",
-      image: "/fac",
+      image: "https://res.cloudinary.com/dsh447lvk/image/upload/v1741644734/l1dbwuus01cvghytexpv.jpg",
     }
   ];
 
@@ -138,13 +138,13 @@ function Jccas() {
           <div className="flex flex-wrap justify-center gap-6 md:gap-8">
             {jccas.slice(3, 5).map((jccas, index) => (
               <div key={index} className="w-full sm:w-72 bg-white rounded-lg overflow-hidden shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 hover:translate-y-[-5px] group">
-                <div className="relative h-64 w-full bg-gradient-to-br from-blue-50 to-gray-100 overflow-hidden">
+                <div className="relative h-72 w-full bg-gradient-to-br from-blue-50 to-gray-100 overflow-hidden">
                   <div className="absolute inset-0 flex items-center justify-center">
                     <Image
                       src={jccas.image}
                       alt={jccas.name}
-                      width={230}
-                      height={230}
+                      width={240}
+                      height={240}
                       className="rounded-full object-cover border-4 border-white shadow-md group-hover:scale-[1.03] transition-transform duration-300"
                       onError={(e) => {
                         // Fallback for missing images
