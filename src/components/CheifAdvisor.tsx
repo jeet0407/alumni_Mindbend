@@ -1,17 +1,26 @@
 "use client"
 
 import Image from 'next/image'
-import React from 'react'
 
-function Ccas() {
-  // CCAS data - corrected with proper details for Yug Rana
-  const ccas = [
+function ChiefAdvisor() {
+
+  // Faculty advisors data
+  const chiefAdvisor = [
     {
-      name: "YUG RANA",
-      position: "CCAS",
-      id: "U21CH056",
-      image: "/students/yugrana.jpg", 
-    }
+        name: "RONIT MISTRY",
+        position: "CO-CHAIRPERSON",
+        image: "/k",
+    },
+    {
+      name: "HIMDIPSINH CHUDASMA",
+      position: "CHAIRPERSON",
+      image: "/f", 
+    },
+    {
+      name: "KUSH DALSANIYA",
+      position: "CO-CHAIRPERSON",
+      image: "/j",
+    },
   ];
 
   return (
@@ -43,19 +52,19 @@ function Ccas() {
         <div className="absolute top-0 right-1/3 w-0.5 h-56 bg-gradient-to-b from-transparent via-blue-300/20 to-transparent transform rotate-45"></div>
         <div className="absolute bottom-10 left-1/4 w-0.5 h-40 bg-gradient-to-b from-transparent via-blue-800/10 to-transparent transform -rotate-45"></div>
       </div>
+
  
-      {/* CCAS Section */}
-      <div className="mb-16 relative z-10">
-        {/* CCAS Heading */}
+      {/* Faculty Advisors Section */}
+      <div className="mt-24 mb-16 relative z-10">
+        {/* Faculty Advisors Heading */}
         <div className="text-center mb-12 relative">
           <div className="relative inline-block">
             <h2 className="text-3xl md:text-4xl font-bold text-black px-10">
               <span className="relative">
-                CCAS
+                Chief Advisors
                 <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-blue-800 via-blue-600 to-black"></div>
               </span>
             </h2>
-        
           
             {/* Decorative accents near heading */}
             <svg className="absolute -left-8 top-1/2 transform -translate-y-1/2 w-5 h-5 text-blue-800" fill="currentColor" viewBox="0 0 20 20">
@@ -70,57 +79,51 @@ function Ccas() {
           <div className="absolute left-0 right-0 top-1/2 h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent -z-10"></div>
         </div>
         
-        {/* CCAS Card Container with enhanced styling */}
+        {/* Faculty Cards Container with subtle background */}
         <div className="max-w-6xl mx-auto px-4 relative">
           {/* Subtle background shape */}
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-4/5 h-4/5 rounded-full bg-blue-50/50 blur-3xl -z-10"></div>
           
-          {/* Single Card - Centered and Enhanced */}
-          <div className="flex justify-center">
-            <div className="w-full max-w-sm bg-white rounded-xl overflow-hidden shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-500 hover:translate-y-[-5px] group">
-              {/* Student Image - Larger and more prominent */}
-              <div className="relative h-72 w-full bg-gradient-to-br from-blue-100 to-blue-50 overflow-hidden">
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="relative h-48 w-48">
+          {/* Top Row - 3 cards */}
+          <div className="flex flex-wrap justify-center gap-6 md:gap-8 mb-8">
+            {chiefAdvisor.slice(0, 3).map((chiefadvisor, index) => (
+              <div key={index} className="w-full sm:w-72 bg-white rounded-lg overflow-hidden shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 hover:translate-y-[-5px] group">
+                {/* Faculty Image */}
+                <div className="relative h-64 w-full bg-gradient-to-br from-blue-50 to-gray-100 overflow-hidden">
+                  <div className="absolute inset-0 flex items-center justify-center">
                     <Image
-                      src={ccas[0].image}
-                      alt={ccas[0].name}
-                      fill
+                      src={chiefadvisor.image}
+                      alt={chiefadvisor.name}
+                      width={200}
+                      height={200}
                       className="rounded-full object-cover border-4 border-white shadow-md group-hover:scale-[1.03] transition-transform duration-300"
                       onError={(e) => {
                         // Fallback for missing images
-                        e.currentTarget.src = `https://placehold.co/400?text=${encodeURIComponent(ccas[0].name.charAt(0))}&font=montserrat`;
+                        e.currentTarget.src = "https://placehold.co/400?text=" + encodeURIComponent(chiefadvisor.name.charAt(0)) + "&font=montserrat";
                       }}
                     />
-                    <div className="absolute inset-0 rounded-full border-8 border-blue-400/10"></div>
                   </div>
+                  
+                  {/* Decorative elements */}
+                  <div className="absolute top-4 left-4 w-12 h-12 border-t-4 border-l-4 border-blue-800/30 rounded-tl-xl group-hover:scale-110 transition-transform duration-300"></div>
+                  <div className="absolute bottom-4 right-4 w-12 h-12 border-b-4 border-r-4 border-blue-800/30 rounded-br-xl group-hover:scale-110 transition-transform duration-300"></div>
+                  
+                  {/* Subtle pattern overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
                 
-                {/* Enhanced decorative elements */}
-                <div className="absolute top-4 left-4 w-16 h-16 border-t-4 border-l-4 border-blue-800/40 rounded-tl-2xl group-hover:scale-110 transition-all duration-300"></div>
-                <div className="absolute bottom-4 right-4 w-16 h-16 border-b-4 border-r-4 border-blue-800/40 rounded-br-2xl group-hover:scale-110 transition-all duration-300"></div>
-                
-                {/* Subtle pattern overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                
-                {/* Animated highlight effect */}
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1500 ease-in-out"></div>
-              </div>
-              
-              {/* Student Info - Enhanced with more details */}
-              <div className="p-6 text-center">
-                <h3 className="text-2xl font-bold text-blue-800 mb-2">{ccas[0].name}</h3>
-                <div className="text-md font-semibold text-black mb-1">{ccas[0].position}</div>
-                <div className="text-sm font-medium text-blue-600 mb-3">{ccas[0].id}</div>
-                
-                {/* Bottom accent with animation */}
-                <div className="mt-5 relative h-1">
-                  <div className="w-24 h-1 mx-auto bg-gradient-to-r from-blue-800 to-blue-600 rounded-full group-hover:w-32 transition-all duration-300"></div>
-                  <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-8 h-1 bg-blue-400/50 blur-sm group-hover:w-16 transition-all duration-500"></div>
+                {/* Faculty Info */}
+                <div className="p-5 text-center">
+                  <h3 className="text-lg font-bold text-blue-800 mb-1">{chiefadvisor.name}</h3>
+                  <div className="text-sm font-semibold text-black mb-2">{chiefadvisor.position}</div>
+                  
+                  {/* Bottom accent */}
+                  <div className="mt-4 w-16 h-1 mx-auto bg-gradient-to-r from-blue-800 to-blue-600 rounded-full group-hover:w-24 transition-all duration-300"></div>
                 </div>
               </div>
-            </div>
+            ))}
           </div>
+          
         </div>
       </div>
       
@@ -130,4 +133,4 @@ function Ccas() {
   )
 }
 
-export default Ccas
+export default ChiefAdvisor

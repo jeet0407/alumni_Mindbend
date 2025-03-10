@@ -1,8 +1,13 @@
 "use client";
 
+import Ccas from "@/components/Ccas";
+import ChiefAdvisor from "@/components/CheifAdvisor";
+import Convenors from "@/components/Convenors";
 import FacultyAdvisor from "@/components/FacultyAdvisor";
+import Footer from "@/components/footer";
+import Jccas from "@/components/Jccas";
 import Navbar from "@/components/Navbar";
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 function Mindbend() {
 
@@ -10,9 +15,9 @@ function Mindbend() {
     <div className="min-h-screen bg-white">
       <Navbar />
 
-      <div className="pt-32 px-8 sm:px-16 md:px-24 lg:px-32">
+      <div className="pt-32 px-0 ">
         {/* Heading with animated underline */}
-        <div className="relative text-center mb-16">
+        <div className="relative text-center mb-16 ">
           <div className="relative text-center mb-16 group">
             <div className="inline-block relative">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tighter px-4 py-2">
@@ -55,10 +60,20 @@ function Mindbend() {
         </div>
 
         {/* Content placeholder - you can add your committee details here */}
-        <div className="max-w-6xl mx-auto">
+        <div>
             <FacultyAdvisor/>
+            <br />
+            <Ccas/>
+            <br />
+            <ChiefAdvisor/>
+            <br />
+            <Jccas/>
+            <br />
+            <Convenors/>
         </div>
       </div>
+
+      <Footer/>
     </div>
   );
 }
