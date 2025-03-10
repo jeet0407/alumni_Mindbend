@@ -14,27 +14,27 @@ function Convenors() {
     {
         name: "K D BARAIYA",
         position: "U22CE020",
-        image: "/k",
+        image: "https://res.cloudinary.com/dsh447lvk/image/upload/v1741644181/nsfrugxvvgnnbykrocm0.jpg",
     },
     {
       name: "TEJ HOTHI",
       position: "U22EC146",
-      image: "/f", 
+      image: "https://res.cloudinary.com/dsh447lvk/image/upload/v1741644186/m81j3bsognkcdrbedsa8.jpg", 
     },
     {
       name: "VATSAL KOISA",
       position: "U22CS123",
-      image: "/j",
+      image: "https://res.cloudinary.com/dsh447lvk/image/upload/v1741644322/o9pmku3zjtzmbeel1vui.jpg",
     },
     {
       name: "VAISHVI JAGIWALA",
       position: "U22CE010",
-      image: "/fac",
+      image: "https://res.cloudinary.com/dsh447lvk/image/upload/v1741642407/vaqhgllofcsre6azmmve.jpg",
     },
     {
         name: "RONAK DANGAR",
         position: "U22CS057",
-        image: "/fac",
+        image: "https://res.cloudinary.com/dsh447lvk/image/upload/v1741643894/pfrmhqyrfgesaakfphod.jpg",
       }
   ];
 
@@ -104,13 +104,13 @@ function Convenors() {
             {convenors.slice(0, 3).map((convenors, index) => (
               <div key={index} className="w-full sm:w-72 bg-white rounded-lg overflow-hidden shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 hover:translate-y-[-5px] group">
                 {/* Faculty Image */}
-                <div className="relative h-64 w-full bg-gradient-to-br from-blue-50 to-gray-100 overflow-hidden">
+                <div className="relative h-72 w-full bg-gradient-to-br from-blue-50 to-gray-100 overflow-hidden">
                   <div className="absolute inset-0 flex items-center justify-center">
                     <Image
                       src={convenors.image}
                       alt={convenors.name}
-                      width={200}
-                      height={200}
+                      width={240}
+                      height={240}
                       className="rounded-full object-cover border-4 border-white shadow-md group-hover:scale-[1.03] transition-transform duration-300"
                       onError={(e) => {
                         // Fallback for missing images
@@ -144,13 +144,13 @@ function Convenors() {
             {convenors.slice(3, 6).map((convenors, index) => (
               <div key={index} className="w-full sm:w-72 bg-white rounded-lg overflow-hidden shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 hover:translate-y-[-5px] group">
                 {/* Faculty Image */}
-                <div className="relative h-64 w-full bg-gradient-to-br from-blue-50 to-gray-100 overflow-hidden">
+                <div className="relative h-72 w-full bg-gradient-to-br from-blue-50 to-gray-100 overflow-hidden">
                   <div className="absolute inset-0 flex items-center justify-center">
                     <Image
                       src={convenors.image}
                       alt={convenors.name}
-                      width={200}
-                      height={200}
+                      width={240}
+                      height={240}
                       className="rounded-full object-cover border-4 border-white shadow-md group-hover:scale-[1.03] transition-transform duration-300"
                       onError={(e) => {
                         // Fallback for missing images

@@ -10,7 +10,7 @@ function Ccas() {
       name: "YUG RANA",
       position: "CCAS",
       id: "U21CH056",
-      image: "/students/yugrana.jpg", 
+      image: "https://res.cloudinary.com/dsh447lvk/image/upload/v1741645173/iq9uokwvf5jqn713m0yl.webp", 
     }
   ];
 
@@ -81,7 +81,7 @@ function Ccas() {
               {/* Student Image - Larger and more prominent */}
               <div className="relative h-72 w-full bg-gradient-to-br from-blue-100 to-blue-50 overflow-hidden">
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="relative h-48 w-48">
+                  <div className="relative h-64 w-64">
                     <Image
                       src={ccas[0].image}
                       alt={ccas[0].name}
