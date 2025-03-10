@@ -2,39 +2,44 @@
 
 import Image from 'next/image'
 
-function FacultyAdvisor() {
+function Convenors() {
 
   // Faculty advisors data
-  const facultyAdvisors = [
+  const convenors = [
     {
-        name: "DR. SARITA KALLA",
-        position: "CO-CHAIRPERSON",
+        name: "RAJ VADODARIYA",
+        position: "U22CS077",
+        image: "/g",
+    },
+    {
+        name: "K D BARAIYA",
+        position: "U22CE020",
         image: "/k",
     },
     {
-      name: "DR. A.K. MUNGRAY",
-      position: "CHAIRPERSON",
+      name: "TEJ HOTHI",
+      position: "U22EC146",
       image: "/f", 
     },
     {
-      name: "DR. KISHOR P UPLA",
-      position: "CO-CHAIRPERSON",
+      name: "VATSAL KOISA",
+      position: "U22CS123",
       image: "/j",
     },
     {
-      name: "DR. SURESH DAHIYA",
-      position: "CO-CHAIRPERSON",
-      image: "/g",
+      name: "VAISHVI JAGIWALA",
+      position: "U22CE010",
+      image: "/fac",
     },
     {
-      name: "DR. VIVEK D. KALYANKAR",
-      position: "CO-CHAIRPERSON",
-      image: "/fac",
-    }
+        name: "RONAK DANGAR",
+        position: "U22CS057",
+        image: "/fac",
+      }
   ];
 
   return (
-    <div className="min-h-screen bg-white relative overflow-hidden">
+    <div className=" bg-white relative overflow-hidden">
       {/* Background decorative elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Top right blue circle */}
@@ -71,7 +76,7 @@ function FacultyAdvisor() {
           <div className="relative inline-block">
             <h2 className="text-3xl md:text-4xl font-bold text-black px-10">
               <span className="relative">
-                Faculty Advisors
+                CONVENORS
                 <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-blue-800 via-blue-600 to-black"></div>
               </span>
             </h2>
@@ -96,20 +101,20 @@ function FacultyAdvisor() {
           
           {/* Top Row - 3 cards */}
           <div className="flex flex-wrap justify-center gap-6 md:gap-8 mb-8">
-            {facultyAdvisors.slice(0, 3).map((faculty, index) => (
+            {convenors.slice(0, 3).map((convenors, index) => (
               <div key={index} className="w-full sm:w-72 bg-white rounded-lg overflow-hidden shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 hover:translate-y-[-5px] group">
                 {/* Faculty Image */}
                 <div className="relative h-64 w-full bg-gradient-to-br from-blue-50 to-gray-100 overflow-hidden">
                   <div className="absolute inset-0 flex items-center justify-center">
                     <Image
-                      src={faculty.image}
-                      alt={faculty.name}
+                      src={convenors.image}
+                      alt={convenors.name}
                       width={200}
                       height={200}
                       className="rounded-full object-cover border-4 border-white shadow-md group-hover:scale-[1.03] transition-transform duration-300"
                       onError={(e) => {
                         // Fallback for missing images
-                        e.currentTarget.src = "https://placehold.co/400?text=" + encodeURIComponent(faculty.name.charAt(0)) + "&font=montserrat";
+                        e.currentTarget.src = "https://placehold.co/400?text=" + encodeURIComponent(convenors.name.charAt(0)) + "&font=montserrat";
                       }}
                     />
                   </div>
@@ -124,8 +129,8 @@ function FacultyAdvisor() {
                 
                 {/* Faculty Info */}
                 <div className="p-5 text-center">
-                  <h3 className="text-lg font-bold text-blue-800 mb-1">{faculty.name}</h3>
-                  <div className="text-sm font-semibold text-black mb-2">{faculty.position}</div>
+                  <h3 className="text-lg font-bold text-blue-800 mb-1">{convenors.name}</h3>
+                  <div className="text-sm font-semibold text-black mb-2">{convenors.position}</div>
                   
                   {/* Bottom accent */}
                   <div className="mt-4 w-16 h-1 mx-auto bg-gradient-to-r from-blue-800 to-blue-600 rounded-full group-hover:w-24 transition-all duration-300"></div>
@@ -134,22 +139,22 @@ function FacultyAdvisor() {
             ))}
           </div>
           
-          {/* Bottom Row - 2 cards */}
+          {/* Bottom Row - 3 cards */}
           <div className="flex flex-wrap justify-center gap-6 md:gap-8">
-            {facultyAdvisors.slice(3, 5).map((faculty, index) => (
+            {convenors.slice(3, 6).map((convenors, index) => (
               <div key={index} className="w-full sm:w-72 bg-white rounded-lg overflow-hidden shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 hover:translate-y-[-5px] group">
                 {/* Faculty Image */}
                 <div className="relative h-64 w-full bg-gradient-to-br from-blue-50 to-gray-100 overflow-hidden">
                   <div className="absolute inset-0 flex items-center justify-center">
                     <Image
-                      src={faculty.image}
-                      alt={faculty.name}
+                      src={convenors.image}
+                      alt={convenors.name}
                       width={200}
                       height={200}
                       className="rounded-full object-cover border-4 border-white shadow-md group-hover:scale-[1.03] transition-transform duration-300"
                       onError={(e) => {
                         // Fallback for missing images
-                        e.currentTarget.src = "https://placehold.co/400?text=" + encodeURIComponent(faculty.name.charAt(0)) + "&font=montserrat";
+                        e.currentTarget.src = "https://placehold.co/400?text=" + encodeURIComponent(convenors.name.charAt(0)) + "&font=montserrat";
                       }}
                     />
                   </div>
@@ -164,8 +169,8 @@ function FacultyAdvisor() {
                 
                 {/* Faculty Info */}
                 <div className="p-5 text-center">
-                  <h3 className="text-lg font-bold text-blue-800 mb-1">{faculty.name}</h3>
-                  <div className="text-sm font-semibold text-black mb-2">{faculty.position}</div>
+                  <h3 className="text-lg font-bold text-blue-800 mb-1">{convenors.name}</h3>
+                  <div className="text-sm font-semibold text-black mb-2">{convenors.position}</div>
                   
                   {/* Bottom accent */}
                   <div className="mt-4 w-16 h-1 mx-auto bg-gradient-to-r from-blue-800 to-blue-600 rounded-full group-hover:w-24 transition-all duration-300"></div>
@@ -178,8 +183,11 @@ function FacultyAdvisor() {
       
       {/* Bottom decorative element */}
       <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-800 via-transparent to-blue-600"></div>
+
+      
     </div>
+
   )
 }
 
-export default FacultyAdvisor
+export default Convenors

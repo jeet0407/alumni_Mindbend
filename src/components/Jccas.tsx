@@ -2,33 +2,33 @@
 
 import Image from 'next/image'
 
-function FacultyAdvisor() {
+function Jccas() {
 
   // Faculty advisors data
-  const facultyAdvisors = [
+  const jccas = [
     {
-        name: "DR. SARITA KALLA",
-        position: "CO-CHAIRPERSON",
+        name: "S R JAY KIKANI",
+        position: "U22CS119",
         image: "/k",
     },
     {
-      name: "DR. A.K. MUNGRAY",
-      position: "CHAIRPERSON",
+      name: "VATSAL SACHANIYA",
+      position: "U22ME014",
       image: "/f", 
     },
     {
-      name: "DR. KISHOR P UPLA",
-      position: "CO-CHAIRPERSON",
-      image: "/j",
+      name: "DARSHIT DESAI",
+      position: "U22EC008",
+      image: "https://res.cloudinary.com/dsh447lvk/image/upload/v1741640217/jubfucmkqvaoqhwlc9yz.png",
     },
     {
-      name: "DR. SURESH DAHIYA",
-      position: "CO-CHAIRPERSON",
+      name: "UJJWAL GUPTA",
+      position: "U22ME061",
       image: "/g",
     },
     {
-      name: "DR. VIVEK D. KALYANKAR",
-      position: "CO-CHAIRPERSON",
+      name: "RIDHAYU GOSAI",
+      position: "U22EE008",
       image: "/fac",
     }
   ];
@@ -71,7 +71,7 @@ function FacultyAdvisor() {
           <div className="relative inline-block">
             <h2 className="text-3xl md:text-4xl font-bold text-black px-10">
               <span className="relative">
-                Faculty Advisors
+                JOINT CCAS
                 <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-blue-800 via-blue-600 to-black"></div>
               </span>
             </h2>
@@ -96,20 +96,20 @@ function FacultyAdvisor() {
           
           {/* Top Row - 3 cards */}
           <div className="flex flex-wrap justify-center gap-6 md:gap-8 mb-8">
-            {facultyAdvisors.slice(0, 3).map((faculty, index) => (
+            {jccas.slice(0, 3).map((jccas, index) => (
               <div key={index} className="w-full sm:w-72 bg-white rounded-lg overflow-hidden shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 hover:translate-y-[-5px] group">
-                {/* Faculty Image */}
-                <div className="relative h-64 w-full bg-gradient-to-br from-blue-50 to-gray-100 overflow-hidden">
+              
+                <div className="relative h-72 w-full bg-gradient-to-br from-blue-50 to-gray-100 overflow-hidden">
                   <div className="absolute inset-0 flex items-center justify-center">
                     <Image
-                      src={faculty.image}
-                      alt={faculty.name}
-                      width={200}
-                      height={200}
+                      src={jccas.image}
+                      alt={jccas.name}
+                      width={240}
+                      height={240}
                       className="rounded-full object-cover border-4 border-white shadow-md group-hover:scale-[1.03] transition-transform duration-300"
                       onError={(e) => {
                         // Fallback for missing images
-                        e.currentTarget.src = "https://placehold.co/400?text=" + encodeURIComponent(faculty.name.charAt(0)) + "&font=montserrat";
+                        e.currentTarget.src = "https://placehold.co/400?text=" + encodeURIComponent(jccas.name.charAt(0)) + "&font=montserrat";
                       }}
                     />
                   </div>
@@ -124,8 +124,8 @@ function FacultyAdvisor() {
                 
                 {/* Faculty Info */}
                 <div className="p-5 text-center">
-                  <h3 className="text-lg font-bold text-blue-800 mb-1">{faculty.name}</h3>
-                  <div className="text-sm font-semibold text-black mb-2">{faculty.position}</div>
+                  <h3 className="text-lg font-bold text-blue-800 mb-1">{jccas.name}</h3>
+                  <div className="text-sm font-semibold text-black mb-2">{jccas.position}</div>
                   
                   {/* Bottom accent */}
                   <div className="mt-4 w-16 h-1 mx-auto bg-gradient-to-r from-blue-800 to-blue-600 rounded-full group-hover:w-24 transition-all duration-300"></div>
@@ -136,20 +136,19 @@ function FacultyAdvisor() {
           
           {/* Bottom Row - 2 cards */}
           <div className="flex flex-wrap justify-center gap-6 md:gap-8">
-            {facultyAdvisors.slice(3, 5).map((faculty, index) => (
+            {jccas.slice(3, 5).map((jccas, index) => (
               <div key={index} className="w-full sm:w-72 bg-white rounded-lg overflow-hidden shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 hover:translate-y-[-5px] group">
-                {/* Faculty Image */}
                 <div className="relative h-64 w-full bg-gradient-to-br from-blue-50 to-gray-100 overflow-hidden">
                   <div className="absolute inset-0 flex items-center justify-center">
                     <Image
-                      src={faculty.image}
-                      alt={faculty.name}
-                      width={200}
-                      height={200}
+                      src={jccas.image}
+                      alt={jccas.name}
+                      width={230}
+                      height={230}
                       className="rounded-full object-cover border-4 border-white shadow-md group-hover:scale-[1.03] transition-transform duration-300"
                       onError={(e) => {
                         // Fallback for missing images
-                        e.currentTarget.src = "https://placehold.co/400?text=" + encodeURIComponent(faculty.name.charAt(0)) + "&font=montserrat";
+                        e.currentTarget.src = "https://placehold.co/400?text=" + encodeURIComponent(jccas.name.charAt(0)) + "&font=montserrat";
                       }}
                     />
                   </div>
@@ -164,8 +163,8 @@ function FacultyAdvisor() {
                 
                 {/* Faculty Info */}
                 <div className="p-5 text-center">
-                  <h3 className="text-lg font-bold text-blue-800 mb-1">{faculty.name}</h3>
-                  <div className="text-sm font-semibold text-black mb-2">{faculty.position}</div>
+                  <h3 className="text-lg font-bold text-blue-800 mb-1">{jccas.name}</h3>
+                  <div className="text-sm font-semibold text-black mb-2">{jccas.position}</div>
                   
                   {/* Bottom accent */}
                   <div className="mt-4 w-16 h-1 mx-auto bg-gradient-to-r from-blue-800 to-blue-600 rounded-full group-hover:w-24 transition-all duration-300"></div>
@@ -182,4 +181,4 @@ function FacultyAdvisor() {
   )
 }
 
-export default FacultyAdvisor
+export default Jccas
