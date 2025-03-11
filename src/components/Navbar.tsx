@@ -26,7 +26,6 @@ const Navbar: React.FC = () => {
           setActiveItem('Home');
         }}
       >
-        {/* Replace '/logo.png' with the actual path to your logo image */}
         <Image 
           src="/images/logo.png" 
           alt="Logo" 
@@ -105,7 +104,7 @@ const Navbar: React.FC = () => {
           )}
         </button>
         
-        <button
+        {/* <button
           onClick={() => {
             router.push("/about-us");
             setActiveItem('About');
@@ -120,7 +119,7 @@ const Navbar: React.FC = () => {
           ) : (
             <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-white group-hover:w-full transition-all duration-300 ease-in-out"></span>
           )}
-        </button>
+        </button> */}
       </div>
       
       <div className="md:hidden">

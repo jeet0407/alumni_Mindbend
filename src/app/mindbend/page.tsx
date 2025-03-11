@@ -1,81 +1,254 @@
 "use client";
 
-import Ccas from "@/components/Ccas";
-import ChiefAdvisor from "@/components/CheifAdvisor";
-import Convenors from "@/components/Convenors";
-import FacultyAdvisor from "@/components/FacultyAdvisor";
-import Footer from "@/components/footer";
-import Jccas from "@/components/Jccas";
-import Navbar from "@/components/Navbar";
 import React from "react";
+import Image from "next/image";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/footer";
+import { useRouter } from "next/navigation";
 
 function Mindbend() {
-
+  const router = useRouter();
   return (
-    <div className="min-h-screen bg-white">
+    <>
       <Navbar />
 
-      <div className="pt-32 px-0 ">
-        {/* Heading with animated underline */}
-        <div className="relative text-center mb-16 ">
-          <div className="relative text-center mb-16 group">
-            <div className="inline-block relative">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tighter px-4 py-2">
-                <span className="text-blue-800 mr-1 relative inline-block">
+      <div className="py-4 relative overflow-hidden mt-16">
+        {/* Decorative background elements */}
+        <div className="absolute inset-0 pointer-events-none">
+          {/* Subtle grid pattern */}
+          <div className="absolute inset-0 bg-[url('/patterns/grid.svg')] opacity-5"></div>
+
+          {/* Small decorative elements */}
+          <div className="absolute top-20 right-10 w-12 h-12 border-4 border-blue-200/30 rounded-full"></div>
+          <div className="absolute bottom-20 left-10 w-8 h-8 border-2 border-blue-800/20 rounded-full"></div>
+          <div className="absolute bottom-40 right-1/4 w-24 h-4 bg-gradient-to-r from-blue-100/20 to-transparent rounded-full blur-md"></div>
+        </div>
+
+        {/* About Section */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16">
+          <div className="flex flex-col md:flex-row gap-8 lg:gap-12 items-center">
+            {/* Left side: Text Content */}
+            <div className="w-full md:w-1/2 order-2 md:order-1">
+              {/* Heading with decorative elements */}
+              <div className="relative mb-16">
+                <h2 className="text-3xl md:text-6xl font-bold text-blue-900 relative inline-block">
+                  <span className="text-black">About&nbsp;</span>
                   MINDBEND
-                  <div className="absolute -bottom-1 left-0 w-full h-1 bg-blue-800 rounded-full"></div>
-                </span>
-
-                <span className="text-blue-600 font-black mx-1 relative">
-                  :
-                </span>
-
-                <span className="text-black ml-1 relative inline-block">
-                  CORE COMMITTEE
-                  <div className="absolute -bottom-1 left-0 w-full h-1 bg-black rounded-full"></div>
-                </span>
-              </h1>
-
-              {/* Animated underline accent */}
-              <div className="absolute -bottom-3 left-0 w-full h-0.5 bg-gradient-to-r from-blue-900 via-blue-500 to-black">
-                <div className="absolute top-0 left-0 w-1/3 h-full bg-white/30 blur-sm animate-pulse"></div>
+                  <div className="absolute -bottom-6 left-2 w-120 h-1 bg-blue-800"></div>
+                  <div className="absolute -bottom-10 left-4 w-100 h-1 bg-blue-600"></div>
+                </h2>
               </div>
 
-              {/* Additional decorative element */}
-              <div className="absolute -top-5 -left-5 w-10 h-10 border-t-4 border-l-4 border-blue-800/30 rounded-tl-xl"></div>
-              <div className="absolute -bottom-5 -right-5 w-10 h-10 border-b-4 border-r-4 border-blue-800/30 rounded-br-xl"></div>
+              {/* Paragraph text with enhanced typography and styling */}
+              <div className="text-black space-y-4 leading-relaxed font-bold">
+                <p className="text-base md:text-lg mb-4">
+                  <span className="font-semibold text-blue-900">Mindbend</span>{" "}
+                  is Gujarat's largest Techno-Managerial fest, hosted annually
+                  by SVNIT, Surat. The 2025 edition, themed
+                  <span className="italic font-bold">
+                    {" "}
+                    "Ecogenesis: Bharat's Journey from Roots to Revolution"
+                  </span>{" "}
+                  celebrates India's cultural heritage and technological
+                  progress.
+                </p>
+
+                <p className="text-base md:text-lg mb-4">
+                  Attracting over{" "}
+                  <span className="font-semibold text-blue-800">
+                    15,000 participants
+                  </span>
+                  , it features workshops, competitions, and engaging
+                  activities. Past guest lectures have included notable figures
+                  like Dr. G. Satheesh Reddy (Ex-Chairman, DRDO) and Captain
+                  Yogendra Singh Yadav (Param Vir Chakra).
+                </p>
+
+                <p className="text-base md:text-lg">
+                  The fest has also featured influential speakers like Aman
+                  Dhattarwal, Shradha Khapra, and Sandeep Jain, who have
+                  inspired and educated attendees.
+                </p>
+              </div>
+
+              <div className="mt-10">
+                <a
+                  href="/core"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    // Navigate using Next.js router
+                    router.push("/core");
+                  }}
+                  className="group relative inline-flex items-center justify-center overflow-hidden rounded-lg bg-gradient-to-r from-blue-700 to-blue-500 px-8 py-4 text-white shadow-lg transition-all duration-300 hover:shadow-blue-200/40 hover:shadow-xl hover:from-blue-600 hover:to-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 active:scale-95"
+                >
+                  <span className="absolute -end-10 -start-10 top-12 h-40 -translate-y-24 rotate-45 bg-white/20 opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100"></span>
+
+                  <span className="relative flex items-center gap-2">
+                    {/* Icon */}
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+
+                    {/* Text with two-layer design */}
+                    <span className="font-medium tracking-wider">
+                      <span className="block text-sm font-light opacity-90">
+                        Discover Our
+                      </span>
+                      <span className="text-lg font-bold -mt-1 block">
+                        Core Committee
+                      </span>
+                    </span>
+                  </span>
+
+                  {/* Decorative corner accent */}
+                  <span className="absolute right-1 top-1 h-3 w-3 border-t-0 border-r-2 border-b-0 border-l-0 border-white opacity-70 transition-all duration-300 group-hover:h-4 group-hover:w-4 group-hover:opacity-100"></span>
+                  <span className="absolute left-1 bottom-1 h-3 w-3 border-b-2 border-l-2 border-t-0 border-r-0 border-white opacity-70 transition-all duration-300 group-hover:h-4 group-hover:w-4 group-hover:opacity-100"></span>
+                </a>
+              </div>
             </div>
-          </div>
 
-          {/* Abstract decorative elements */}
-          <div className="hidden md:block absolute -top-16 -left-16 w-32 h-32">
-            <div className="absolute w-16 h-16 rounded-full border-4 border-blue-900/20 animate-float"></div>
-            <div className="absolute top-10 left-10 w-10 h-10 rounded-full border-2 border-blue-600/20 animate-float-delayed"></div>
-          </div>
+            {/* Right side: Image with decorative elements */}
+            <div className="w-full md:w-1/2 order-1 md:order-2 flex justify-center">
+              <div className="relative w-full max-w-md aspect-square">
+                {/* Main image */}
+                <div className="relative w-full h-full overflow-hidden rounded-lg shadow-xl">
+                  <Image
+                    src="/images/mbpagehero.webp"
+                    alt="Mindbend Festival"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
 
-          <div className="hidden md:block absolute -top-12 -right-12 w-28 h-28">
-            <div className="absolute w-12 h-12 rounded-full border-4 border-black/10 animate-float-delayed"></div>
-            <div className="absolute top-8 left-8 w-8 h-8 rounded-full border-2 border-blue-600/20 animate-float"></div>
+                {/* Decorative elements */}
+                <div className="absolute -top-4 -left-4 w-16 h-16 border-t-4 border-l-4 border-blue-800/30 rounded-tl-xl"></div>
+                <div className="absolute -bottom-4 -right-4 w-16 h-16 border-b-4 border-r-4 border-blue-800/30 rounded-br-xl"></div>
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Content placeholder - you can add your committee details here */}
-        <div>
-            <FacultyAdvisor/>
-            <br />
-            <Ccas/>
-            <br />
-            <ChiefAdvisor/>
-            <br />
-            <Jccas/>
-            <br />
-            <Convenors/>
-            <br />
+        {/* Visual graphic element */}
+        <div className="mt-10 relative">
+          <div className="flex justify-center items-center gap-4">
+            <div className="h-px w-16 md:w-24 bg-gradient-to-r from-transparent to-blue-600"></div>
+            <div className="w-10 h-10 rounded-full border-2 border-blue-400 flex items-center justify-center">
+              <div className="w-6 h-6 bg-blue-100 rounded-full"></div>
+            </div>
+            <div className="h-px w-16 md:w-24 bg-gradient-to-l from-transparent to-blue-600"></div>
+          </div>
+        </div>
+
+        {/* Theme Section */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-24 mb-24 relative">
+          {/* Background decorative elements for theme section */}
+          <div className="absolute inset-0 -z-10 overflow-hidden">
+            <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-50/80 rounded-full blur-3xl"></div>
+            <div className="absolute -bottom-20 -left-20 w-60 h-60 bg-blue-100/50 rounded-full blur-2xl"></div>
+          </div>
+
+          {/* Theme header with stacked text */}
+          <div className="text-center relative mb-12">
+            <h2 className="inline-block relative">
+              <span className="block text-4xl md:text-5xl font-extrabold tracking-tight text-black">
+                THEME :{" "}
+              </span>
+              <span className="block text-4xl md:text-6xl font-extrabold tracking-tight text-blue-800">
+                ECOGENESIS
+              </span>
+
+              {/* Decorative underlines */}
+              <div className="h-1 w-32 md:w-68 bg-blue-800 mx-auto mt-4"></div>
+              <div className="h-1 w-24 md:w-48 bg-blue-600 mx-auto mt-2"></div>
+
+              {/* Side decorative elements */}
+              <div className="absolute -left-2 md:-left-6 top-1/2 w-4 h-4 md:w-6 md:h-6 bg-blue-100 rounded-full hidden md:block"></div>
+              <div className="absolute -right-2 md:-right-6 top-1/2 w-4 h-4 md:w-6 md:h-6 bg-blue-100 rounded-full hidden md:block"></div>
+            </h2>
+          </div>
+
+          {/* Theme description with enhanced styling */}
+          <div className="max-w-3xl mx-auto text-center">
+            <p className="text-base md:text-xl leading-relaxed text-black font-bold relative px-4 md:px-10">
+              <span className="absolute -left-2 top-0 text-4xl text-blue-200 font-serif">
+                "
+              </span>
+              Welcome to{" "}
+              <span className="font-semibold text-blue-900">
+                MINDBEND's ECOGENESIS
+              </span>
+              —a celebration of Bharat's journey blending rich heritage with
+              cutting-edge innovation. This theme captures India's rise, where
+              tradition fuels progress, shaping a sustainable and dynamic
+              future. Join us as we explore the fusion of ecology,
+              sustainability, and innovation, honoring the past while building a
+              greener tomorrow.
+              <span className="absolute -right-2 bottom-0 text-4xl text-blue-200 font-serif">
+                "
+              </span>
+            </p>
+          </div>
+        </div>
+
+        {/* Bottom decorative element */}
+        <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-800 via-transparent to-blue-600"></div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 px-16">
+          <div className="bg-white shadow-lg rounded-2xl overflow-hidden transform hover:shadow-xl transition-shadow duration-300">
+            <h3 className="text-2xl font-semibold text-black p-6 bg-gray-50">
+              Our Location
+            </h3>
+            <div className="aspect-w-16 aspect-h-9 h-[400px]">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14883.048663936506!2d72.77672580474201!3d21.161861188332868!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be04dee0c3c5311%3A0x7bd4e2f1cdf25f26!2sSVNIT%20Campus%2C%20Athwa%2C%20Surat%2C%20Gujarat%20395007!5e0!3m2!1sen!2sin!4v1741720349690!5m2!1sen!2sin"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="w-full h-full"
+              ></iframe>
+            </div>
+          </div>
+          <div className="bg-white shadow-lg rounded-2xl overflow-hidden transform hover:shadow-xl transition-shadow duration-300">
+            <h3 className="text-2xl font-semibold text-black p-6 bg-gray-50">
+              Follow Us on Instagram
+            </h3>
+            <div className="aspect-w-16 aspect-h-9 h-[400px]">
+              <iframe
+                src="https://www.instagram.com/mindbend_nitsurat/embed"
+                className="w-full h-full"
+                frameBorder="0"
+                scrolling="no"
+                allowTransparency={true}
+              ></iframe>
+            </div>
+            <div className="p-4 text-center">
+              <a
+                href="https://www.instagram.com/mindbend_nitsurat/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-black hover:text-gray-800 font-medium"
+              >
+                Visit our Instagram Profile
+              </a>
+            </div>
+          </div>
         </div>
       </div>
 
-      <Footer/>
-    </div>
+      <Footer />
+    </>
   );
 }
 
