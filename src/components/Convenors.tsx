@@ -9,7 +9,7 @@ function Convenors() {
     {
         name: "RAJ VADODARIYA",
         position: "U22CS077",
-        image: "/g",
+        image: "https://res.cloudinary.com/dsh447lvk/image/upload/v1741711054/b6aoxbn9qncjrypzedup.jpg",
     },
     {
         name: "K D BARAIYA",

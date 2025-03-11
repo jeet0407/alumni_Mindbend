@@ -148,9 +148,6 @@ export default function Alumni() {
           {/* Call to action buttons */}
           <div className="flex flex-wrap gap-4">
             <button className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-all duration-300 font-semibold shadow-md hover:shadow-lg hover:scale-105">
-              Browse Alumni Network
-            </button>
-            <button className="px-6 py-3 bg-white text-blue-600 border border-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-300 font-semibold hover:scale-105">
               Join as Alumni
             </button>
           </div>
