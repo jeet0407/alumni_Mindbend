@@ -5,6 +5,8 @@ import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/footer";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
+
 
 function Mindbend() {
   const router = useRouter();
@@ -73,12 +75,9 @@ function Mindbend() {
 
       <div className="mt-10 flex space-x-4">
         {/* Core Committee Button */}
-        <a
+        <Link 
           href="/core"
-          onClick={(e) => {
-            e.preventDefault();
-            router.push("/core");
-          }}
+          
           className="group relative inline-flex items-center justify-center overflow-hidden rounded-lg bg-gradient-to-r from-blue-700 to-blue-500 px-8 py-4 text-white shadow-lg transition-all duration-300 hover:shadow-blue-200/40 hover:shadow-xl hover:from-blue-600 hover:to-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 active:scale-95"
         >
           <span className="absolute -end-10 -start-10 top-12 h-40 -translate-y-24 rotate-45 bg-white/20 opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100"></span>
@@ -112,11 +111,11 @@ function Mindbend() {
           {/* Decorative corner accent */}
           <span className="absolute right-1 top-1 h-3 w-3 border-t-0 border-r-2 border-b-0 border-l-0 border-white opacity-70 transition-all duration-300 group-hover:h-4 group-hover:w-4 group-hover:opacity-100"></span>
           <span className="absolute left-1 bottom-1 h-3 w-3 border-b-2 border-l-2 border-t-0 border-r-0 border-white opacity-70 transition-all duration-300 group-hover:h-4 group-hover:w-4 group-hover:opacity-100"></span>
-        </a>
+        </Link>
 
         {/* Mindbend website */}
 
-        <a
+        <Link
           href="https://www.mindbend-svnit.com/"
           target="_blank"
           rel="noopener noreferrer"
@@ -153,7 +152,7 @@ function Mindbend() {
           {/* Decorative corner accent */}
           <span className="absolute right-1 top-1 h-3 w-3 border-t-0 border-r-2 border-b-0 border-l-0 border-white opacity-70 transition-all duration-300 group-hover:h-4 group-hover:w-4 group-hover:opacity-100"></span>
           <span className="absolute left-1 bottom-1 h-3 w-3 border-b-2 border-l-2 border-t-0 border-r-0 border-white opacity-70 transition-all duration-300 group-hover:h-4 group-hover:w-4 group-hover:opacity-100"></span>
-        </a>
+        </Link>
 
 
 

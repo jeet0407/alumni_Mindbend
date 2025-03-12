@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const images = [
   "/images/hero/hero-1.jpg",
@@ -70,31 +71,28 @@ const HeroSection: React.FC = () => {
       </div>
 
       <div className="absolute bottom-0 left-0 right-0 flex justify-center z-10">
-        <div className="bg-blue-50 bg-opacity-95 backdrop-blur-sm px-20 py-4 rounded-t-[90px] flex flex-wrap justify-center gap-20 border-t-4 border-l-4 border-r-4 border-blue-800 shadow-lg z-12">
-          <button className="px-8 py-3 bg-black text-white rounded-[40px] transition-all duration-300 font-bold text-lg transform hover:scale-105 hover:shadow-glow focus:outline-none relative overflow-hidden group border-3 border-blue-600">
-            <span className="relative z-10">Upcoming Events</span>
-            <span className="absolute bottom-0 left-0 w-0 h-1 bg-blue-500 group-hover:w-full transition-all duration-300 ease-in-out"></span>
-          </button>
+      <div className="bg-blue-50 bg-opacity-95 backdrop-blur-sm px-20 py-4 rounded-t-[90px] flex flex-wrap justify-center gap-20 border-t-4 border-l-4 border-r-4 border-blue-800 shadow-lg z-12">
+        <Link href="/events" className="px-8 py-3 bg-black text-white rounded-[40px] transition-all duration-300 font-bold text-lg transform hover:scale-105 hover:shadow-glow focus:outline-none relative overflow-hidden group border-3 border-blue-600">
+          <span className="relative z-10">Upcoming Events</span>
+          <span className="absolute bottom-0 left-0 w-0 h-1 bg-blue-500 group-hover:w-full transition-all duration-300 ease-in-out"></span>
+        </Link>
 
-          <button 
-            onClick={() => router.push("/mindbend")}
-            className="px-8 py-3 bg-black text-white rounded-[40px] transition-all duration-300 font-bold text-lg transform hover:scale-105 hover:shadow-glow focus:outline-none relative overflow-hidden group border-3 border-blue-600"
-          >
-            <span className="relative z-10">Mindbend</span>
-            <span className="absolute bottom-0 left-0 w-0 h-1 bg-blue-500 group-hover:w-full transition-all duration-300 ease-in-out"></span>
-          </button>
+        <Link href="/mindbend" className="px-8 py-3 bg-black text-white rounded-[40px] transition-all duration-300 font-bold text-lg transform hover:scale-105 hover:shadow-glow focus:outline-none relative overflow-hidden group border-3 border-blue-600">
+          <span className="relative z-10">Mindbend</span>
+          <span className="absolute bottom-0 left-0 w-0 h-1 bg-blue-500 group-hover:w-full transition-all duration-300 ease-in-out"></span>
+        </Link>
 
-          <button className="px-8 py-3 bg-black text-white rounded-[40px] transition-all duration-300 font-bold text-lg transform hover:scale-105 hover:shadow-glow focus:outline-none relative overflow-hidden group border-3 border-blue-600">
-            <span className="relative z-10">Gallery</span>
-            <span className="absolute bottom-0 left-0 w-0 h-1 bg-blue-500 group-hover:w-full transition-all duration-300 ease-in-out"></span>
-          </button>
+        <Link href="/gallery" className="px-8 py-3 bg-black text-white rounded-[40px] transition-all duration-300 font-bold text-lg transform hover:scale-105 hover:shadow-glow focus:outline-none relative overflow-hidden group border-3 border-blue-600">
+          <span className="relative z-10">Gallery</span>
+          <span className="absolute bottom-0 left-0 w-0 h-1 bg-blue-500 group-hover:w-full transition-all duration-300 ease-in-out"></span>
+        </Link>
 
-          <button className="px-8 py-3 bg-black text-white rounded-[40px] transition-all duration-300 font-bold text-lg transform hover:scale-105 hover:shadow-glow focus:outline-none relative overflow-hidden group border-3 border-blue-600">
-            <span className="relative z-10">Connect</span>
-            <span className="absolute bottom-0 left-0 w-0 h-1 bg-blue-500 group-hover:w-full transition-all duration-300 ease-in-out"></span>
-          </button>
-        </div>
+        <Link href="/alumni" className="px-8 py-3 bg-black text-white rounded-[40px] transition-all duration-300 font-bold text-lg transform hover:scale-105 hover:shadow-glow focus:outline-none relative overflow-hidden group border-3 border-blue-600">
+          <span className="relative z-10">Connect</span>
+          <span className="absolute bottom-0 left-0 w-0 h-1 bg-blue-500 group-hover:w-full transition-all duration-300 ease-in-out"></span>
+        </Link>
       </div>
+    </div>
     </div>
   );
 };
