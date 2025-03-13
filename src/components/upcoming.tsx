@@ -86,7 +86,7 @@ function Upcoming() {
                         <iframe
                           className="instagram-media instagram-media-rendered"
                           src={`${post}?cr=1&v=14&wp=489&rd=https%3A%2F%2Fwww.mindbend-svnit.com&rp=%2F#%7B%22ci%22%3A${index}%2C%22os%22%3A8352.79999999702%2C%22ls%22%3A4512.10000000149%2C%22le%22%3A8344.60000000149%7D`}
-                          allowTransparency
+                          // allowtransparency={true}
                           allowFullScreen
                           frameBorder="0"
                           height="614"
