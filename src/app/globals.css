@@ -112,13 +112,17 @@ body {
 }
 
 .animate-scrollUp {
-  animation: scrollUp 25s linear infinite;
+  animation: scrollUp 35s linear infinite;
 }
 
 .animate-scrollDown {
-  animation: scrollDown 30s linear infinite;
+  animation: scrollDown 40s linear infinite;
 }
 
 .animate-scrollUpFast {
-  animation: scrollUpFast 20s linear infinite;
+  animation: scrollUpFast 30s linear infinite;
+}
+
+html {
+  scroll-behavior: smooth;
 }
