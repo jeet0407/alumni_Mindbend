@@ -69,7 +69,6 @@ body {
   display: none;
 }
 
-/* Add these keyframes to your globals.css file */
 @keyframes shine {
   0% {
     transform: translateX(-100%);
@@ -97,15 +96,29 @@ body {
   }
 }
 
-/* Add this to your Tailwind CSS config */
-.animate-shine {
-  animation: shine 3s infinite;
+@keyframes scrollUp {
+  from { transform: translateY(0); }
+  to { transform: translateY(-50%); }
 }
 
-.animate-float {
-  animation: float 6s ease-in-out infinite;
+@keyframes scrollDown {
+  from { transform: translateY(-50%); }
+  to { transform: translateY(0); }
 }
 
-.animate-float-delayed {
-  animation: float-delayed 8s ease-in-out infinite;
+@keyframes scrollUpFast {
+  from { transform: translateY(0); }
+  to { transform: translateY(-50%); }
+}
+
+.animate-scrollUp {
+  animation: scrollUp 25s linear infinite;
+}
+
+.animate-scrollDown {
+  animation: scrollDown 30s linear infinite;
+}
+
+.animate-scrollUpFast {
+  animation: scrollUpFast 20s linear infinite;
 }

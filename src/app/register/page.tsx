@@ -111,7 +111,7 @@ export default function AlumniRegistration() {
                 name={key}
                 value={formData[key as keyof FormDataType]}
                 onChange={handleChange}
-                className="p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+                className="p-2 border rounded-md focus:outline-none text-black focus:ring-2 focus:ring-blue-400"
               />
             </div>
           ))}

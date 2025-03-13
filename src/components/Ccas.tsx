@@ -4,7 +4,7 @@ import Image from 'next/image'
 import React from 'react'
 
 function Ccas() {
-  // CCAS data - corrected with proper details for Yug Rana
+
   const ccas = [
     {
       name: "YUG RANA",
@@ -126,6 +126,7 @@ function Ccas() {
       
       {/* Bottom decorative element */}
       <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-800 via-transparent to-blue-600"></div>
+    
     </div>
   )
 }

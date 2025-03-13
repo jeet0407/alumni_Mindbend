@@ -75,43 +75,86 @@ function Mindbend() {
 
       <div className="mt-10 flex space-x-4">
         {/* Core Committee Button */}
-        <Link 
-          href="/core"
-          
-          className="group relative inline-flex items-center justify-center overflow-hidden rounded-lg bg-gradient-to-r from-blue-700 to-blue-500 px-8 py-4 text-white shadow-lg transition-all duration-300 hover:shadow-blue-200/40 hover:shadow-xl hover:from-blue-600 hover:to-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 active:scale-95"
-        >
-          <span className="absolute -end-10 -start-10 top-12 h-40 -translate-y-24 rotate-45 bg-white/20 opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100"></span>
+        {/* Button inside <a> for small screens */}
+<a 
+  href="/core" 
+  className="block md:hidden"
+>
+  <button 
+    className="group relative inline-flex items-center justify-center overflow-hidden rounded-lg bg-gradient-to-r from-blue-700 to-blue-500 px-8 py-4 text-white shadow-lg transition-all duration-300 hover:shadow-blue-200/40 hover:shadow-xl hover:from-blue-600 hover:to-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 active:scale-95"
+  >
+    <span className="absolute -end-10 -start-10 top-12 h-40 -translate-y-24 rotate-45 bg-white/20 opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100"></span>
 
-          <span className="relative flex items-center gap-2">
-            {/* Icon */}
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
-              <path
-                fillRule="evenodd"
-                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z"
-                clipRule="evenodd"
-              />
-            </svg>
+    <span className="relative flex items-center gap-2">
+      {/* Icon */}
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+      >
+        <path
+          fillRule="evenodd"
+          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z"
+          clipRule="evenodd"
+        />
+      </svg>
 
-            {/* Text with two-layer design */}
-            <span className="font-medium tracking-wider">
-              <span className="block text-sm font-light opacity-90">
-                Checkout Our
-              </span>
-              <span className="text-lg font-bold -mt-1 block">
-                Core Committee
-              </span>
-            </span>
-          </span>
+      {/* Text */}
+      <span className="font-medium tracking-wider">
+        <span className="block text-sm font-light opacity-90">
+          Checkout Our
+        </span>
+        <span className="text-lg font-bold -mt-1 block">
+          Core Committee
+        </span>
+      </span>
+    </span>
 
-          {/* Decorative corner accent */}
-          <span className="absolute right-1 top-1 h-3 w-3 border-t-0 border-r-2 border-b-0 border-l-0 border-white opacity-70 transition-all duration-300 group-hover:h-4 group-hover:w-4 group-hover:opacity-100"></span>
-          <span className="absolute left-1 bottom-1 h-3 w-3 border-b-2 border-l-2 border-t-0 border-r-0 border-white opacity-70 transition-all duration-300 group-hover:h-4 group-hover:w-4 group-hover:opacity-100"></span>
-        </Link>
+    {/* Decorative corner accent */}
+    <span className="absolute right-1 top-1 h-3 w-3 border-t-0 border-r-2 border-b-0 border-l-0 border-white opacity-70 transition-all duration-300 group-hover:h-4 group-hover:w-4 group-hover:opacity-100"></span>
+    <span className="absolute left-1 bottom-1 h-3 w-3 border-b-2 border-l-2 border-t-0 border-r-0 border-white opacity-70 transition-all duration-300 group-hover:h-4 group-hover:w-4 group-hover:opacity-100"></span>
+  </button>
+</a>
+
+{/* Link for medium and larger screens */}
+<Link 
+  href="/core"
+  className="hidden md:inline-flex group relative items-center justify-center overflow-hidden rounded-lg bg-gradient-to-r from-blue-700 to-blue-500 px-8 py-4 text-white shadow-lg transition-all duration-300 hover:shadow-blue-200/40 hover:shadow-xl hover:from-blue-600 hover:to-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 active:scale-95"
+>
+  <span className="absolute -end-10 -start-10 top-12 h-40 -translate-y-24 rotate-45 bg-white/20 opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100"></span>
+
+  <span className="relative flex items-center gap-2">
+    {/* Icon */}
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1"
+      viewBox="0 0 20 20"
+      fill="currentColor"
+    >
+      <path
+        fillRule="evenodd"
+        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z"
+        clipRule="evenodd"
+      />
+    </svg>
+
+    {/* Text */}
+    <span className="font-medium tracking-wider">
+      <span className="block text-sm font-light opacity-90">
+        Checkout Our
+      </span>
+      <span className="text-lg font-bold -mt-1 block">
+        Core Committee
+      </span>
+    </span>
+  </span>
+
+  {/* Decorative corner accent */}
+  <span className="absolute right-1 top-1 h-3 w-3 border-t-0 border-r-2 border-b-0 border-l-0 border-white opacity-70 transition-all duration-300 group-hover:h-4 group-hover:w-4 group-hover:opacity-100"></span>
+  <span className="absolute left-1 bottom-1 h-3 w-3 border-b-2 border-l-2 border-t-0 border-r-0 border-white opacity-70 transition-all duration-300 group-hover:h-4 group-hover:w-4 group-hover:opacity-100"></span>
+</Link>
+
 
         {/* Mindbend website */}
 
@@ -273,7 +316,7 @@ function Mindbend() {
                 className="w-full h-full"
                 frameBorder="0"
                 scrolling="no"
-                allowTransparency={true}
+                // allowTransparency="t"
               ></iframe>
             </div>
             <div className="p-4 text-center">
