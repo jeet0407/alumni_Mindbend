@@ -123,6 +123,14 @@ export default function AlumniRegistration() {
               Register
             </button>
           </div>
+          <div className="mt-4 text-center">
+          <p className="text-sm text-gray-600">
+            Dont have an account?{" "}
+            <a href="/login" className="text-blue-700 hover:underline">
+              Login here
+            </a>
+          </p>
+          </div>
         </form>
       </div>
     </div>
