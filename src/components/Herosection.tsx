@@ -41,7 +41,7 @@ const HeroSection: React.FC = () => {
               alt={`Hero background ${index + 1}`}
               fill
               priority={index === 0}
-              quality={90}
+              quality={75}
               style={{
                 objectFit: "cover",
                 filter: "brightness(0.6)",
@@ -114,42 +114,46 @@ const HeroSection: React.FC = () => {
           </div>
         </div>
 
-        {/* Bottom Navigation Bar - Only shown on medium screens and up */}
-        <div className="absolute bottom-0 left-0 right-0 hidden md:flex justify-center z-10">
-          <div className="bg-blue-50 bg-opacity-95 backdrop-blur-sm px-10 lg:px-20 py-4 rounded-t-[90px] flex flex-wrap justify-center gap-10 lg:gap-20 border-t-4 border-l-4 border-r-4 border-blue-800 shadow-lg">
-            <Link
-              href="/events"
-              className="px-6 lg:px-8 py-3 bg-black text-white rounded-[40px] transition-all duration-600 font-bold text-base lg:text-lg transform hover:scale-105 hover:shadow-md focus:outline-none relative overflow-hidden group border-3 border-blue-600"
-            >
-              <span className="relative z-10">Upcoming Events</span>
-              <span className="absolute bottom-0 left-0 w-0 h-1 bg-blue-500 group-hover:w-full transition-all duration-300 ease-in-out"></span>
-            </Link>
-
-            <Link
-              href="/mindbend"
-              className="px-6 lg:px-8 py-3 bg-black text-white rounded-[40px] transition-all duration-600 font-bold text-base lg:text-lg transform hover:scale-105 hover:shadow-md focus:outline-none relative overflow-hidden group border-3 border-blue-600"
-            >
-              <span className="relative z-10">Mindbend</span>
-              <span className="absolute bottom-0 left-0 w-0 h-1 bg-blue-500 group-hover:w-full transition-all duration-300 ease-in-out"></span>
-            </Link>
-
-            <Link
-              href="/gallery"
-              className="px-6 lg:px-8 py-3 bg-black text-white rounded-[40px] transition-all duration-600 font-bold text-base lg:text-lg transform hover:scale-105 hover:shadow-md focus:outline-none relative overflow-hidden group border-3 border-blue-600"
-            >
-              <span className="relative z-10">Gallery</span>
-              <span className="absolute bottom-0 left-0 w-0 h-1 bg-blue-500 group-hover:w-full transition-all duration-300 ease-in-out"></span>
-            </Link>
-
-            <Link
-              href="/alumni"
-              className="px-6 lg:px-8 py-3 bg-black text-white rounded-[40px] transition-all duration-600 font-bold text-base lg:text-lg transform hover:scale-105 hover:shadow-md focus:outline-none relative overflow-hidden group border-3 border-blue-600"
-            >
-              <span className="relative z-10">Connect</span>
-              <span className="absolute bottom-0 left-0 w-0 h-1 bg-blue-500 group-hover:w-full transition-all duration-300 ease-in-out"></span>
-            </Link>
-          </div>
-        </div>
+{/* Bottom Navigation Bar with enhanced responsiveness */}
+<div className="absolute bottom-0 left-0 right-0 hidden md:block z-10">
+  <div className="flex justify-center">
+    <nav className="bg-blue-50 bg-opacity-95 backdrop-blur-sm px-4 sm:px-6 md:px-8 lg:px-14 py-3 lg:py-4
+                  rounded-t-[40px] md:rounded-t-[60px] lg:rounded-t-[90px]
+                  flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-5 lg:gap-10 xl:gap-16
+                  border-t-4 border-l-4 border-r-4 border-blue-800 shadow-lg
+                  max-w-[95%] md:max-w-[90%] overflow-x-auto">
+      
+      {/* Navigation links using array for better maintainability */}
+      {[
+        { href: "#upcoming-events", label: "Upcoming Events", isScroll: true },
+        { href: "/mindbend", label: "Mindbend" },
+        { href: "/gallery", label: "Gallery" },
+        { href: "/alumni", label: "Connect" }
+      ].map((link, index) => (
+        <Link
+          key={index}
+          href={link.href}
+          className="px-3 sm:px-4 md:px-5 lg:px-8 py-2 md:py-3
+                   bg-black text-white 
+                   rounded-[30px] md:rounded-[40px]
+                   text-sm md:text-base lg:text-lg font-bold
+                   whitespace-nowrap flex-shrink-0
+                   border-2 md:border-3 border-blue-600
+                   transition-all duration-300
+                    focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2
+                   group relative overflow-hidden"
+        >
+          <span className="relative z-10">{link.label}</span>
+          <span 
+            className="absolute bottom-0 left-0 w-0 h-1 bg-blue-500 
+                     group-hover:w-full transition-all duration-300 ease-in-out"
+            aria-hidden="true"
+          ></span>
+        </Link>
+      ))}
+    </nav>
+  </div>
+</div>
       </div>
     </div>
   );

@@ -6,18 +6,25 @@ import Link from 'next/link';
 
 // Greatly reduced number of images
 const column1Images = [
-  { id: 1, src: "https://res.cloudinary.com/dsh447lvk/image/upload/v1741547976/cnhvi6tryyolycn3ro6y.jpg", alt: "Campus Life" },
-  { id: 2, src: "https://res.cloudinary.com/dsh447lvk/image/upload/v1741547976/cnhvi6tryyolycn3ro6y.jpg", alt: "Student Activities" },
+  { id: 1, src: "/images/poster.jpg", alt: "Campus Life" },
+  { id: 2, src: "https://res.cloudinary.com/dsh447lvk/image/upload/v1741893920/isjnsxr5faewzxvoxjwp.jpg", alt: "Campus Life" },
+  { id: 3, src: "/images/aman.png", alt: "Campus Life" },
+  { id: 4, src: "https://res.cloudinary.com/dsh447lvk/image/upload/v1741893925/ityxdubahmngfbakoyqg.jpg", alt: "Campus Life" },
+  { id: 5, src: "https://res.cloudinary.com/dsh447lvk/image/upload/v1741893923/llflr0k6pdovxafqfhz0.jpg", alt: "Campus Life" },
 ];
 
 const column2Images = [
-  { id: 3, src: "https://res.cloudinary.com/dsh447lvk/image/upload/v1741547976/cnhvi6tryyolycn3ro6y.jpg", alt: "Graduation Day" },
-  { id: 4, src: "https://res.cloudinary.com/dsh447lvk/image/upload/v1741547976/cnhvi6tryyolycn3ro6y.jpg", alt: "Sports Event" },
+  { id: 6, src: "/images/cookin.png", alt: "Graduation Day" },
+  { id: 7, src: "/images/img5.jpg", alt: "Graduation Day" },
+  { id: 8, src: "https://res.cloudinary.com/dsh447lvk/image/upload/v1741890347/ckghkxvwxopguuopxbcs.png", alt: "Graduation Day" },
+  { id: 9, src: "https://res.cloudinary.com/dsh447lvk/image/upload/v1741890336/n2dsaxd8adbfwjynrdno.png", alt: "Graduation Day" },
 ];
 
 const column3Images = [
-  { id: 5, src: "https://res.cloudinary.com/dsh447lvk/image/upload/v1741547976/cnhvi6tryyolycn3ro6y.jpg", alt: "Innovation Lab" },
-  { id: 6, src: "https://res.cloudinary.com/dsh447lvk/image/upload/v1741547976/cnhvi6tryyolycn3ro6y.jpg", alt: "Guest Lecture" },
+  { id: 10, src: "/images/img8.jpg", alt: "Innovation Lab" },
+  { id: 11, src: "/images/kart.png", alt: "Innovation Lab" },
+  { id: 12, src: "https://res.cloudinary.com/dsh447lvk/image/upload/v1741893925/y4cw0rgbx02dstvq8kip.jpg", alt: "Innovation Lab" },
+  { id: 13, src: "https://res.cloudinary.com/dsh447lvk/image/upload/v1741893922/zzgetv444ezhc539fx6i.jpg", alt: "Guest Lecture" },
 ];
 
 function ImageGrid() {
@@ -76,7 +83,7 @@ function ImageGrid() {
                       priority={false}
                       unoptimized={true} // Skip Next.js image optimization for faster load
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-blue-900/60 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300">
+                    <div className="absolute inset-0 bg-gradient-to-t from-blue-900/60 to-transparent opacity-0 transition-opacity duration-300">
                       <div className="absolute bottom-4 left-4 text-white">
                         <p className="font-medium">{image.alt}</p>
                       </div>
@@ -100,7 +107,7 @@ function ImageGrid() {
                       loading="lazy"
                       unoptimized={true}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-blue-900/60 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300">
+                    <div className="absolute inset-0 bg-gradient-to-t from-blue-900/60 to-transparent opacity-0  transition-opacity duration-300">
                       <div className="absolute bottom-4 left-4 text-white">
                         <p className="font-medium">{image.alt}</p>
                       </div>
@@ -129,7 +136,7 @@ function ImageGrid() {
                       loading="lazy"
                       unoptimized={true}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-blue-900/60 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300">
+                    <div className="absolute inset-0 bg-gradient-to-t from-blue-900/60 to-transparent opacity-0 transition-opacity duration-300">
                       <div className="absolute bottom-4 left-4 text-white">
                         <p className="font-medium">{image.alt}</p>
                       </div>
@@ -153,7 +160,7 @@ function ImageGrid() {
                       loading="lazy"
                       unoptimized={true}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-blue-900/60 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300">
+                    <div className="absolute inset-0 bg-gradient-to-t from-blue-900/60 to-transparent opacity-0  transition-opacity duration-300">
                       <div className="absolute bottom-4 left-4 text-white">
                         <p className="font-medium">{image.alt}</p>
                       </div>
@@ -182,7 +189,7 @@ function ImageGrid() {
                       loading="lazy"
                       unoptimized={true}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-blue-900/60 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300">
+                    <div className="absolute inset-0 bg-gradient-to-t from-blue-900/60 to-transparent opacity-0  transition-opacity duration-300">
                       <div className="absolute bottom-4 left-4 text-white">
                         <p className="font-medium">{image.alt}</p>
                       </div>
@@ -206,7 +213,7 @@ function ImageGrid() {
                       loading="lazy"
                       unoptimized={true}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-blue-900/60 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300">
+                    <div className="absolute inset-0 bg-gradient-to-t from-blue-900/60 to-transparent opacity-0  transition-opacity duration-300">
                       <div className="absolute bottom-4 left-4 text-white">
                         <p className="font-medium">{image.alt}</p>
                       </div>
@@ -238,7 +245,7 @@ function ImageGrid() {
                       priority={false}
                       unoptimized={true} // Skip Next.js image optimization for faster load
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-blue-900/60 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300">
+                    <div className="absolute inset-0 bg-gradient-to-t from-blue-900/60 to-transparent opacity-0  transition-opacity duration-300">
                       <div className="absolute bottom-4 left-4 text-white">
                         <p className="font-medium">{image.alt}</p>
                       </div>
@@ -262,7 +269,7 @@ function ImageGrid() {
                       loading="lazy"
                       unoptimized={true}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-blue-900/60 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300">
+                    <div className="absolute inset-0 bg-gradient-to-t from-blue-900/60 to-transparent opacity-0  transition-opacity duration-300">
                       <div className="absolute bottom-4 left-4 text-white">
                         <p className="font-medium">{image.alt}</p>
                       </div>
@@ -291,7 +298,7 @@ function ImageGrid() {
                       loading="lazy"
                       unoptimized={true}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-blue-900/60 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300">
+                    <div className="absolute inset-0 bg-gradient-to-t from-blue-900/60 to-transparent opacity-0  transition-opacity duration-300">
                       <div className="absolute bottom-4 left-4 text-white">
                         <p className="font-medium">{image.alt}</p>
                       </div>
@@ -315,7 +322,7 @@ function ImageGrid() {
                       loading="lazy"
                       unoptimized={true}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-blue-900/60 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300">
+                    <div className="absolute inset-0 bg-gradient-to-t from-blue-900/60 to-transparent opacity-0  transition-opacity duration-300">
                       <div className="absolute bottom-4 left-4 text-white">
                         <p className="font-medium">{image.alt}</p>
                       </div>
@@ -348,7 +355,7 @@ function ImageGrid() {
                       priority={false}
                       unoptimized={true} // Skip Next.js image optimization for faster load
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-blue-900/60 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300">
+                    <div className="absolute inset-0 bg-gradient-to-t from-blue-900/60 to-transparent opacity-0  transition-opacity duration-300">
                       <div className="absolute bottom-4 left-4 text-white">
                         <p className="font-medium">{image.alt}</p>
                       </div>
@@ -372,7 +379,7 @@ function ImageGrid() {
                       loading="lazy"
                       unoptimized={true}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-blue-900/60 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300">
+                    <div className="absolute inset-0 bg-gradient-to-t from-blue-900/60 to-transparent opacity-0 transition-opacity duration-300">
                       <div className="absolute bottom-4 left-4 text-white">
                         <p className="font-medium">{image.alt}</p>
                       </div>

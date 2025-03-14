@@ -6,16 +6,30 @@ import "swiper/css/navigation";
 
 // Instagram Posts Data
 const instagramPosts = [
-  "https://www.instagram.com/p/DGkMF_otpO0/embed",
+  "https://www.instagram.com/p/DHGkPbtNLh8/embed",
+  "https://www.instagram.com/p/DG_CCSvNp3M/embed",
+  "https://www.instagram.com/p/DG7x1kdSmpJ/embed",
+  "https://www.instagram.com/p/DG3UHPbtWGs/embed",
+  "https://www.instagram.com/p/DG0uj8TN2i5/embed",
+  "https://www.instagram.com/p/DGsrTo0NslN/embed",
+  "https://www.instagram.com/p/DGqdtzaNhAM/embed",
+  "https://www.instagram.com/p/DGqFmtvNZ1L/embed",
+  "https://www.instagram.com/p/DGpwXr_t_ka/embed",
+  "https://www.instagram.com/p/DGpttUUtd1R/embed",
+  "https://www.instagram.com/p/DGn52ZgSUEI/embed",
+  "https://www.instagram.com/p/DGnGZ-8y6aI/embed",
+  "https://www.instagram.com/p/DGlHK39tWUi/embed",
+  "https://www.instagram.com/p/DF0EieLN22k/embed",
+  "https://www.instagram.com/p/DFxaD3HylI1/embed",
+  "https://www.instagram.com/p/DFqDTtyS3O1/embed",
   "https://www.instagram.com/p/DGizKZhtKRx/embed",
   "https://www.instagram.com/p/DGhmL4sytKo/embed",
-  "https://www.instagram.com/p/DGdR5eStE8/embed",
   "https://www.instagram.com/p/DGdJjy3yub4/embed",
-  "https://www.instagram.com/p/DGZ599atvls/embed",
   "https://www.instagram.com/p/DGPtu0dNdm7/embed",
-  "https://www.instagram.com/p/DGDnlo5STVQ/embed",
   "https://www.instagram.com/p/DGC01k2NXnX/embed",
 ];
+
+
 
 function Upcoming() {
   // Load Instagram Embed Script
@@ -27,7 +41,7 @@ function Upcoming() {
   }, []);
 
   return (
-    <div className="py-20 relative overflow-hidden bg-white">
+    <div className="py-20 relative overflow-hidden bg-white" id="upcoming-events">
 
 <div className="absolute top-0 left-0 w-96 h-96 rounded-full bg-blue-900/10 -translate-x-1/2 -translate-y-1/2"></div>
       <div className="absolute bottom-0 right-0 w-96 h-96 rounded-full bg-gradient-to-r from-blue-500/5 to-blue-900/10 translate-x-1/3 translate-y-1/3"></div>

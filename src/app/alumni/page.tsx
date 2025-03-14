@@ -26,9 +26,9 @@ type GroupedAlumni = Record<string, AlumniPerson[]>;
 // Sample carousel images
 const alumniImages = [
   {
-    src: '/alumni/alumni1.jpg',
+    src: 'https://res.cloudinary.com/dsh447lvk/image/upload/v1741891257/t6nfi7zbts8rrsxd52rl.png',
     alt: 'Alumni 1',
-    batch: '2018'
+    batch: '2023'
   },
   {
     src: '/alumni/alumni2.jpg',
