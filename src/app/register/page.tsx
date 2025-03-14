@@ -160,7 +160,17 @@ export default function AlumniRegistration() {
                 className="p-2 border rounded-md focus:outline-none text-black focus:ring-2 focus:ring-blue-400 bg-white"
               />
             </div>
-            
+          ))}
+          <div className="col-span-1 md:col-span-2 flex justify-center">
+            <button
+              type="submit"
+              className="bg-black text-white px-6 py-2 rounded-lg"
+            >
+              Register
+            </button>
+          </div>
+        </form>
+           
             <div className="flex flex-col">
               <label htmlFor="lastName" className="text-sm font-semibold text-black">
                 Last Name

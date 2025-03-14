@@ -1,3 +1,4 @@
+// authOptions.ts (server-side)
 import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
@@ -12,7 +13,6 @@ declare module "next-auth" {
     } & DefaultSession["user"]
   }
 }
-
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -79,7 +79,7 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   pages: {
-    signIn: "/login",
+    signIn: "/signin",
     error: "/auth/error",
   },
   callbacks: {
