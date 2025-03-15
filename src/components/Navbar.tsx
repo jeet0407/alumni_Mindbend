@@ -11,9 +11,10 @@ interface NavLinkProps {
   children: React.ReactNode
   className?: string
   onClick?: () => void
+  highlight?: boolean
 }
 
-const NavLink = React.memo(({ href, children, className, onClick }: NavLinkProps) => {
+const NavLink = React.memo(({ href, children, className, onClick, highlight }: NavLinkProps) => {
   const pathname = usePathname()
   const isActive = pathname === href
 
@@ -22,16 +23,18 @@ const NavLink = React.memo(({ href, children, className, onClick }: NavLinkProps
       href={href}
       className={`px-3 py-1 transition-all duration-200 relative overflow-hidden group ${
         isActive ? "font-medium" : ""
-      } ${className || ""}`}
+      } ${highlight ? "bg-blue-600 hover:bg-blue-700 rounded-md px-4 py-2 font-medium" : ""} ${className || ""}`}
       onClick={onClick}
       prefetch={true}
     >
       <span className="relative z-10">{children}</span>
-      <span
-        className={`absolute bottom-0 left-0 h-0.5 bg-white ${
-          isActive ? "w-full" : "w-0 group-hover:w-full"
-        } transition-all duration-200 ease-in-out`}
-      ></span>
+      {!highlight && (
+        <span
+          className={`absolute bottom-0 left-0 h-0.5 bg-white ${
+            isActive ? "w-full" : "w-0 group-hover:w-full"
+          } transition-all duration-200 ease-in-out`}
+        ></span>
+      )}
     </Link>
   )
 })
@@ -101,28 +104,36 @@ const Navbar = () => {
       } text-white`}
     >
       <Link
-  href="/"
-  prefetch={true}
-  className="flex items-center hover:scale-105 transition-transform duration-300 ease-in-out cursor-pointer z-20"
->
-  <div className="w-[70px] h-[50px] relative">
-    <Image
-      src="/images/logo.png"
-      alt="Logo"
-      fill
-      className="rounded-full object-cover"
-      priority
-    />
-  </div>
-</Link>
+        href="/"
+        prefetch={true}
+        className="flex items-center hover:scale-105 transition-transform duration-300 ease-in-out cursor-pointer z-20"
+      >
+        <div className="w-[70px] h-[50px] relative">
+          <Image
+            src="/images/logo.png"
+            alt="Logo"
+            fill
+            className="rounded-full object-cover"
+            priority
+          />
+        </div>
+      </Link>
 
       {/* Desktop Navigation */}
-      <div className="hidden md:flex space-x-12 mr-8">
+      <div className="hidden md:flex space-x-8 items-center">
         <NavLink href="/">Home</NavLink>
         <NavLink href="/alumni">Alumni</NavLink>
         <NavLink href="/register">Alumni Register</NavLink>
         <NavLink href="/faculty">Faculty</NavLink>
         {/* <NavLink href="/gallery">Gallery</NavLink> */}
+        <NavLink href="/contribution" highlight={true} className="ml-4">
+          <span className="flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            Contribute
+          </span>
+        </NavLink>
       </div>
 
       {/* Mobile Menu Button */}
@@ -181,6 +192,19 @@ const Navbar = () => {
           <NavLink href="/gallery" className="text-xl" onClick={closeMenu}>
             Gallery
           </NavLink>
+          
+          {/* Contribution button for mobile */}
+          <Link
+            href="/contribution"
+            className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-md font-medium flex items-center"
+            onClick={closeMenu}
+            prefetch={true}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            Contribute
+          </Link>
         </div>
       </div>
     </nav>
@@ -188,4 +212,3 @@ const Navbar = () => {
 }
 
 export default React.memo(Navbar)
-
