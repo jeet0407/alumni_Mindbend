@@ -56,7 +56,7 @@ const HeroSection: React.FC = () => {
         {/* Hero Content */}
         <div className="absolute inset-0 flex flex-col items-center justify-center text-white z-10 px-4 max-w-full">
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-center mb-3 md:mb-4 tracking-wider">
-            Welcome to Our Platform
+            Mindbend Alumni Network
           </h1>
           <p className="text-lg sm:text-xl md:text-2xl text-center max-w-3xl mx-auto mb-6 md:mb-8 px-4">
             Discover amazing opportunities and connect with alumni, faculty and
