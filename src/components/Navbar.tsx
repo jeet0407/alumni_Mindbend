@@ -48,7 +48,6 @@ const Navbar = () => {
 
   // Optimize scroll handler with throttling
   useEffect(() => {
-    const lastScrollY = window.scrollY
     let ticking = false
 
     const handleScroll = () => {

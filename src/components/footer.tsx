@@ -36,7 +36,7 @@ const Footer = () => {
             </div>
 
             <p className="text-blue-100/80 text-sm">
-              Gujarat's largest Techno-Managerial fest, hosted annually by
+              Gujarat`&apos;`s largest Techno-Managerial fest, hosted annually by
               SVNIT, Surat.{" "}
             </p>
 

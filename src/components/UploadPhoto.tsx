@@ -3,10 +3,74 @@
 import React, { useEffect, useState } from 'react';
 
 // Define types for the Cloudinary widget
+interface CloudinaryWidgetOptions {
+  cloudName: string;
+  uploadPreset: string;
+  folder?: string;
+  tags?: string[];
+  sources?: string[];
+  multiple?: boolean;
+  maxFiles?: number;
+  maxFileSize?: number;
+  clientAllowedFormats?: string[];
+  resourceType?: string;
+  styles?: {
+    palette?: {
+      window?: string;
+      windowBorder?: string;
+      tabIcon?: string;
+      menuIcons?: string;
+      textDark?: string;
+      textLight?: string;
+      link?: string;
+      action?: string;
+      inactiveTabIcon?: string;
+      error?: string;
+      inProgress?: string;
+      complete?: string;
+      sourceBg?: string;
+    };
+    fonts?: {
+      default?: string | null;
+    };
+  };
+  text?: {
+    [language: string]: {
+      menu?: {
+        [key: string]: string;
+      };
+      buttons?: {
+        [key: string]: string;
+      };
+    };
+  };
+  showSkipCropButton?: boolean;
+  croppingAspectRatio?: number;
+  showPoweredBy?: boolean;
+  language?: string;
+  form?: Record<string, string | number | boolean>;
+  context?: Record<string, string>;
+}
+
+interface CloudinaryResult {
+  event: string;
+  info: {
+    secure_url: string;
+    public_id: string;
+    format: string;
+    width: number;
+    height: number;
+    tags: string[];
+  };
+}
+
 declare global {
   interface Window {
     cloudinary: {
-      createUploadWidget: (options: any, callback: (error: any, result: any) => void) => {
+      createUploadWidget: (
+        options: CloudinaryWidgetOptions,
+        callback: (error: Error | null, result: CloudinaryResult | null) => void
+      ) => {
         open: () => void;
         close: () => void;
       };
@@ -15,7 +79,7 @@ declare global {
 }
 
 const UploadPhoto = () => {
-  const [widget, setWidget] = useState<any>(null);
+  const [widget, setWidget] = useState<{ open: () => void; close: () => void } | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -42,8 +106,8 @@ const UploadPhoto = () => {
     if (window.cloudinary) {
       const uploadWidget = window.cloudinary.createUploadWidget(
         {
-          cloudName: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
-          uploadPreset: process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET,
+          cloudName: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME || "",
+          uploadPreset: process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET || "",
           folder: 'mindbend_alumni', // All user uploads will go to this folder
           tags: ['mindbend', 'alumni'], // Add tags to help organize images
           sources: ['local', 'url', 'camera', 'google_drive', 'dropbox'], // Allowed upload sources
