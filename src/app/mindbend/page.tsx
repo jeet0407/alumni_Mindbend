@@ -4,12 +4,10 @@ import React from "react";
 import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/footer";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 
 function Mindbend() {
-  const router = useRouter();
   return (
     <>
       <Navbar />
@@ -45,13 +43,13 @@ function Mindbend() {
       <div className="text-black space-y-4 leading-relaxed font-bold">
         <p className="text-base md:text-lg mb-4">
           <span className="font-semibold text-blue-900">Mindbend</span>{" "}
-          is Gujarat's largest Techno-Managerial fest, hosted annually
+          is Gujarat`&apos;`s largest Techno-Managerial fest, hosted annually
           by SVNIT, Surat. The 2025 edition, themed
           <span className="italic font-bold">
             {" "}
-            "Ecogenesis: Bharat's Journey from Roots to Revolution"
+            &quot;Ecogenesis: Bharat`&apos;`s Journey from Roots to Revolution&quot;
           </span>{" "}
-          celebrates India's cultural heritage and technological
+          celebrates India`&apos;`s cultural heritage and technological
           progress.
         </p>
 
@@ -266,20 +264,20 @@ function Mindbend() {
           <div className="max-w-3xl mx-auto text-center">
             <p className="text-base md:text-xl leading-relaxed text-black font-bold relative px-4 md:px-10">
               <span className="absolute -left-2 top-0 text-4xl text-blue-200 font-serif">
-                "
+                &quot;
               </span>
               Welcome to{" "}
               <span className="font-semibold text-blue-900">
-                MINDBEND's ECOGENESIS
+                MINDBEND`&apos;`s ECOGENESIS
               </span>
-              —a celebration of Bharat's journey blending rich heritage with
-              cutting-edge innovation. This theme captures India's rise, where
+              —a celebration of Bharat`&apos;`s journey blending rich heritage with
+              cutting-edge innovation. This theme captures India`&apos;`s rise, where
               tradition fuels progress, shaping a sustainable and dynamic
               future. Join us as we explore the fusion of ecology,
               sustainability, and innovation, honoring the past while building a
               greener tomorrow.
               <span className="absolute -right-2 bottom-0 text-4xl text-blue-200 font-serif">
-                "
+                &quot;
               </span>
             </p>
           </div>

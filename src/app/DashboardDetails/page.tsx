@@ -34,6 +34,9 @@ function DashboardDetails() {
     const [saving, setSaving] = useState(false);
     const [profileData, setProfileData] = useState<ProfileData | null>(null);
     const [message, setMessage] = useState({ type: "", content: "" });
+    console.log(profileData);
+    console.log(message);
+
     const [formData, setFormData] = useState({
       firstName: "",
       lastName: "",
@@ -51,11 +54,11 @@ function DashboardDetails() {
       profilePhotoUrl: "",
     });
 
-      // useEffect(() => {
-      //   if (status === 'unauthenticated') {
-      //     router.push('/register');
-      //   }
-      // }, [status, router]);
+      useEffect(() => {
+        if (status === 'unauthenticated') {
+          router.push('/register');
+        }
+      }, [status, router]);
 
 
       useEffect(() => {

@@ -14,7 +14,7 @@ function Gallery() {
     setLoading(true);
     try {
 
-      const mockImages : any[] = [
+      const mockImages: string[] = [
         
       ];
 
