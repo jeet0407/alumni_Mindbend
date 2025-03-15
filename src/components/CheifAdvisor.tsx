@@ -19,7 +19,7 @@ function ChiefAdvisor() {
     {
       name: "KUSH DALSANIYA",
       position: "CO-CHAIRPERSON",
-      image: "/j",
+      image: "https://res.cloudinary.com/dsh447lvk/image/upload/v1741977376/doz51mja5vsyndrur0km.jpg",
     },
   ];
 
