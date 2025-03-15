@@ -5,10 +5,8 @@ import Image from "next/image";
 import Link from "next/link";
 
 const images = [
-  "/images/hero/M2.png",
-  "/images/hero/M3.png",
-  "/images/hero/M4.png",
   "/images/hero/M.png",
+  "/images/hero/MF.png",
 ];
 
 const HeroSection: React.FC = () => {
@@ -17,7 +15,7 @@ const HeroSection: React.FC = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 5000);
+    }, 3000);
 
     return () => clearInterval(interval);
   }, []);
