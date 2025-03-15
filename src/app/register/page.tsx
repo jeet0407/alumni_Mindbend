@@ -137,6 +137,7 @@ export default function AlumniRegistration() {
       {/* Form Section */}
       <div className="w-full max-w-2xl bg-white shadow-lg rounded-2xl p-4 sm:p-6 border-2 sm:border-4 border-black relative">
         <div className="max-h-[80vh] overflow-y-auto px-2"> {/* Added wrapper with max-height */}
+
         <form
           onSubmit={handleSubmit}
           className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4"
@@ -160,6 +161,7 @@ export default function AlumniRegistration() {
               className="p-2 border rounded-md focus:outline-none text-black focus:ring-2 focus:ring-blue-400 bg-white"
             />
           </div>
+
            
             <div className="flex flex-col">
               <label htmlFor="lastName" className="text-sm font-semibold text-black">

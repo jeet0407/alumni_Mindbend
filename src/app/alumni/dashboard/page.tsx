@@ -1,5 +1,6 @@
 "use client";
 
+
 import React, { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
@@ -7,6 +8,8 @@ import Image from "next/image";
 import { signOut } from "next-auth/react";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
+
+
 
 
 type ProfileData = {
@@ -35,95 +38,144 @@ export default function AlumniDashboard() {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [profileData, setProfileData] = useState<ProfileData | null>(null);
-  const [message, setMessage] = useState({ type: "", content: "" });
+
+  const [message, setMessage] = useState({ type: '', content: '' });
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    phone: "",
-    graduationYear: "",
-    currentJobTitle: "",
-    currentCompany: "",
-    currentLocation: "",
-    linkedinUrl: "",
-    instagramUrl: "",
-    twitterUrl: "",
-    githubUrl: "",
-    websiteUrl: "",
-    bio: "",
-    profilePhotoUrl: "",
+    firstName: '',
+    lastName: '',
+    phone: '',
+    graduationYear: '',
+    currentJobTitle: '',
+    currentCompany: '',
+    currentLocation: '',
+    linkedinUrl: '',
+    instagramUrl: '',
+    twitterUrl: '',
+    githubUrl: '',
+    websiteUrl: '',
+    bio: '',
+    profilePhotoUrl: ''
   });
 
-  // useEffect(() => {
-  //   if (status === 'unauthenticated') {
-  //     router.push('/register');
-  //   }
-  // }, [status, router]);
-
+  useEffect(() => {
+    if (status === 'unauthenticated') {
+      router.push('/register');
+    }
+  }, [status, router]);
+  
   // Fetch user profile data
   useEffect(() => {
     const fetchProfileData = async () => {
-      if (status === "authenticated" && session?.user?.email) {
+      if (status === 'authenticated' && session?.user?.email) {
         try {
-          const response = await fetch("/api/profile", {
-            method: "GET",
+          const response = await fetch('/api/profile', {
+            method: 'GET',
             headers: {
-              "Content-Type": "application/json",
+              'Content-Type': 'application/json',
             },
             // Add credentials to ensure cookies are sent
-            credentials: "include",
+            credentials: 'include',
           });
-
+          
           if (!response.ok) {
             const errorData = await response.json();
-            throw new Error(errorData.error || "Failed to fetch profile data");
+            throw new Error(errorData.error || 'Failed to fetch profile data');
           }
-
+          
           const data = await response.json();
-
+          
           if (!data || !data.user) {
-            throw new Error("Invalid profile data received");
+            throw new Error('Invalid profile data received');
           }
-
+          
           setProfileData(data.user);
-
+          
           // Initialize form with existing data
           setFormData({
-            firstName: data.user.firstName || "",
-            lastName: data.user.lastName || "",
-            phone: data.user.phone || "",
-            graduationYear: data.user.graduationYear?.toString() || "",
-            currentJobTitle: data.user.currentJobTitle || "",
-            currentCompany: data.user.currentCompany || "",
-            currentLocation: data.user.currentLocation || "",
-            linkedinUrl: data.user.linkedinUrl || "",
-            instagramUrl: data.user.instagramUrl || "",
-            twitterUrl: data.user.twitterUrl || "",
-            githubUrl: data.user.githubUrl || "",
-            websiteUrl: data.user.websiteUrl || "",
-            bio: data.user.bio || "",
-            profilePhotoUrl: data.user.profilePhotoUrl || "",
+            firstName: data.user.firstName || '',
+            lastName: data.user.lastName || '',
+            phone: data.user.phone || '',
+            graduationYear: data.user.graduationYear?.toString() || '',
+            currentJobTitle: data.user.currentJobTitle || '',
+            currentCompany: data.user.currentCompany || '',
+            currentLocation: data.user.currentLocation || '',
+            linkedinUrl: data.user.linkedinUrl || '',
+            instagramUrl: data.user.instagramUrl || '',
+            twitterUrl: data.user.twitterUrl || '',
+            githubUrl: data.user.githubUrl || '',
+            websiteUrl: data.user.websiteUrl || '',
+            bio: data.user.bio || '',
+            profilePhotoUrl: data.user.profilePhotoUrl || ''
           });
         } catch (error) {
-          console.error("Error fetching profile:", error);
+          console.error('Error fetching profile:', error);
           setMessage({
-            type: "error",
-            content:
-              error instanceof Error
-                ? error.message
-                : "Failed to load profile data. Please try again later.",
+            type: 'error',
+            content: error instanceof Error ? error.message : 'Failed to load profile data. Please try again later.'
+
           });
         } finally {
           setLoading(false);
         }
-      } else if (status !== "loading") {
+
+      } else if (status !== 'loading') {
         setLoading(false);
       }
     };
-
+    
     fetchProfileData();
   }, [status, session]);
-
-
+  
+  // Handle form input changes
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+  
+  // Handle form submission
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setSaving(true);
+    
+    try {
+      const response = await fetch('/api/profile', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+        credentials: 'include',
+      });
+      
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to update profile');
+      }
+      
+      const data = await response.json();
+      setProfileData(data.user);
+      setMessage({
+        type: 'success',
+        content: 'Profile updated successfully!'
+      });
+      
+      // Clear message after 3 seconds
+      setTimeout(() => {
+        setMessage({ type: '', content: '' });
+      }, 3000);
+    } catch (error) {
+      console.error('Error updating profile:', error);
+      setMessage({
+        type: 'error',
+        content: error instanceof Error ? error.message : 'Failed to update profile. Please try again.'
+      });
+    } finally {
+      setSaving(false);
+    }
+  };
 
   if (loading) {
     return (
@@ -132,6 +184,7 @@ export default function AlumniDashboard() {
       </div>
     );
   }
+
 
   return (
     <div>
@@ -182,6 +235,7 @@ export default function AlumniDashboard() {
                   />
                 </svg>
                 <span>Sign Out</span>
+
               </button>
             </div>
           </div>
@@ -192,6 +246,7 @@ export default function AlumniDashboard() {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Message display */}
         {message.content && (
+
           <div
             className={`mb-6 p-4 rounded-md ${
               message.type === "success"
@@ -631,12 +686,15 @@ export default function AlumniDashboard() {
                   Contribute to Mindbend
                 </button>
               </div>
+
             </div>
           </div>
         </div>
       </main>
+
     </div>
 
     </div>
   );
 }
+
