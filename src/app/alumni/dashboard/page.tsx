@@ -36,9 +36,7 @@ export default function AlumniDashboard() {
   const { data: session, status } = useSession();
   const router = useRouter();
   const [loading, setLoading] = useState(true);
-  const [saving, setSaving] = useState(false);
   const [profileData, setProfileData] = useState<ProfileData | null>(null);
-
   const [message, setMessage] = useState({ type: '', content: '' });
   const [formData, setFormData] = useState({
     firstName: '',
@@ -126,57 +124,6 @@ export default function AlumniDashboard() {
     fetchProfileData();
   }, [status, session]);
   
-  // Handle form input changes
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
-  
-  // Handle form submission
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setSaving(true);
-    
-    try {
-      const response = await fetch('/api/profile', {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-        credentials: 'include',
-      });
-      
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || 'Failed to update profile');
-      }
-      
-      const data = await response.json();
-      setProfileData(data.user);
-      setMessage({
-        type: 'success',
-        content: 'Profile updated successfully!'
-      });
-      
-      // Clear message after 3 seconds
-      setTimeout(() => {
-        setMessage({ type: '', content: '' });
-      }, 3000);
-    } catch (error) {
-      console.error('Error updating profile:', error);
-      setMessage({
-        type: 'error',
-        content: error instanceof Error ? error.message : 'Failed to update profile. Please try again.'
-      });
-    } finally {
-      setSaving(false);
-    }
-  };
-
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -668,7 +615,8 @@ export default function AlumniDashboard() {
                   </div>
                 </div>
 
-                <button className="w-full py-3 bg-purple-600 hover:bg-purple-700 text-white text-sm font-medium rounded-lg transition-colors flex items-center justify-center">
+                <button className="w-full py-3 bg-purple-600 hover:bg-purple-700 text-white text-sm font-medium rounded-lg transition-colors flex items-center justify-center"
+                onClick={()=>router.push("/contribution")}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="h-5 w-5 mr-2"
