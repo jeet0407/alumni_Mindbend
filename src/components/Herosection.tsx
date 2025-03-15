@@ -5,9 +5,9 @@ import Image from "next/image";
 import Link from "next/link";
 
 const images = [
-  "/images/hero/hero-1.jpg",
-  "/images/hero/hero-2.jpg",
-  "/images/hero/hero-3.jpg",
+  "/images/hero/M2.png",
+  "/images/hero/M3.png",
+  "/images/hero/M4.png",
   "/images/hero/M.png",
 ];
 
