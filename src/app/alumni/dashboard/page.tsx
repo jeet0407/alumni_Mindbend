@@ -55,11 +55,11 @@ export default function AlumniDashboard() {
     profilePhotoUrl: ''
   });
 
-  useEffect(() => {
-    if (status === 'unauthenticated') {
-      router.push('/register');
-    }
-  }, [status, router]);
+  // useEffect(() => {
+  //   if (status === 'unauthenticated') {
+  //     router.push('/register');
+  //   }
+  // }, [status, router]);
   
   // Fetch user profile data
   useEffect(() => {
