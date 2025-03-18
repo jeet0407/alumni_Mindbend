@@ -150,7 +150,7 @@ function FacultyAdvisor() {
         </div>
 
         {/* Chairperson Section */}
-        <div className="mb-20 max-w-6xl mx-auto px-4 relative">
+        <div className="mb-20 max-w-8xl mx-auto px-4 relative">
           <SectionHeading title="Chairperson" />
           
           {/* Centered Chairperson Card */}
@@ -160,7 +160,7 @@ function FacultyAdvisor() {
         </div>
         
         {/* Co-Chairpersons Section */}
-        <div className="mb-16 max-w-6xl mx-auto px-4 relative">
+        <div className="mb-16 max-w-8xl mx-auto px-4 relative">
           <SectionHeading title="Co-Chairpersons" />
           
           {/* Co-Chairpersons Cards in Grid */}

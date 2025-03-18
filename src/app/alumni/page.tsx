@@ -31,25 +31,11 @@ const alumniImages = [
     batch: '2023'
   },
   {
-    src: '/alumni/alumni2.jpg',
+    src: 'https://res.cloudinary.com/dsh447lvk/image/upload/v1741891257/t6nfi7zbts8rrsxd52rl.png',
     alt: 'Alumni 2',
     batch: '2019'
   },
-  {
-    src: '/alumni/alumni3.jpg',
-    alt: 'Alumni 3',
-    batch: '2020'
-  },
-  {
-    src: '/alumni/alumni4.jpg',
-    alt: 'Alumni 4',
-    batch: '2021'
-  },
-  {
-    src: '/alumni/alumni5.jpg',
-    alt: 'Alumni 5',
-    batch: '2022'
-  }
+  
 ];
 
 export default function Alumni() {

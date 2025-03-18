@@ -54,14 +54,19 @@ export async function GET() {
             profilePhotoUrl: string | null;
         }
 
-        const groupedAlumni = alumni.reduce((acc, alum) => {
+        // Define an interface for the grouped alumni structure
+        interface GroupedAlumni {
+            [year: string]: AlumniType[];
+        }
+        
+        const groupedAlumni: GroupedAlumni = alumni.reduce((acc: GroupedAlumni, alum: AlumniType) => {
             const year = alum.graduationYear.toString();
             if (!acc[year]) {
-                acc[year] = [];
+            acc[year] = [];
             }
             acc[year].push(alum);
             return acc;
-        }, {} as Record<string, AlumniType[]>);
+        }, {} as GroupedAlumni);
 
         return NextResponse.json({ alumni: groupedAlumni }, { status: 200 });
     } catch (error) {

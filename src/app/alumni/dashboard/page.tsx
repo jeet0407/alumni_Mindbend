@@ -45,6 +45,7 @@ export default function AlumniDashboard() {
   const [transactions, setTransactions] = useState<Transaction[]>([])
   const [transactionLoading, setTransactionLoading] = useState(true)
   const [formData, setFormData] = useState({
+
     firstName: "",
     lastName: "",
     phone: "",
@@ -66,6 +67,7 @@ export default function AlumniDashboard() {
       router.push("/register")
     }
   }, [status, router])
+
 
   // Fetch user profile data
   useEffect(() => {

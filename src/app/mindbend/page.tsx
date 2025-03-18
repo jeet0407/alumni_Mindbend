@@ -6,7 +6,6 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/footer";
 import Link from "next/link";
 
-
 function Mindbend() {
   return (
     <>
@@ -29,176 +28,168 @@ function Mindbend() {
           <div className="flex flex-col md:flex-row gap-8 lg:gap-12 items-center">
             {/* Left side: Text Content */}
             <div className="w-full md:w-1/2 order-2 md:order-1">
-      {/* Heading with decorative elements */}
-      <div className="relative mb-16">
-        <h2 className="text-3xl md:text-6xl font-bold text-blue-900 relative inline-block">
-          <span className="text-black">About&nbsp;</span>
-          MINDBEND
-          <div className="absolute -bottom-6 left-2 w-120 h-1 bg-blue-800"></div>
-          <div className="absolute -bottom-10 left-4 w-100 h-1 bg-blue-600"></div>
-        </h2>
-      </div>
+              {/* Heading with decorative elements */}
+              <div className="relative mb-16">
+                <h2 className="text-3xl md:text-6xl font-bold text-blue-900 relative inline-block">
+                  <span className="text-black">About&nbsp;</span>
+                  MINDBEND
+                  <div className="absolute -bottom-6 left-2 w-120 h-1 bg-blue-800"></div>
+                  <div className="absolute -bottom-10 left-4 w-100 h-1 bg-blue-600"></div>
+                </h2>
+              </div>
 
-      {/* Paragraph text with enhanced typography and styling */}
-      <div className="text-black space-y-4 leading-relaxed font-bold">
-        <p className="text-base md:text-lg mb-4">
-          <span className="font-semibold text-blue-900">Mindbend</span>{" "}
-          is Gujarat`&apos;`s largest Techno-Managerial fest, hosted annually
-          by SVNIT, Surat. The 2025 edition, themed
-          <span className="italic font-bold">
-            {" "}
-            &quot;Ecogenesis: Bharat`&apos;`s Journey from Roots to Revolution&quot;
-          </span>{" "}
-          celebrates India`&apos;`s cultural heritage and technological
-          progress.
-        </p>
+              {/* Paragraph text with enhanced typography and styling */}
+              <div className="text-black space-y-4 leading-relaxed font-bold">
+                <p className="text-base md:text-lg mb-4">
+                  <span className="font-semibold text-blue-900">Mindbend</span>{" "}
+                  is Gujarat`&apos;`s largest Techno-Managerial fest, hosted
+                  annually by SVNIT, Surat. The 2025 edition, themed
+                  <span className="italic font-bold">
+                    {" "}
+                    &quot;Ecogenesis: Bharat`&apos;`s Journey from Roots to
+                    Revolution&quot;
+                  </span>{" "}
+                  celebrates India`&apos;`s cultural heritage and technological
+                  progress.
+                </p>
 
-        <p className="text-base md:text-lg mb-4">
-          Attracting over{" "}
-          <span className="font-semibold text-blue-800">
-            15,000 participants
-          </span>
-          , it features workshops, competitions, and engaging
-          activities. Past guest lectures have included notable figures
-          like Dr. G. Satheesh Reddy (Ex-Chairman, DRDO) and Captain
-          Yogendra Singh Yadav (Param Vir Chakra).
-        </p>
+                <p className="text-base md:text-lg mb-4">
+                  Attracting over{" "}
+                  <span className="font-semibold text-blue-800">
+                    15,000 participants
+                  </span>
+                  , it features workshops, competitions, and engaging
+                  activities. Past guest lectures have included notable figures
+                  like Dr. G. Satheesh Reddy (Ex-Chairman, DRDO) and Captain
+                  Yogendra Singh Yadav (Param Vir Chakra).
+                </p>
 
-        <p className="text-base md:text-lg">
-          The fest has also featured influential speakers like Aman
-          Dhattarwal, Shradha Khapra, and Sandeep Jain, who have
-          inspired and educated attendees.
-        </p>
-      </div>
+                <p className="text-base md:text-lg">
+                  The fest has also featured influential speakers like Aman
+                  Dhattarwal, Shradha Khapra, and Sandeep Jain, who have
+                  inspired and educated attendees.
+                </p>
+              </div>
 
-      <div className="mt-10 flex space-x-4">
-        {/* Core Committee Button */}
-        {/* Button inside <a> for small screens */}
-<a 
-  href="/core" 
-  className="block md:hidden"
->
-  <button 
-    className="group relative inline-flex items-center justify-center overflow-hidden rounded-lg bg-gradient-to-r from-blue-700 to-blue-500 px-8 py-4 text-white shadow-lg transition-all duration-300 hover:shadow-blue-200/40 hover:shadow-xl hover:from-blue-600 hover:to-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 active:scale-95"
-  >
-    <span className="absolute -end-10 -start-10 top-12 h-40 -translate-y-24 rotate-45 bg-white/20 opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100"></span>
+              <div className="mt-10 flex space-x-4">
+                {/* Core Committee Button */}
+                {/* Button inside <a> for small screens */}
+                <a href="/core" className="block md:hidden">
+                  <button className="group relative inline-flex items-center justify-center overflow-hidden rounded-lg bg-gradient-to-r from-blue-700 to-blue-500 px-8 py-4 text-white shadow-lg transition-all duration-300 hover:shadow-blue-200/40 hover:shadow-xl hover:from-blue-600 hover:to-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 active:scale-95">
+                    <span className="absolute -end-10 -start-10 top-12 h-40 -translate-y-24 rotate-45 bg-white/20 opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100"></span>
 
-    <span className="relative flex items-center gap-2">
-      {/* Icon */}
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1"
-        viewBox="0 0 20 20"
-        fill="currentColor"
-      >
-        <path
-          fillRule="evenodd"
-          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z"
-          clipRule="evenodd"
-        />
-      </svg>
+                    <span className="relative flex items-center gap-2">
+                      {/* Icon */}
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
 
-      {/* Text */}
-      <span className="font-medium tracking-wider">
-        <span className="block text-sm font-light opacity-90">
-          Checkout Our
-        </span>
-        <span className="text-lg font-bold -mt-1 block">
-          Core Committee
-        </span>
-      </span>
-    </span>
+                      {/* Text */}
+                      <span className="font-medium tracking-wider">
+                        <span className="block text-sm font-light opacity-90">
+                          Checkout Our
+                        </span>
+                        <span className="text-lg font-bold -mt-1 block">
+                          Core Committee
+                        </span>
+                      </span>
+                    </span>
 
-    {/* Decorative corner accent */}
-    <span className="absolute right-1 top-1 h-3 w-3 border-t-0 border-r-2 border-b-0 border-l-0 border-white opacity-70 transition-all duration-300 group-hover:h-4 group-hover:w-4 group-hover:opacity-100"></span>
-    <span className="absolute left-1 bottom-1 h-3 w-3 border-b-2 border-l-2 border-t-0 border-r-0 border-white opacity-70 transition-all duration-300 group-hover:h-4 group-hover:w-4 group-hover:opacity-100"></span>
-  </button>
-</a>
+                    {/* Decorative corner accent */}
+                    <span className="absolute right-1 top-1 h-3 w-3 border-t-0 border-r-2 border-b-0 border-l-0 border-white opacity-70 transition-all duration-300 group-hover:h-4 group-hover:w-4 group-hover:opacity-100"></span>
+                    <span className="absolute left-1 bottom-1 h-3 w-3 border-b-2 border-l-2 border-t-0 border-r-0 border-white opacity-70 transition-all duration-300 group-hover:h-4 group-hover:w-4 group-hover:opacity-100"></span>
+                  </button>
+                </a>
 
-{/* Link for medium and larger screens */}
-<Link 
-  href="/core"
-  className="hidden md:inline-flex group relative items-center justify-center overflow-hidden rounded-lg bg-gradient-to-r from-blue-700 to-blue-500 px-8 py-4 text-white shadow-lg transition-all duration-300 hover:shadow-blue-200/40 hover:shadow-xl hover:from-blue-600 hover:to-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 active:scale-95"
->
-  <span className="absolute -end-10 -start-10 top-12 h-40 -translate-y-24 rotate-45 bg-white/20 opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100"></span>
+                {/* Link for medium and larger screens */}
+                <Link
+                  href="/core"
+                  className="hidden md:inline-flex group relative items-center justify-center overflow-hidden rounded-lg bg-gradient-to-r from-blue-700 to-blue-500 px-8 py-4 text-white shadow-lg transition-all duration-300 hover:shadow-blue-200/40 hover:shadow-xl hover:from-blue-600 hover:to-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 active:scale-95"
+                >
+                  <span className="absolute -end-10 -start-10 top-12 h-40 -translate-y-24 rotate-45 bg-white/20 opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100"></span>
 
-  <span className="relative flex items-center gap-2">
-    {/* Icon */}
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1"
-      viewBox="0 0 20 20"
-      fill="currentColor"
-    >
-      <path
-        fillRule="evenodd"
-        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z"
-        clipRule="evenodd"
-      />
-    </svg>
+                  <span className="relative flex items-center gap-2">
+                    {/* Icon */}
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
 
-    {/* Text */}
-    <span className="font-medium tracking-wider">
-      <span className="block text-sm font-light opacity-90">
-        Checkout Our
-      </span>
-      <span className="text-lg font-bold -mt-1 block">
-        Core Committee
-      </span>
-    </span>
-  </span>
+                    {/* Text */}
+                    <span className="font-medium tracking-wider">
+                      <span className="block text-sm font-light opacity-90">
+                        Checkout Our
+                      </span>
+                      <span className="text-lg font-bold -mt-1 block">
+                        Core Committee
+                      </span>
+                    </span>
+                  </span>
 
-  {/* Decorative corner accent */}
-  <span className="absolute right-1 top-1 h-3 w-3 border-t-0 border-r-2 border-b-0 border-l-0 border-white opacity-70 transition-all duration-300 group-hover:h-4 group-hover:w-4 group-hover:opacity-100"></span>
-  <span className="absolute left-1 bottom-1 h-3 w-3 border-b-2 border-l-2 border-t-0 border-r-0 border-white opacity-70 transition-all duration-300 group-hover:h-4 group-hover:w-4 group-hover:opacity-100"></span>
-</Link>
+                  {/* Decorative corner accent */}
+                  <span className="absolute right-1 top-1 h-3 w-3 border-t-0 border-r-2 border-b-0 border-l-0 border-white opacity-70 transition-all duration-300 group-hover:h-4 group-hover:w-4 group-hover:opacity-100"></span>
+                  <span className="absolute left-1 bottom-1 h-3 w-3 border-b-2 border-l-2 border-t-0 border-r-0 border-white opacity-70 transition-all duration-300 group-hover:h-4 group-hover:w-4 group-hover:opacity-100"></span>
+                </Link>
 
+                {/* Mindbend website */}
 
-        {/* Mindbend website */}
+                <Link
+                  href="https://www.mindbend-svnit.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative inline-flex items-center justify-center overflow-hidden rounded-lg bg-gradient-to-r from-gray-700 to-gray-500 px-8 py-4 text-white shadow-lg transition-all duration-300 hover:shadow-gray-200/40 hover:shadow-xl hover:from-gray-600 hover:to-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 active:scale-95"
+                >
+                  <span className="absolute -end-10 -start-10 top-12 h-40 -translate-y-24 rotate-45 bg-white/20 opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100"></span>
 
-        <Link
-          href="https://www.mindbend-svnit.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="group relative inline-flex items-center justify-center overflow-hidden rounded-lg bg-gradient-to-r from-gray-700 to-gray-500 px-8 py-4 text-white shadow-lg transition-all duration-300 hover:shadow-gray-200/40 hover:shadow-xl hover:from-gray-600 hover:to-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 active:scale-95"
-        >
-          <span className="absolute -end-10 -start-10 top-12 h-40 -translate-y-24 rotate-45 bg-white/20 opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100"></span>
+                  <span className="relative flex items-center gap-2">
+                    {/* Icon */}
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
 
-          <span className="relative flex items-center gap-2">
-            {/* Icon */}
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
-              <path
-                fillRule="evenodd"
-                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z"
-                clipRule="evenodd"
-              />
-            </svg>
+                    {/* Text with two-layer design */}
+                    <span className="font-medium tracking-wider">
+                      <span className="block text-sm font-light opacity-90">
+                        Checkout
+                      </span>
+                      <span className="text-lg font-bold -mt-1 block">
+                        Mindbend Website
+                      </span>
+                    </span>
+                  </span>
 
-            {/* Text with two-layer design */}
-            <span className="font-medium tracking-wider">
-              <span className="block text-sm font-light opacity-90">
-                Checkout 
-              </span>
-              <span className="text-lg font-bold -mt-1 block">
-                Mindbend Website
-              </span>
-            </span>
-          </span>
-
-          {/* Decorative corner accent */}
-          <span className="absolute right-1 top-1 h-3 w-3 border-t-0 border-r-2 border-b-0 border-l-0 border-white opacity-70 transition-all duration-300 group-hover:h-4 group-hover:w-4 group-hover:opacity-100"></span>
-          <span className="absolute left-1 bottom-1 h-3 w-3 border-b-2 border-l-2 border-t-0 border-r-0 border-white opacity-70 transition-all duration-300 group-hover:h-4 group-hover:w-4 group-hover:opacity-100"></span>
-        </Link>
-
-
-
-      </div>
-    </div>
+                  {/* Decorative corner accent */}
+                  <span className="absolute right-1 top-1 h-3 w-3 border-t-0 border-r-2 border-b-0 border-l-0 border-white opacity-70 transition-all duration-300 group-hover:h-4 group-hover:w-4 group-hover:opacity-100"></span>
+                  <span className="absolute left-1 bottom-1 h-3 w-3 border-b-2 border-l-2 border-t-0 border-r-0 border-white opacity-70 transition-all duration-300 group-hover:h-4 group-hover:w-4 group-hover:opacity-100"></span>
+                </Link>
+              </div>
+            </div>
 
             {/* Right side: Image with decorative elements */}
             <div className="w-full md:w-1/2 order-1 md:order-2 flex justify-center">
@@ -270,10 +261,10 @@ function Mindbend() {
               <span className="font-semibold text-blue-900">
                 MINDBEND`&apos;`s ECOGENESIS
               </span>
-              —a celebration of Bharat`&apos;`s journey blending rich heritage with
-              cutting-edge innovation. This theme captures India`&apos;`s rise, where
-              tradition fuels progress, shaping a sustainable and dynamic
-              future. Join us as we explore the fusion of ecology,
+              —a celebration of Bharat`&apos;`s journey blending rich heritage
+              with cutting-edge innovation. This theme captures India`&apos;`s
+              rise, where tradition fuels progress, shaping a sustainable and
+              dynamic future. Join us as we explore the fusion of ecology,
               sustainability, and innovation, honoring the past while building a
               greener tomorrow.
               <span className="absolute -right-2 bottom-0 text-4xl text-blue-200 font-serif">
@@ -327,6 +318,48 @@ function Mindbend() {
                 Visit our Instagram Profile
               </a>
             </div>
+          </div>
+        </div>
+
+        <div className="mt-16 mb-2 flex flex-wrap justify-center gap-6">
+          {/* First Phone Number */}
+          <div className="flex items-center">
+            <svg
+              className="h-6 w-6 text-blue-400 mr-3"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+              />
+            </svg>
+            <span className="text-blue-700">
+              Ridhayu Gosai (JCCAS): +91 99741 88122
+            </span>
+          </div>
+
+          {/* Second Phone Number */}
+          <div className="flex items-center">
+            <svg
+              className="h-6 w-6 text-blue-400 mr-3"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+              />
+            </svg>
+            <span className="text-blue-700">
+              Darshit Desai (JCCAS): +91 78784 03838
+            </span>
           </div>
         </div>
       </div>
