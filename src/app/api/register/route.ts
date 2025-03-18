@@ -9,13 +9,12 @@ export async function POST(request: NextRequest) {
 
         const {
             firstName, lastName, email, password, phone, admissionNumber, graduationYear,
-            currentJobTitle, currentCompany, currentLocation, linkedinUrl, instagramUrl,
-            twitterUrl, githubUrl, websiteUrl, bio
+            currentJobTitle, currentCompany, currentLocation, linkedinUrl, githubUrl, bio
         } = body;
 
         // Required fields validation
         const requiredFields = [firstName, lastName, email, password, phone, admissionNumber, 
-            graduationYear, currentJobTitle, currentCompany, currentLocation, linkedinUrl, instagramUrl];
+            graduationYear, currentJobTitle, currentCompany, currentLocation, linkedinUrl];
         
         if (requiredFields.some(field => !field)) {
             return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
@@ -40,7 +39,7 @@ export async function POST(request: NextRequest) {
             data: {
                 firstName, lastName, email, password: hashedPassword, phone, admissionNumber,
                 graduationYear, currentJobTitle, currentCompany, currentLocation, linkedinUrl,
-                instagramUrl, twitterUrl, githubUrl, websiteUrl, bio
+                githubUrl, bio
             },
         });
 
