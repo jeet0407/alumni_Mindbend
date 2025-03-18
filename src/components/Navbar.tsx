@@ -3,7 +3,8 @@
 import React, { useState, useCallback, useEffect } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { usePathname } from "next/navigation" // This hook is a Client Component hook [^2]
+import { usePathname, useRouter } from "next/navigation"
+import { useSession, signOut } from "next-auth/react"
 
 // Custom NavLink component
 interface NavLinkProps {
@@ -45,6 +46,11 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const pathname = usePathname()
+  const router = useRouter()
+  const { status } = useSession()
+  
+  // Determine if the user is authenticated - all users are alumni
+  const isAuthenticated = status === "authenticated"
 
   // Optimize scroll handler with throttling
   useEffect(() => {
@@ -80,6 +86,13 @@ const Navbar = () => {
   const closeMenu = useCallback(() => {
     setIsMenuOpen(false)
   }, [])
+
+  // Handle logout
+  const handleLogout = useCallback(async () => {
+    await signOut({ redirect: false })
+    router.push("/")
+    closeMenu()
+  }, [router, closeMenu])
 
   // Optimize mobile menu click outside handler
   useEffect(() => {
@@ -120,19 +133,49 @@ const Navbar = () => {
 
       {/* Desktop Navigation */}
       <div className="hidden md:flex space-x-8 items-center">
-        <NavLink href="/">Home</NavLink>
-        <NavLink href="/alumni">Alumni</NavLink>
-        <NavLink href="/register">Alumni Register</NavLink>
-        <NavLink href="/faculty">Faculty</NavLink>
-        {/* <NavLink href="/gallery">Gallery</NavLink> */}
-        <NavLink href="/contribution" highlight={true} className="ml-4">
-          <span className="flex items-center">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            Contribute
-          </span>
-        </NavLink>
+        {isAuthenticated ? (
+          // Show limited options for authenticated alumni
+          <>
+            <NavLink href="/">Home</NavLink>
+            <NavLink href="/alumni/dashboard">Dashboard</NavLink>
+            <NavLink href="/contribution" highlight={true}>
+              <span className="flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Contribute
+              </span>
+            </NavLink>
+            <div className="relative overflow-hidden group cursor-pointer px-3 py-1" onClick={handleLogout}>
+              <span className="relative z-10">Logout</span>
+              <span className="absolute bottom-0 left-0 h-0.5 bg-white w-0 group-hover:w-full transition-all duration-200 ease-in-out"></span>
+            </div>
+          </>
+        ) : (
+          // Show all options for non-authenticated users
+          <>
+            <NavLink href="/">Home</NavLink>
+            <NavLink href="/alumni">Alumni</NavLink>
+            <NavLink href="/register">Alumni Register</NavLink>
+            <NavLink href="/faculty">Faculty</NavLink>
+            <NavLink href="/contribution" highlight={true}>
+              <span className="flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Contribute
+              </span>
+            </NavLink>
+            <Link 
+              href="/login" 
+              className="relative overflow-hidden group px-3 py-1"
+              prefetch={true}
+            >
+              <span className="relative z-10">Login</span>
+              <span className="absolute bottom-0 left-0 h-0.5 bg-white w-0 group-hover:w-full transition-all duration-200 ease-in-out"></span>
+            </Link>
+          </>
+        )}
       </div>
 
       {/* Mobile Menu Button */}
@@ -176,34 +219,78 @@ const Navbar = () => {
         style={{ transform: "none" }} // Remove transform for better performance
       >
         <div className="flex flex-col items-center space-y-8 mt-8">
-          <NavLink href="/" className="text-xl" onClick={closeMenu}>
-            Home
-          </NavLink>
-          <NavLink href="/alumni" className="text-xl" onClick={closeMenu}>
-            Alumni
-          </NavLink>
-          <NavLink href="/register" className="text-xl" onClick={closeMenu}>
-            Alumni Register
-          </NavLink>
-          <NavLink href="/faculty" className="text-xl" onClick={closeMenu}>
-            Faculty
-          </NavLink>
-          <NavLink href="/gallery" className="text-xl" onClick={closeMenu}>
-            Gallery
-          </NavLink>
-          
-          {/* Contribution button for mobile */}
-          <Link
-            href="/contribution"
-            className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-md font-medium flex items-center"
-            onClick={closeMenu}
-            prefetch={true}
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            Contribute
-          </Link>
+          {isAuthenticated ? (
+            // Show limited options for authenticated alumni on mobile
+            <>
+              <NavLink href="/" className="text-xl" onClick={closeMenu}>
+                Home
+              </NavLink>
+              <NavLink href="/alumni/dashboard" className="text-xl" onClick={closeMenu}>
+                Dashboard
+              </NavLink>
+              <Link
+                href="/contribution"
+                className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-md font-medium flex items-center"
+                onClick={closeMenu}
+                prefetch={true}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Contribute
+              </Link>
+              <div 
+                className="text-white hover:text-gray-300 transition-colors duration-200 text-xl relative overflow-hidden group cursor-pointer"
+                onClick={handleLogout}
+              >
+                <span className="relative z-10">Logout</span>
+                <span className="absolute bottom-0 left-0 h-0.5 bg-white w-0 group-hover:w-full transition-all duration-200 ease-in-out"></span>
+              </div>
+            </>
+          ) : (
+            // Show all options for non-authenticated users on mobile
+            <>
+              <NavLink href="/" className="text-xl" onClick={closeMenu}>
+                Home
+              </NavLink>
+              <NavLink href="/alumni" className="text-xl" onClick={closeMenu}>
+                Alumni
+              </NavLink>
+              <NavLink href="/register" className="text-xl" onClick={closeMenu}>
+                Alumni Register
+              </NavLink>
+              <NavLink href="/faculty" className="text-xl" onClick={closeMenu}>
+                Faculty
+              </NavLink>
+              <NavLink href="/gallery" className="text-xl" onClick={closeMenu}>
+                Gallery
+              </NavLink>
+              
+              {/* Contribution button for mobile */}
+              <Link
+                href="/contribution"
+                className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-md font-medium flex items-center"
+                onClick={closeMenu}
+                prefetch={true}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Contribute
+              </Link>
+              
+              {/* Login link for mobile */}
+              <Link
+                href="/login"
+                className="text-white text-xl relative overflow-hidden group"
+                onClick={closeMenu}
+                prefetch={true}
+              >
+                <span className="relative z-10">Login</span>
+                <span className="absolute bottom-0 left-0 h-0.5 bg-white w-0 group-hover:w-full transition-all duration-200 ease-in-out"></span>
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </nav>
