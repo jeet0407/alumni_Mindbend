@@ -707,6 +707,7 @@ function DashboardDetails() {
               <button
                 type="submit"
                 disabled={saving}
+                onClick={() => router.push("/alumni/dashboard")}
                 className={`px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors ${
                   saving ? "opacity-70 cursor-not-allowed" : ""
                 }`}

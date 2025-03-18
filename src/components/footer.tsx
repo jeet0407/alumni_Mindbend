@@ -220,7 +220,6 @@ const Footer = () => {
 
           <div className="mt-4 md:mt-0 space-x-4 text-sm text-blue-200/70">
             <a
-              href="https://youtu.be/dQw4w9WgXcQ?si=aJTPPXM5zVWTBNHw"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-white transition-colors"
@@ -233,5 +232,4 @@ const Footer = () => {
     </footer>
   );
 };
-
 export default Footer;
