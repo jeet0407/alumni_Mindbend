@@ -137,7 +137,9 @@ const Navbar = () => {
           // Show limited options for authenticated alumni
           <>
             <NavLink href="/">Home</NavLink>
+            <NavLink href="/alumni">Alumni</NavLink>
             <NavLink href="/alumni/dashboard">Dashboard</NavLink>
+            <NavLink href="/faculty">Faculty</NavLink>
             <NavLink href="/contribution" highlight={true}>
               <span className="flex items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -146,10 +148,7 @@ const Navbar = () => {
                 Contribute
               </span>
             </NavLink>
-            <div className="relative overflow-hidden group cursor-pointer px-3 py-1" onClick={handleLogout}>
-              <span className="relative z-10">Logout</span>
-              <span className="absolute bottom-0 left-0 h-0.5 bg-white w-0 group-hover:w-full transition-all duration-200 ease-in-out"></span>
-            </div>
+            
           </>
         ) : (
           // Show all options for non-authenticated users
@@ -166,14 +165,7 @@ const Navbar = () => {
                 Contribute
               </span>
             </NavLink>
-            <Link 
-              href="/login" 
-              className="relative overflow-hidden group px-3 py-1"
-              prefetch={true}
-            >
-              <span className="relative z-10">Login</span>
-              <span className="absolute bottom-0 left-0 h-0.5 bg-white w-0 group-hover:w-full transition-all duration-200 ease-in-out"></span>
-            </Link>
+            
           </>
         )}
       </div>
