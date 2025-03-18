@@ -27,6 +27,7 @@ export async function GET() {
                 currentCompany: true,
                 currentLocation: true,
                 graduationYear: true,
+                mindbendPosition: true,
                 profilePhotoUrl: true,
             },
             orderBy: {
@@ -52,6 +53,7 @@ export async function GET() {
             currentLocation: string | null;
             graduationYear: number;
             profilePhotoUrl: string | null;
+            mindbendPosition: string | null;
         }
 
         // Define an interface for the grouped alumni structure

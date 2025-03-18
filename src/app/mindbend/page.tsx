@@ -30,7 +30,7 @@ function Mindbend() {
             <div className="w-full md:w-1/2 order-2 md:order-1">
               {/* Heading with decorative elements */}
               <div className="relative mb-16">
-                <h2 className="text-3xl md:text-6xl font-bold text-blue-900 relative inline-block">
+                <h2 className="text-blue-900 relative inline-block text-4xl md:text-5xl font-extrabold tracking-tight">
                   <span className="text-black">About&nbsp;</span>
                   MINDBEND
                   <div className="absolute -bottom-6 left-2 w-120 h-1 bg-blue-800"></div>
