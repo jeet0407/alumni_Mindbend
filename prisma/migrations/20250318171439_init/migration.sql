@@ -16,10 +16,10 @@ CREATE TABLE "User" (
     "twitterUrl" TEXT,
     "githubUrl" TEXT,
     "websiteUrl" TEXT,
-    "bio" TEXT,
+    "bio" TEXT DEFAULT '',
     "profilePhotoUrl" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" TIMESTAMP(3) NOT NULL,
+    "mindbendPosition" TEXT,
 
     CONSTRAINT "User_pkey" PRIMARY KEY ("id")
 );

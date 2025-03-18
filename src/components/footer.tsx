@@ -191,6 +191,7 @@ const Footer = () => {
                 <span className="text-blue-100">
                   Yug Rana (CCAS): +91 74058 10904
                 </span>
+                
               </li>
               <li className="flex items-center">
                 <svg
@@ -220,7 +221,7 @@ const Footer = () => {
 
           <div className="mt-4 md:mt-0 space-x-4 text-sm text-blue-200/70">
             <a
-              href="https://youtu.be/dQw4w9WgXcQ?si=aJTPPXM5zVWTBNHw"
+              href="https://youtu.be/ccixRaMTeoY?si=iefVCQvNtVyO94Vf"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-white transition-colors"
