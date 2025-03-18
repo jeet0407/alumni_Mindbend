@@ -20,10 +20,13 @@ export default function AlumniRegistration() {
     linkedinUrl: "",
     githubUrl: "",
     bio: "",
+    mindbendPosition: "",
   });
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
   ): void => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -69,30 +72,33 @@ export default function AlumniRegistration() {
         {/* Large gradient circles */}
         <div className="absolute top-[-10%] right-[-15%] w-[600px] h-[600px] rounded-full bg-blue-100/30 blur-3xl"></div>
         <div className="absolute bottom-[-20%] left-[-10%] w-[500px] h-[500px] rounded-full bg-blue-50/40 blur-3xl"></div>
-        
+
         {/* Grid pattern */}
         <div className="absolute inset-0 bg-[url('/patterns/grid.svg')] opacity-5"></div>
-        
+
         {/* Decorative shapes */}
         <div className="absolute top-40 right-20 w-24 h-24 border-8 border-blue-100/40 rounded-full"></div>
         <div className="absolute bottom-60 left-20 w-32 h-32 border-2 border-blue-800/10 rounded-full"></div>
-        
+
         {/* Abstract geometric elements */}
         <div className="absolute top-1/4 left-10 w-16 h-16 bg-blue-50 rotate-45 rounded-lg"></div>
         <div className="absolute bottom-1/4 right-10 w-12 h-24 bg-blue-100/30 rounded-full"></div>
-        
+
         {/* Diagonal lines */}
         <div className="absolute top-0 left-1/3 w-0.5 h-40 bg-gradient-to-b from-transparent via-blue-300/20 to-transparent transform rotate-45"></div>
         <div className="absolute bottom-20 right-1/4 w-0.5 h-60 bg-gradient-to-b from-transparent via-blue-800/10 to-transparent transform -rotate-45"></div>
-        
+
         {/* Dots pattern */}
         <div className="absolute left-10 top-1/3 grid grid-cols-6 gap-3">
           {[...Array(24)].map((_, i) => (
-            <div key={i} className="w-1.5 h-1.5 rounded-full bg-blue-800/10"></div>
+            <div
+              key={i}
+              className="w-1.5 h-1.5 rounded-full bg-blue-800/10"
+            ></div>
           ))}
         </div>
       </div>
-      
+
       {/* Title Section */}
       <div className="w-full lg:w-1/3 space-y-6 lg:sticky lg:top-8 mb-8 lg:mb-0 px-4 lg:mt-36 ">
         <h2 className="text-4xl sm:text-5xl font-bold relative mt-10 lg:mt-36">
@@ -105,48 +111,69 @@ export default function AlumniRegistration() {
           <div className="absolute -bottom-10 left-12 w-12 h-1 bg-blue-200"></div>
           <div className="h-1.5 w-24 bg-gradient-to-r from-blue-900 to-blue-500 mt-4 rounded-full"></div>
         </h2>
-        
+
         {/* Hidden on mobile, visible on desktop */}
         <div className="hidden lg:block mt-20">
-          
-          <Link href="/" className="flex items-center text-blue-800 hover:text-blue-600 mt-16">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
-              <path fillRule="evenodd" d="M9.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L7.414 9H15a1 1 0 110 2H7.414l2.293 2.293a1 1 0 010 1.414z" clipRule="evenodd" />
+          <Link
+            href="/"
+            className="flex items-center text-blue-800 hover:text-blue-600 mt-16"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-5 w-5 mr-1"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fillRule="evenodd"
+                d="M9.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L7.414 9H15a1 1 0 110 2H7.414l2.293 2.293a1 1 0 010 1.414z"
+                clipRule="evenodd"
+              />
             </svg>
             Back to Homepage
           </Link>
         </div>
       </div>
-      
+
       {/* Form Section */}
       <div className="w-full max-w-2xl bg-white shadow-lg rounded-2xl p-4 sm:p-6 border-2 sm:border-4 border-black relative">
-        <div className="max-h-[80vh] overflow-y-auto px-2"> {/* Added wrapper with max-height */}
-        <form
-          onSubmit={handleSubmit}
-          className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4"
-        >
-          {/* Section dividers for better organization on mobile */}
-          <div className="col-span-1 sm:col-span-2 border-b border-gray-200 pb-2 mb-2">
-            <h3 className="text-lg font-semibold text-blue-900">Personal Information</h3>
-          </div>
-          
-          {/* Personal info fields */}
-          <div className="flex flex-col">
-            <label htmlFor="firstName" className="text-sm font-semibold text-black">
-              First Name
-            </label>
-            <input
-              type="text"
-              name="firstName"
-              id="firstName"
-              value={formData.firstName}
-              onChange={handleChange}
-              className="p-2 border rounded-md focus:outline-none text-black focus:ring-2 focus:ring-blue-400 bg-white"
-            />
-          </div>
-           
+        <div className="max-h-[80vh] overflow-y-auto px-2">
+          {" "}
+          {/* Added wrapper with max-height */}
+          <form
+            onSubmit={handleSubmit}
+            className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4"
+          >
+            {/* Section dividers for better organization on mobile */}
+            <div className="col-span-1 sm:col-span-2 border-b border-gray-200 pb-2 mb-2">
+              <h3 className="text-lg font-semibold text-blue-900">
+                Personal Information
+              </h3>
+            </div>
+
+            {/* Personal info fields */}
             <div className="flex flex-col">
-              <label htmlFor="lastName" className="text-sm font-semibold text-black">
+              <label
+                htmlFor="firstName"
+                className="text-sm font-semibold text-black"
+              >
+                First Name
+              </label>
+              <input
+                type="text"
+                name="firstName"
+                id="firstName"
+                value={formData.firstName}
+                onChange={handleChange}
+                className="p-2 border rounded-md focus:outline-none text-black focus:ring-2 focus:ring-blue-400 bg-white"
+              />
+            </div>
+
+            <div className="flex flex-col">
+              <label
+                htmlFor="lastName"
+                className="text-sm font-semibold text-black"
+              >
                 Last Name
               </label>
               <input
@@ -158,9 +185,12 @@ export default function AlumniRegistration() {
                 className="p-2 border rounded-md focus:outline-none text-black focus:ring-2 focus:ring-blue-400 bg-white"
               />
             </div>
-            
+
             <div className="flex flex-col">
-              <label htmlFor="email" className="text-sm font-semibold text-black">
+              <label
+                htmlFor="email"
+                className="text-sm font-semibold text-black"
+              >
                 Email
               </label>
               <input
@@ -172,9 +202,12 @@ export default function AlumniRegistration() {
                 className="p-2 border rounded-md focus:outline-none text-black focus:ring-2 focus:ring-blue-400 bg-white"
               />
             </div>
-            
+
             <div className="flex flex-col">
-              <label htmlFor="password" className="text-sm font-semibold text-black">
+              <label
+                htmlFor="password"
+                className="text-sm font-semibold text-black"
+              >
                 Password
               </label>
               <input
@@ -186,9 +219,12 @@ export default function AlumniRegistration() {
                 className="p-2 border rounded-md focus:outline-none text-black focus:ring-2 focus:ring-blue-400 bg-white"
               />
             </div>
-            
+
             <div className="flex flex-col">
-              <label htmlFor="phone" className="text-sm font-semibold text-black">
+              <label
+                htmlFor="phone"
+                className="text-sm font-semibold text-black"
+              >
                 Phone
               </label>
               <input
@@ -200,9 +236,12 @@ export default function AlumniRegistration() {
                 className="p-2 border rounded-md focus:outline-none text-black focus:ring-2 focus:ring-blue-400 bg-white"
               />
             </div>
-            
+
             <div className="flex flex-col">
-              <label htmlFor="admissionNumber" className="text-sm font-semibold text-black">
+              <label
+                htmlFor="admissionNumber"
+                className="text-sm font-semibold text-black"
+              >
                 Admission Number
               </label>
               <input
@@ -214,14 +253,19 @@ export default function AlumniRegistration() {
                 className="p-2 border rounded-md focus:outline-none text-black focus:ring-2 focus:ring-blue-400 bg-white"
               />
             </div>
-            
+
             {/* Education and Career Section */}
             <div className="col-span-1 sm:col-span-2 border-b border-gray-200 pb-2 mb-2 mt-4">
-              <h3 className="text-lg font-semibold text-blue-900">Education & Career</h3>
+              <h3 className="text-lg font-semibold text-blue-900">
+                Education & Career
+              </h3>
             </div>
-            
+
             <div className="flex flex-col">
-              <label htmlFor="graduationYear" className="text-sm font-semibold text-black">
+              <label
+                htmlFor="graduationYear"
+                className="text-sm font-semibold text-black"
+              >
                 Graduation Year
               </label>
               <input
@@ -233,9 +277,12 @@ export default function AlumniRegistration() {
                 className="p-2 border rounded-md focus:outline-none text-black focus:ring-2 focus:ring-blue-400 bg-white"
               />
             </div>
-            
+
             <div className="flex flex-col">
-              <label htmlFor="currentJobTitle" className="text-sm font-semibold text-black">
+              <label
+                htmlFor="currentJobTitle"
+                className="text-sm font-semibold text-black"
+              >
                 Current Job Title
               </label>
               <input
@@ -247,9 +294,12 @@ export default function AlumniRegistration() {
                 className="p-2 border rounded-md focus:outline-none text-black focus:ring-2 focus:ring-blue-400 bg-white"
               />
             </div>
-            
+
             <div className="flex flex-col">
-              <label htmlFor="currentCompany" className="text-sm font-semibold text-black">
+              <label
+                htmlFor="currentCompany"
+                className="text-sm font-semibold text-black"
+              >
                 Current Company
               </label>
               <input
@@ -261,9 +311,12 @@ export default function AlumniRegistration() {
                 className="p-2 border rounded-md focus:outline-none text-black focus:ring-2 focus:ring-blue-400 bg-white"
               />
             </div>
-            
+
             <div className="flex flex-col">
-              <label htmlFor="currentLocation" className="text-sm font-semibold text-black">
+              <label
+                htmlFor="currentLocation"
+                className="text-sm font-semibold text-black"
+              >
                 Current Location
               </label>
               <input
@@ -275,9 +328,12 @@ export default function AlumniRegistration() {
                 className="p-2 border rounded-md focus:outline-none text-black focus:ring-2 focus:ring-blue-400 bg-white"
               />
             </div>
-            
+
             <div className="flex flex-col">
-              <label htmlFor="linkedinUrl" className="text-sm font-semibold text-black">
+              <label
+                htmlFor="linkedinUrl"
+                className="text-sm font-semibold text-black"
+              >
                 LinkedIn URL
               </label>
               <input
@@ -289,26 +345,45 @@ export default function AlumniRegistration() {
                 className="p-2 border rounded-md focus:outline-none text-black focus:ring-2 focus:ring-blue-400 bg-white"
               />
             </div>
-            
+
+            <div className="col-span-1 sm:col-span-2 border-b border-gray-200 pb-2 mb-2 mt-4">
+              <h3 className="text-lg font-semibold text-blue-900">
+                Mindbend Position
+              </h3>
+            </div>
+
             <div className="flex flex-col">
-              <label htmlFor="githubUrl" className="text-sm font-semibold text-black">
-                GitHub URL
+              <label
+                htmlFor="mindbendPosition"
+                className="text-sm font-semibold text-black"
+              >
+                Mindbend Position
               </label>
-              <input
-                type="text"
-                name="githubUrl"
-                id="githubUrl"
-                value={formData.githubUrl}
+              <select
+                name="mindbendPosition"
+                id="mindbendPosition"
+                value={formData.mindbendPosition}
                 onChange={handleChange}
                 className="p-2 border rounded-md focus:outline-none text-black focus:ring-2 focus:ring-blue-400 bg-white"
-              />
+              >
+                <option value="">Select a position</option>
+                <option value="CCAS">CCAS</option>
+                <option value="JCCAS">JCCAS</option>
+                <option value="Chief Advisor">Chief Advisor</option>
+                <option value="Convener">Convener</option>
+                <option value="Cheif Advisor">Cheif Advisor</option>
+                <option value="Manager">Manager</option>
+                <option value="Head">Head</option>
+                <option value="Co-Head">Co-Head</option>
+                <option value="Coordinator">Coordinator</option>
+              </select>
             </div>
-            
+
             {/* Bio section */}
             <div className="col-span-1 sm:col-span-2 border-b border-gray-200 pb-2 mb-2 mt-4">
               <h3 className="text-lg font-semibold text-blue-900">About You</h3>
             </div>
-            
+
             <div className="col-span-1 sm:col-span-2 flex flex-col">
               <label htmlFor="bio" className="text-sm font-semibold text-black">
                 Bio
@@ -323,7 +398,7 @@ export default function AlumniRegistration() {
                 placeholder="Tell us about yourself, your achievements, interests, and how you'd like to contribute to the alumni network..."
               />
             </div>
-            
+
             {/* Submit Button */}
             <div className="col-span-1 sm:col-span-2 flex justify-center mt-4">
               <button
@@ -333,11 +408,17 @@ export default function AlumniRegistration() {
                 Register
               </button>
             </div>
-            
+
             {/* Mobile-only login link */}
             <div className="col-span-1 sm:col-span-2 text-center mt-2 lg:hidden">
               <p className="text-sm text-gray-600">
-                Already registered? <Link href="/login" className="text-blue-800 hover:text-blue-600 font-medium">Sign in</Link>
+                Already registered?{" "}
+                <Link
+                  href="/login"
+                  className="text-blue-800 hover:text-blue-600 font-medium"
+                >
+                  Sign in
+                </Link>
               </p>
             </div>
           </form>

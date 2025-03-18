@@ -17,101 +17,14 @@ export default function PaymentQRGenerator() {
 
   // Generate UPI payment URL
   useEffect(() => {
-    if (amount && !isNaN(Number(amount)) && Number(amount) >= 1) {
-      // Include transaction ID in the UPI payment URL as a reference
-      const upiUrl = `upi://pay?pa=${UPI_ID}&pn=${encodeURIComponent(PAYEE_NAME)}&am=${amount}&cu=INR&tr=${transactionId}&tn=Alumni_Donation`
-      setQrValue(upiUrl)
-      setIsValid(true)
-      setErrorMessage("")
+    if (amount && !isNaN(Number(amount)) && Number(amount) >= 1000) {
+      const upiUrl = `upi://pay?pa=${UPI_ID}&pn=${encodeURIComponent(PAYEE_NAME)}&am=${amount}&cu=INR`;
+      setQrValue(upiUrl);
+      setIsValid(true);
+      setErrorMessage("");
     } else {
       if (amount && Number(amount) < 1000) {
-        setErrorMessage("Minimum donation amount is ₹1000")
-      } else {
-        setErrorMessage("")
-      }
-      setQrValue("")
-      setIsValid(amount === "" || (!isNaN(Number(amount)) && Number(amount) >= 1))
-    }
-  }, [amount, transactionId])
-
-  // Set up QR code scanning detection
-  useEffect(() => {
-    if (!donationCreated || qrScanned) return
-
-    // Track if the user has interacted with the QR code
-    const handleQRInteraction = () => {
-      // Mark that the user has interacted with the QR code
-      localStorage.setItem(`qr_interaction_${transactionId}`, "true")
-      
-      // After a short delay, show the reference input field
-      setTimeout(() => {
-        setShowReferenceInput(true)
-      }, 2000)
-    }
-
-    // Add event listeners to detect QR code interaction
-    const qrContainer = qrContainerRef.current
-    if (qrContainer) {
-      qrContainer.addEventListener("click", handleQRInteraction)
-      qrContainer.addEventListener("touchstart", handleQRInteraction)
-    }
-
-    // Check if there was a previous interaction
-    const previousInteraction = localStorage.getItem(`qr_interaction_${transactionId}`)
-    if (previousInteraction === "true") {
-      setShowReferenceInput(true)
-    }
-
-    return () => {
-      if (qrContainer) {
-        qrContainer.removeEventListener("click", handleQRInteraction)
-        qrContainer.removeEventListener("touchstart", handleQRInteraction)
-      }
-    }
-  }, [donationCreated, qrScanned, transactionId])
-
-  const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    const value = e.target.value
-    setAmount(value)
-  }
-
-  // Create pending donation record in the database
-  const createPendingDonation = async () => {
-    if (!isValid || Number(amount) < 1) return
-
-    setIsSubmitting(true)
-
-    try {
-      const response = await fetch("/api/donation", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          amount: Number.parseFloat(amount),
-          transactionId,
-          userId,
-          donorName,
-          donorEmail,
-          donorPhone,
-          message: donationMessage,
-          status: "pending",
-          paymentMethod: "upi",
-          alumnusId: userId || null,
-          // Include detailed transaction information
-          transactionDetails: {
-            initiatedAt: new Date().toISOString(),
-            upiId: UPI_ID,
-            payeeName: PAYEE_NAME,
-            currency: "INR",
-          },
-        }),
-      })
-
-      if (response.ok) {
-        setDonationCreated(true)
-        // Store the donation creation time
-        localStorage.setItem(`donation_created_${transactionId}`, new Date().getTime().toString())
+        setErrorMessage("Minimum donation amount is ₹1000");
       } else {
         setErrorMessage("");
       }
@@ -122,9 +35,10 @@ export default function PaymentQRGenerator() {
 
   const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setAmount(e.target.value);
+
   };
 
-  const canProceed = isValid && Number(amount) >= 1
+  const canProceed = isValid && Number(amount) >= 1000;
 
   return (
     <>
@@ -166,15 +80,32 @@ export default function PaymentQRGenerator() {
           {errorMessage && <p className="text-red-500 text-sm mt-1">{errorMessage}</p>}
         </div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         <div className="bg-blue-50 p-4 rounded-lg">
           <h3 className="font-semibold text-blue-800 mb-2">How to pay:</h3>
           <ol className="list-decimal list-inside text-sm text-gray-700 space-y-1">
-            <li>Enter your details and proceed</li>
-            <li>Tap on the QR code to scan with your UPI app</li>
-            <li>Complete the payment in your UPI app</li>
-            <li>Enter the UPI Reference ID from your payment app</li>
-            <li>Click "I have completed the payment" button</li>
-            <li>Save the transaction ID for reference</li>
+@@ -97,11 +88,38 @@
+            <li>Keep the transaction ID for your records</li>
           </ol>
         </div>
 

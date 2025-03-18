@@ -9,12 +9,12 @@ export async function POST(request: NextRequest) {
 
         const {
             firstName, lastName, email, password, phone, admissionNumber, graduationYear,
-            currentJobTitle, currentCompany, currentLocation, linkedinUrl, githubUrl, bio
+            currentJobTitle, currentCompany, currentLocation, linkedinUrl, bio, mindbendPosition
         } = body;
 
         // Required fields validation
         const requiredFields = [firstName, lastName, email, password, phone, admissionNumber, 
-            graduationYear, currentJobTitle, currentCompany, currentLocation, linkedinUrl];
+            graduationYear, currentJobTitle, currentCompany, currentLocation, linkedinUrl, mindbendPosition];
         
         if (requiredFields.some(field => !field)) {
             return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
@@ -23,6 +23,12 @@ export async function POST(request: NextRequest) {
         // Validate phone number format (10-digit number)
         if (!/^\d{10}$/.test(phone)) {
             return NextResponse.json({ error: 'Invalid phone number format' }, { status: 400 });
+        }
+
+        // Validate mindbendPosition
+        const validPositions = ["CCAS", "JCCAS", "Chief Advisor", "Convener", "Cheif Advisor", "Manager", "Head", "Co-Head", "Coordinator"];
+        if (!validPositions.includes(mindbendPosition)) {
+            return NextResponse.json({ error: 'Invalid Mindbend Position' }, { status: 400 });
         }
 
         // Check if user already exists
@@ -39,7 +45,7 @@ export async function POST(request: NextRequest) {
             data: {
                 firstName, lastName, email, password: hashedPassword, phone, admissionNumber,
                 graduationYear, currentJobTitle, currentCompany, currentLocation, linkedinUrl,
-                githubUrl, bio
+                bio, mindbendPosition
             },
         });
 
