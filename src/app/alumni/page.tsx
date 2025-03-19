@@ -35,12 +35,7 @@ const alumniImages = [
     src: "https://res.cloudinary.com/dsh447lvk/image/upload/v1741891257/t6nfi7zbts8rrsxd52rl.png",
     alt: "Alumni 1",
     batch: "2023",
-  },
-  {
-    src: "https://res.cloudinary.com/dsh447lvk/image/upload/v1741891257/t6nfi7zbts8rrsxd52rl.png",
-    alt: "Alumni 2",
-    batch: "2019",
-  },
+  }
 ];
 
 export default function Alumni() {
@@ -122,25 +117,25 @@ export default function Alumni() {
   }, []);
 
   // Image rotation logic
-  useEffect(() => {
-    const interval = setInterval(() => {
-      // Start fade out
-      setFadeState("opacity-0");
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     // Start fade out
+  //     setFadeState("opacity-0");
 
-      // Change image after fade out
-      const timer = setTimeout(() => {
-        setCurrentImageIndex((prevIndex) =>
-          prevIndex === alumniImages.length - 1 ? 0 : prevIndex + 1
-        );
-        // Start fade in
-        setFadeState("opacity-100");
-      }, 500);
+  //     // Change image after fade out
+  //     const timer = setTimeout(() => {
+  //       setCurrentImageIndex((prevIndex) =>
+  //         prevIndex === alumniImages.length - 1 ? 0 : prevIndex + 1
+  //       );
+  //       // Start fade in
+  //       setFadeState("opacity-100");
+  //     }, 500);
 
-      return () => clearTimeout(timer);
-    }, 5000);
+  //     return () => clearTimeout(timer);
+  //   }, 5000);
 
-    return () => clearInterval(interval);
-  }, []);
+  //   return () => clearInterval(interval);
+  // }, []);
 
   const handleYearChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedYear(e.target.value);
@@ -434,14 +429,14 @@ export default function Alumni() {
               {alumniData[selectedYear].map((person) => (
                 <div
                   key={person.id}
-                  className="bg-white rounded-xl overflow-hidden shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-700 hover:border-blue-300 h-120 perspective-1000 group w-90"
+                  className="bg-white rounded-xl overflow-hidden shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-700 hover:border-blue-300 h-115 perspective-1000 group w-80"
                 >
                   {/* Card with flip effect */}
-                  <div className="relative w-full h-full transition-transform duration-700 transform-style-preserve-3d group-hover:rotate-y-180">
+                  <div className="relative w-full h-full  transition-transform duration-700 transform-style-preserve-3d group-hover:rotate-y-180">
                     {/* Front side of card */}
                     <div className="absolute w-full h-full backface-hidden">
                       {/* Profile image */}
-                      <div className="relative h-110 bg-gradient-to-r from-blue-100 to-blue-50">
+                      <div className="relative h-102 bg-gradient-to-r from-blue-100 to-blue-50">
                         {person.image ? (
                           <Image
                             src={person.image}
@@ -470,12 +465,12 @@ export default function Alumni() {
                             {person.name || "Unnamed Alumni"}
                           </h3>
                           {person.position && (
-                            <p className="text-white/90 text-sm">
+                            <p className="text-white/90 text-l font-medium">
                               {person.position}
                             </p>
                           )}
                           {person.company && (
-                            <p className="text-white/80 font-medium text-sm">
+                            <p className="text-white/80 font-bold text-xl">
                               {person.company}
                             </p>
                           )}
@@ -483,21 +478,21 @@ export default function Alumni() {
 
                         {/* Decorative top accent */}
                         <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-700 to-blue-500"></div>
+                        <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-700 to-blue-500"></div>
                       </div>
 
                       {/* Additional content */}
-                      <div className="p-4">
-                        <div className="flex items-center text-sm text-black font-black">
-                          Class of {person.graduationYear}
-                        </div>
+                      <div className="p-2">
 
                         {person.mindbendPosition && (
-                          <div className="mt-2 text-sm text-black font-medium">
-                            <span className="font-medium">Mindbend:</span>{" "}
+                          <div className="mt-2 text-[1.2rem] text-blue-900 font-bold">
+                            <span className="font-bold text-black">Mindbend:</span>{" "}
                             {person.mindbendPosition}
                           </div>
                         )}
+
                       </div>
+
                     </div>
 
                     {/* Back side of card - Simplified with just LinkedIn and GitHub links */}

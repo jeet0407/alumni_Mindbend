@@ -166,8 +166,7 @@ const UploadPhoto = () => {
           // Handle the response from Cloudinary
           if (!error && result && result.event === "success") {
             console.log("Upload complete! Image URL:", result.info.secure_url);
-            
-            // Optional: Notify your backend about the new upload
+          
             fetch('/api/record-upload', {
               method: 'POST',
               headers: {
