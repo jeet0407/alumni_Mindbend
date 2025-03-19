@@ -20,6 +20,9 @@ CREATE TABLE "User" (
     "profilePhotoUrl" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "mindbendPosition" TEXT,
+    "transactionId" TEXT NOT NULL,
+    "transactionAmount" DOUBLE PRECISION NOT NULL,
+    "transactionDate" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "User_pkey" PRIMARY KEY ("id")
 );

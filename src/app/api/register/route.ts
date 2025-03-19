@@ -45,7 +45,9 @@ export async function POST(request: NextRequest) {
             data: {
                 firstName, lastName, email, password: hashedPassword, phone, admissionNumber,
                 graduationYear, currentJobTitle, currentCompany, currentLocation, linkedinUrl,
-                bio, mindbendPosition
+                bio, mindbendPosition,
+                transactionId: '', // Add a default value or get it from the request body
+                transactionAmount: 0 // Add a default value or get it from the request body
             },
         });
 

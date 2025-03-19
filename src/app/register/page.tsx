@@ -52,7 +52,7 @@ export default function AlumniRegistration() {
       const result: RegistrationResponse = await response.json();
       if (response.ok) {
         toast.success("Registration successful!");
-        router.push("/");
+        router.push("/login");
       } else {
         toast.error(result.error || "Something went wrong");
       }
