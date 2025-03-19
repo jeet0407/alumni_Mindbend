@@ -120,9 +120,9 @@ const Navbar = () => {
         prefetch={true}
         className="flex items-center hover:scale-105 transition-transform duration-300 ease-in-out cursor-pointer z-20"
       >
-        <div className="w-[70px] h-[50px] relative">
+        <div className="w-[120px] h-[50px] relative ml-8">
           <Image
-            src="/images/logo.png"
+            src="/images/logomain.png"
             alt="Logo"
             fill
             className="rounded-full object-cover"

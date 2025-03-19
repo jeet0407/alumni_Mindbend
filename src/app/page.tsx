@@ -21,12 +21,12 @@ export const metadata: Metadata = {
     title: 'Mindbend Alumni Network | Connect with Gujarat\'s Largest Techno-Managerial fest Community',
     description: 'Join the alumni network of Mindbend, the premier technical festival of SVNIT Surat. Connect with tech professionals, access career opportunities, and stay involved with Gujarat\'s leading technical community.',
     type: 'website',
-    url: 'https://mindbend-alumni.svnit.ac.in',
+    url: 'https://alumni.mindbend-svnit.com/',
     siteName: 'Mindbend Alumni Network',
     locale: 'en_IN',
     images: [
       {
-        url: '/images/mindbend-banner.jpg',
+        url: '/images/logomain.png',
         width: 1200,
         height: 630,
         alt: 'Mindbend Alumni Network Banner',
