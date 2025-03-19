@@ -1,6 +1,7 @@
 "use client"
 
 import Navbar from '@/components/Navbar';
+import ProfilePhotoSection from '@/components/ProfilePhotoEdit';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
@@ -192,7 +193,7 @@ function DashboardDetails() {
   return (
     <div>
       <Navbar/>
-        <div className="bg-white shadow-lg sm:rounded-xl overflow-hidden border border-gray-100 transition-all hover:shadow-md">
+        <div className="bg-white shadow-lg sm:rounded-xl mt-20 overflow-hidden border border-gray-100 transition-all hover:shadow-md">
           <div className="px-6 py-5 bg-gradient-to-r from-blue-50 via-indigo-50 to-blue-50 border-b border-gray-200">
             <div className="flex items-center">
               <svg
@@ -216,6 +217,10 @@ function DashboardDetails() {
             <p className="mt-1 max-w-2xl text-sm text-gray-600">
               Update your alumni profile details and social media links
             </p>
+          </div>
+
+          <div className='px-6 py-6'>
+          <ProfilePhotoSection formData={formData} setFormData={setFormData} />
           </div>
 
           <form onSubmit={handleSubmit} className="px-6 py-6">

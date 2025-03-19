@@ -41,7 +41,7 @@ const ProfilePhotoSection: React.FC<ProfilePhotoSectionProps> = ({
       setUploading(true);
       setUploadError("");
 
-
+      // Create form data for upload
       const uploadData = new FormData();
       uploadData.append("file", file);
       uploadData.append(
@@ -50,7 +50,7 @@ const ProfilePhotoSection: React.FC<ProfilePhotoSectionProps> = ({
           "mindbend_alumni_gallery"
       );
 
-
+      // Upload to Cloudinary using your environment variables
       const response = await fetch(
         `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload`,
         {
@@ -99,7 +99,34 @@ const ProfilePhotoSection: React.FC<ProfilePhotoSectionProps> = ({
     }
   };
 
+  const removePhoto = async (): Promise<void> => {
+    try {
+      setUploading(true);
 
+      // Call API to remove profile photo
+      const response = await fetch("/api/profile/remove-photo", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to remove photo");
+      }
+
+      // Update local state
+      setFormData({
+        ...formData,
+        profilePhotoUrl: "",
+      });
+    } catch (error) {
+      console.error("Error removing photo:", error);
+      setUploadError("Failed to remove photo. Please try again.");
+    } finally {
+      setUploading(false);
+    }
+  };
 
   return (
     <div className="border-b border-gray-100 pb-8">
@@ -280,7 +307,68 @@ const ProfilePhotoSection: React.FC<ProfilePhotoSectionProps> = ({
           )}
         </div>
 
+        {/* Upload Controls */}
+        <div className="flex flex-col gap-3">
+          <div className="text-sm text-gray-600">
+            <p>Upload a profile photo</p>
+            <p className="text-xs text-gray-500 mt-1">
+              Recommended: 400x400px, Max 5MB
+            </p>
+          </div>
 
+          <div className="flex flex-wrap gap-2">
+            <button
+              type="button"
+              onClick={triggerFileInput}
+              className="px-3 py-2 text-sm text-blue-600 bg-blue-50 rounded-md hover:bg-blue-100 transition-colors flex items-center gap-1"
+              disabled={uploading}
+            >
+              <svg
+                className="w-4 h-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0l-4 4m4-4v12"
+                />
+              </svg>
+              Upload New
+            </button>
+
+            {formData.profilePhotoUrl && (
+              <button
+                type="button"
+                onClick={removePhoto}
+                className="px-3 py-2 text-sm text-red-600 bg-red-50 rounded-md hover:bg-red-100 transition-colors flex items-center gap-1"
+                disabled={uploading}
+              >
+                <svg
+                  className="w-4 h-4"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                  />
+                </svg>
+                Remove
+              </button>
+            )}
+          </div>
+
+          {/* Error message */}
+          {uploadError && (
+            <div className="text-red-500 text-xs mt-1">{uploadError}</div>
+          )}
+        </div>
       </div>
     </div>
   );
