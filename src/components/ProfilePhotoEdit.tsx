@@ -312,7 +312,7 @@ const ProfilePhotoSection: React.FC<ProfilePhotoSectionProps> = ({
           <div className="text-sm text-gray-600">
             <p>Upload a profile photo</p>
             <p className="text-xs text-gray-500 mt-1">
-              Recommended: 400x400px, Max 5MB
+              Max 5MB
             </p>
           </div>
 
