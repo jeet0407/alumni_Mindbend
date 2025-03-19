@@ -1,50 +1,50 @@
-"use client";
-import { useState, useEffect } from "react";
-import { signOut, useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
-import Image from "next/image";
-import Link from "next/link";
-import Navbar from "@/components/Navbar";
-import ProfilePhotoSection from "@/components/ProfilePhoto";
+"use client"
+import { useState, useEffect } from "react"
+import { signOut, useSession } from "next-auth/react"
+import { useRouter } from "next/navigation"
+import Image from "next/image"
+import Link from "next/link"
+import Navbar from "@/components/Navbar"
+import ProfilePhotoSection from "@/components/ProfilePhoto"
 
 type ProfileData = {
-  id: string;
-  email: string;
-  firstName?: string;
-  lastName?: string;
-  phone?: string;
-  admissionNumber?: string;
-  graduationYear: number;
-  currentJobTitle?: string;
-  currentCompany?: string;
-  currentLocation?: string;
-  linkedinUrl?: string;
-  instagramUrl?: string;
-  twitterUrl?: string;
-  githubUrl?: string;
-  websiteUrl?: string;
-  bio?: string;
-  profilePhotoUrl?: string;
-};
+  id: string
+  email: string
+  firstName?: string
+  lastName?: string
+  phone?: string
+  admissionNumber?: string
+  graduationYear: number
+  currentJobTitle?: string
+  currentCompany?: string
+  currentLocation?: string
+  linkedinUrl?: string
+  instagramUrl?: string
+  twitterUrl?: string
+  githubUrl?: string
+  websiteUrl?: string
+  bio?: string
+  profilePhotoUrl?: string
+}
 
 type Transaction = {
-  id: string;
-  amount: number;
-  date: string;
-  description: string;
-  status: "completed" | "pending" | "failed";
-  transactionId: string;
-  lastUpdated?: string;
-};
+  id: string
+  amount: number
+  date: string
+  name: string
+  status: "completed" | "pending" | "failed"
+  transactionId: string
+  lastUpdated?: string
+}
 
 export default function AlumniDashboard() {
-  const { data: session, status } = useSession();
-  const router = useRouter();
-  const [loading, setLoading] = useState(true);
-  const [profileData, setProfileData] = useState<ProfileData | null>(null);
-  const [message, setMessage] = useState({ type: "", content: "" });
-  const [transactions, setTransactions] = useState<Transaction[]>([]);
-  const [transactionLoading, setTransactionLoading] = useState(true);
+  const { data: session, status } = useSession()
+  const router = useRouter()
+  const [loading, setLoading] = useState(true)
+  const [profileData, setProfileData] = useState<ProfileData | null>(null)
+  const [message, setMessage] = useState({ type: "", content: "" })
+  const [transactions, setTransactions] = useState<Transaction[]>([])
+  const [transactionLoading, setTransactionLoading] = useState(true)
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -60,7 +60,7 @@ export default function AlumniDashboard() {
     websiteUrl: "",
     bio: "",
     profilePhotoUrl: "",
-  });
+  })
 
   // useEffect(() => {
   //   if (status === "unauthenticated") {
@@ -80,19 +80,19 @@ export default function AlumniDashboard() {
             },
             // Add credentials to ensure cookies are sent
             credentials: "include",
-          });
+          })
 
           if (!response.ok) {
-            const errorData = await response.json();
-            throw new Error(errorData.error || "Failed to fetch profile data");
+            const errorData = await response.json()
+            throw new Error(errorData.error || "Failed to fetch profile data")
           }
 
-          const data = await response.json();
+          const data = await response.json()
 
           if (!data || !data.user) {
-            throw new Error("Invalid profile data received");
+            throw new Error("Invalid profile data received")
           }
-          setProfileData(data.user);
+          setProfileData(data.user)
           // Initialize form with existing data
           setFormData({
             firstName: data.user.firstName || "",
@@ -109,74 +109,89 @@ export default function AlumniDashboard() {
             websiteUrl: data.user.websiteUrl || "",
             bio: data.user.bio || "",
             profilePhotoUrl: data.user.profilePhotoUrl || "",
-          });
+          })
         } catch (error) {
-          console.error("Error fetching profile:", error);
+          console.error("Error fetching profile:", error)
           setMessage({
             type: "error",
-            content:
-              error instanceof Error
-                ? error.message
-                : "Failed to load profile data. Please try again later.",
-          });
+            content: error instanceof Error ? error.message : "Failed to load profile data. Please try again later.",
+          })
         } finally {
-          setLoading(false);
+          setLoading(false)
         }
       } else if (status !== "loading") {
-        setLoading(false);
+        setLoading(false)
       }
-    };
+    }
 
-    fetchProfileData();
-  }, [status, session]);
+    fetchProfileData()
+  }, [status, session])
 
   // Fetch transaction history
   useEffect(() => {
     const fetchTransactions = async () => {
       if (status === "authenticated" && session?.user?.email) {
         try {
-          setTransactionLoading(true);
-          const response = await fetch("/api/transactions", {
+          setTransactionLoading(true)
+          const response = await fetch("/api/transaction", {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
             },
             credentials: "include",
-          });
+          })
 
           if (!response.ok) {
-            const errorData = await response.json();
-            throw new Error(
-              errorData.error || "Failed to fetch transaction history"
-            );
+            const errorData = await response.json()
+            throw new Error(errorData.error || "Failed to fetch transaction history")
           }
 
-          const data = await response.json();
-          console.log("Transactions data:", data); // Debug log
-          setTransactions(data.transactions || []);
+          const data = await response.json()
+          console.log("Transactions data:", data) // Debug log
+
+          // Map the API response to match the Transaction type
+          interface ApiTransaction {
+            id: string;
+            firstName: string;
+            transactionAmount: number;
+            transactionDate: string;
+            mindbendPosition: string;
+            transactionId: string;
+          }
+
+          const formattedTransactions = data.map((item: ApiTransaction) => ({
+            id: item.id,
+            amount: item.transactionAmount || 0,
+            date: item.transactionDate || new Date().toISOString(),
+            name:item.firstName || "Anonymous",
+            status: "completed",
+            transactionId: item.transactionId || "Anonymous",
+            lastUpdated: item.transactionDate || new Date().toISOString(),
+          }))
+
+          setTransactions(formattedTransactions || [])
         } catch (error) {
-          console.error("Error fetching transactions:", error);
+          console.error("Error fetching transactions:", error)
           // Show error message for transactions
           setMessage({
             type: "error",
-            content:
-              "Failed to load transaction history. Please try again later.",
-          });
+            content: "Failed to load transaction history. Please try again later.",
+          })
         } finally {
-          setTransactionLoading(false);
+          setTransactionLoading(false)
         }
       }
-    };
+    }
 
-    fetchTransactions();
-  }, [status, session]);
+    fetchTransactions()
+  }, [status, session])
 
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="w-16 h-16 border-4 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
       </div>
-    );
+    )
   }
 
   return (
@@ -369,146 +384,12 @@ export default function AlumniDashboard() {
       </div>
     )}
   </div>
-  
-
 </div>
     </div>
   </div>
-  
-
 </div>
             </div>
           </div>
-
-          {/* Transaction History Section */}
-          <div className="mt-8 mb-4">
-            <h3 className="text-xl font-bold text-gray-800 mb-4 flex items-center">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6 mr-2 text-green-600"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                />
-              </svg>
-              Transaction History
-            </h3>
-
-            <div className="bg-white shadow-md rounded-lg overflow-hidden">
-              {transactionLoading ? (
-                <div className="p-8 flex justify-center">
-                  <div className="w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
-                </div>
-              ) : transactions.length > 0 ? (
-                <div className="overflow-x-auto">
-                  <table className="min-w-full divide-y divide-gray-200">
-                    <thead className="bg-gray-50">
-                      <tr>
-                        <th
-                          scope="col"
-                          className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                        >
-                          Date
-                        </th>
-                        <th
-                          scope="col"
-                          className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                        >
-                          Transaction ID
-                        </th>
-                        <th
-                          scope="col"
-                          className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                        >
-                          Description
-                        </th>
-                        <th
-                          scope="col"
-                          className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                        >
-                          Amount
-                        </th>
-                        <th
-                          scope="col"
-                          className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                        >
-                          Status
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody className="bg-white divide-y divide-gray-200">
-                      {transactions.map((transaction) => (
-                        <tr key={transaction.id} className="hover:bg-gray-50">
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            {new Date(transaction.date).toLocaleDateString()}
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap">
-                            <div className="flex items-center">
-                              <div className="text-sm font-medium text-gray-900">
-                                {transaction.transactionId}
-                              </div>
-                            </div>
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            {transaction.description}
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                            ₹{transaction.amount.toFixed(2)}
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm">
-                            <span
-                              className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full 
-                              ${
-                                transaction.status === "completed"
-                                  ? "bg-green-100 text-green-800"
-                                  : transaction.status === "pending"
-                                  ? "bg-yellow-100 text-yellow-800"
-                                  : "bg-red-100 text-red-800"
-                              }`}
-                            >
-                              {transaction.status.charAt(0).toUpperCase() +
-                                transaction.status.slice(1)}
-                            </span>
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              ) : (
-                <div className="p-8 text-center">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-12 w-12 text-gray-300 mx-auto mb-4"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={1.5}
-                      d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                    />
-                  </svg>
-                  <p className="text-gray-500">No transactions found</p>
-                  <button
-                    className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition"
-                    onClick={() => router.push("/contribution")}
-                  >
-                    Make a Contribution
-                  </button>
-                </div>
-              )}
-            </div>
-          </div>
-
           <div className="mt-8 mb-4">
             {/* Section title */}
             <h3 className="text-xl font-bold text-gray-800 mb-4 flex items-center">
@@ -572,77 +453,58 @@ export default function AlumniDashboard() {
                               }}
                             ></div>
                           </div>
-                        </div>
 
-                        <div className="flex items-center justify-center h-12 w-12 rounded-full bg-blue-50 border-2 border-blue-100">
-                          <span className="text-sm font-bold text-blue-700">
-                            {Math.round(
-                              (Object.values(formData).filter(Boolean).length /
-                                Object.keys(formData).length) *
-                                100
-                            )}
-                            %
-                          </span>
-                        </div>
-                      </div>
-
-                      <div className="flex justify-between items-center text-xs text-gray-500 mb-4">
-                        <span>0%</span>
-                        <span>50%</span>
-                        <span>100%</span>
-                      </div>
-
-                      {/* Stats breakdown */}
-                      <div className="space-y-2 text-sm">
-                        <div className="flex justify-between items-center py-1 border-t border-gray-100">
-                          <span className="text-gray-600">
-                            Fields Completed
-                          </span>
-                          <span className="font-medium text-gray-900">
-                            {Object.values(formData).filter(Boolean).length} /{" "}
-                            {Object.keys(formData).length}
-                          </span>
-                        </div>
-                        <div className="flex justify-between items-center py-1 border-t border-gray-100">
-                          <span className="text-gray-600">
-                            Basic Information
-                          </span>
-                          <div className="flex items-center">
-                            <span className="font-medium text-gray-900 mr-1">
-                              {
-                                [
-                                  "firstName",
-                                  "lastName",
-                                  "phone",
-                                  "graduationYear",
-                                ].filter(
-                                  (key) =>
-                                    formData[key as keyof typeof formData]
-                                ).length
-                              }
-                              /4
+                          <div className="flex items-center justify-center h-12 w-12 rounded-full bg-blue-50 border-2 border-blue-100">
+                            <span className="text-sm font-bold text-blue-700">
+                              {Math.round(
+                                (Object.values(formData).filter(Boolean).length /
+                                  Object.keys(formData).length) *
+                                  100
+                              )}
+                              %
                             </span>
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              className={`h-4 w-4 ${
-                                [
-                                  "firstName",
-                                  "lastName",
-                                  "phone",
-                                  "graduationYear",
-                                ].filter(
-                                  (key) =>
-                                    formData[key as keyof typeof formData]
-                                ).length === 4
-                                  ? "text-green-500"
-                                  : "text-amber-500"
-                              }`}
-                              viewBox="0 0 20 20"
-                              fill="currentColor"
-                            >
-                              <path
-                                fillRule="evenodd"
-                                d={
+                          </div>
+                        </div>
+
+                        <div className="flex justify-between items-center text-xs text-gray-500 mb-4">
+                          <span>0%</span>
+                          <span>50%</span>
+                          <span>100%</span>
+                        </div>
+
+                        {/* Stats breakdown */}
+                        <div className="space-y-2 text-sm">
+                          <div className="flex justify-between items-center py-1 border-t border-gray-100">
+                            <span className="text-gray-600">
+                              Fields Completed
+                            </span>
+                            <span className="font-medium text-gray-900">
+                              {Object.values(formData).filter(Boolean).length} /{" "}
+                              {Object.keys(formData).length}
+                            </span>
+                          </div>
+                          <div className="flex justify-between items-center py-1 border-t border-gray-100">
+                            <span className="text-gray-600">
+                              Basic Information
+                            </span>
+                            <div className="flex items-center">
+                              <span className="font-medium text-gray-900 mr-1">
+                                {
+                                  [
+                                    "firstName",
+                                    "lastName",
+                                    "phone",
+                                    "graduationYear",
+                                  ].filter(
+                                    (key) =>
+                                      formData[key as keyof typeof formData]
+                                  ).length
+                                }
+                                /4
+                              </span>
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className={`h-4 w-4 ${
                                   [
                                     "firstName",
                                     "lastName",
@@ -652,54 +514,53 @@ export default function AlumniDashboard() {
                                     (key) =>
                                       formData[key as keyof typeof formData]
                                   ).length === 4
-                                    ? "M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                    : "M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
-                                }
-                                clipRule="evenodd"
-                              />
-                            </svg>
+                                    ? "text-green-500"
+                                    : "text-amber-500"
+                                }`}
+                                viewBox="0 0 20 20"
+                                fill="currentColor"
+                              >
+                                <path
+                                  fillRule="evenodd"
+                                  d={
+                                    [
+                                      "firstName",
+                                      "lastName",
+                                      "phone",
+                                      "graduationYear",
+                                    ].filter(
+                                      (key) =>
+                                        formData[key as keyof typeof formData]
+                                    ).length === 4
+                                      ? "M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                      : "M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
+                                  }
+                                  clipRule="evenodd"
+                                />
+                              </svg>
+                            </div>
                           </div>
-                        </div>
-                        <div className="flex justify-between items-center py-1 border-t border-gray-100">
-                          <span className="text-gray-600">Social Links</span>
-                          <div className="flex items-center">
-                            <span className="font-medium text-gray-900 mr-1">
-                              {
-                                [
-                                  "linkedinUrl",
-                                  "twitterUrl",
-                                  "instagramUrl",
-                                  "githubUrl",
-                                  "websiteUrl",
-                                ].filter(
-                                  (key) =>
-                                    formData[key as keyof typeof formData]
-                                ).length
-                              }
-                              /5
-                            </span>
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              className={`h-4 w-4 ${
-                                [
-                                  "linkedinUrl",
-                                  "twitterUrl",
-                                  "instagramUrl",
-                                  "githubUrl",
-                                  "websiteUrl",
-                                ].filter(
-                                  (key) =>
-                                    formData[key as keyof typeof formData]
-                                ).length >= 2
-                                  ? "text-green-500"
-                                  : "text-amber-500"
-                              }`}
-                              viewBox="0 0 20 20"
-                              fill="currentColor"
-                            >
-                              <path
-                                fillRule="evenodd"
-                                d={
+                          <div className="flex justify-between items-center py-1 border-t border-gray-100">
+                            <span className="text-gray-600">Social Links</span>
+                            <div className="flex items-center">
+                              <span className="font-medium text-gray-900 mr-1">
+                                {
+                                  [
+                                    "linkedinUrl",
+                                    "twitterUrl",
+                                    "instagramUrl",
+                                    "githubUrl",
+                                    "websiteUrl",
+                                  ].filter(
+                                    (key) =>
+                                      formData[key as keyof typeof formData]
+                                  ).length
+                                }
+                                /5
+                              </span>
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className={`h-4 w-4 ${
                                   [
                                     "linkedinUrl",
                                     "twitterUrl",
@@ -710,29 +571,38 @@ export default function AlumniDashboard() {
                                     (key) =>
                                       formData[key as keyof typeof formData]
                                   ).length >= 2
-                                    ? "M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                    : "M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
-                                }
-                                clipRule="evenodd"
-                              />
-                            </svg>
+                                    ? "text-green-500"
+                                    : "text-amber-500"
+                                }`}
+                                viewBox="0 0 20 20"
+                                fill="currentColor"
+                              >
+                                <path
+                                  fillRule="evenodd"
+                                  d={
+                                    [
+                                      "linkedinUrl",
+                                      "twitterUrl",
+                                      "instagramUrl",
+                                      "githubUrl",
+                                      "websiteUrl",
+                                    ].filter(
+                                      (key) =>
+                                        formData[key as keyof typeof formData]
+                                    ).length >= 2
+                                      ? "M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                      : "M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
+                                  }
+                                  clipRule="evenodd"
+                                />
+                              </svg>
+                            </div>
                           </div>
                         </div>
-                      </div>
-
-                      {/* Quick action buttons */}
-                      <div className="mt-4 flex flex-wrap gap-2">
-                        <button className="px-3 py-1 text-xs font-medium text-blue-600 bg-blue-50 rounded-md hover:bg-blue-100 transition-colors">
-                          Add missing info
-                        </button>
-                        <button className="px-3 py-1 text-xs font-medium text-gray-600 bg-gray-100 rounded-md hover:bg-gray-200 transition-colors">
-                          View public profile
-                        </button>
-                      </div>
-                    </>
-                  )}
-                </div>
-              </div>
+                        </div>
+                </>
+              )}
+            </div>
 
               {/* Additional stats cards - can be added here */}
               <div className="bg-white p-6 rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition-shadow duration-300">
@@ -759,7 +629,8 @@ export default function AlumniDashboard() {
                   <p className="text-gray-500 text-sm">
                     Connect with alumni to see activity
                   </p>
-                  <button className="mt-3 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                  <button className="mt-3 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  onClick={() => router.push("/alumni")}>
                     Explore Network
                   </button>
                 </div>
@@ -832,8 +703,138 @@ export default function AlumniDashboard() {
               </div>
             </div>
           </div>
+            {/* Transaction History Section */}
+          <div className="mt-8 mb-4">
+            <h3 className="text-xl font-bold text-gray-800 mb-4 flex items-center">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6 mr-2 text-green-600"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+              Transaction History
+            </h3>
+
+            <div className="bg-white shadow-md rounded-lg overflow-hidden">
+              {transactionLoading ? (
+                <div className="p-8 flex justify-center">
+                  <div className="w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
+                </div>
+              ) : transactions.length > 0 ? (
+                <div className="overflow-x-auto">
+                  <table className="min-w-full divide-y divide-gray-200">
+                    <thead className="bg-gray-50">
+                      <tr>
+                        <th
+                          scope="col"
+                          className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                        >
+                          Date
+                        </th>
+                        <th
+                          scope="col"
+                          className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                        >
+                          Transaction ID
+                        </th>
+                        <th
+                          scope="col"
+                          className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                        >
+                          Name
+                        </th>
+                        <th
+                          scope="col"
+                          className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                        >
+                          Amount
+                        </th>
+                        <th
+                          scope="col"
+                          className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                        >
+                          Status
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody className="bg-white divide-y divide-gray-200">
+                      {transactions.map((transaction) => (
+                        <tr key={transaction.id} className="hover:bg-gray-50">
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            {new Date(transaction.date).toLocaleDateString()}
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap">
+                            <div className="flex items-center">
+                              <div className="text-sm font-medium text-gray-900">
+                                {transaction.transactionId}
+                              </div>
+                            </div>
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            {transaction.name}
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                            ₹{transaction.amount.toFixed(2)}
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm">
+                            <span
+                              className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full 
+                              ${
+                                transaction.status === "completed"
+                                  ? "bg-green-100 text-green-800"
+                                  : transaction.status === "pending"
+                                  ? "bg-yellow-100 text-yellow-800"
+                                  : "bg-red-100 text-red-800"
+                              }`}
+                            >
+                              {transaction.status.charAt(0).toUpperCase() +
+                                transaction.status.slice(1)}
+                            </span>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              ) : (
+                <div className="p-8 text-center">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-12 w-12 text-gray-300 mx-auto mb-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={1.5}
+                      d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                    />
+                  </svg>
+                  <p className="text-gray-500">No transactions found</p>
+                  <button
+                    className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition"
+                    onClick={() => router.push("/contribution")}
+                  >
+                    Make a Contribution
+                  </button>
+                </div>
+              )}
+            </div>
+          </div>
+          </div>
         </main>
       </div>
     </div>
   );
 }
+

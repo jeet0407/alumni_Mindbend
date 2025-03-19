@@ -15,7 +15,7 @@ model User {
   password        String?
   phone           String?
   admissionNumber String?
-  graduationYear  Int
+  graduationYear  Int 
   currentJobTitle String?
   currentCompany  String?
   currentLocation String?
@@ -28,4 +28,7 @@ model User {
   profilePhotoUrl String?
   createdAt       DateTime @default(now())
   mindbendPosition String?
+  transactionId    String
+  transactionAmount Float
+  transactionDate DateTime @default(now())
 }
