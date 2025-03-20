@@ -47,8 +47,8 @@ function Gallery() {
               <div className="mt-2 h-1 w-3/4 bg-gradient-to-r from-blue-600 to-black rounded-full"></div>
             </h1>
             <p className="text-lg text-blue-600 font-bold mt-4">
-              Share your memorable moments from Mindbend events with the
-              community.
+              Send your memorable moments from Mindbend events to us and we will share it with the
+              community. 
             </p>
           </div>
 
