@@ -8,17 +8,17 @@ function ChiefAdvisor() {
   const chiefAdvisor = [
     {
         name: "RONIT MISTRY",
-        position: "CO-CHAIRPERSON",
-        image: "/k",
+        position: "Cheif Advisor",
+        image: "https://res.cloudinary.com/dsh447lvk/image/upload/v1742478940/tj0i40hqzv8mzcyhpspi.jpg",
     },
     {
       name: "HIMDIPSINH CHUDASMA",
-      position: "CHAIRPERSON",
-      image: "/f", 
+      position: "Chief Advisor",
+      image: "https://res.cloudinary.com/dsh447lvk/image/upload/v1742479109/q2tqnwpnidwhzxpausud.jpg", 
     },
     {
       name: "KUSH DALSANIYA",
-      position: "CO-CHAIRPERSON",
+      position:"Chief Advisor",
       image: "https://res.cloudinary.com/dsh447lvk/image/upload/v1741977376/doz51mja5vsyndrur0km.jpg",
     },
   ];
@@ -89,13 +89,13 @@ function ChiefAdvisor() {
             {chiefAdvisor.slice(0, 3).map((chiefadvisor, index) => (
               <div key={index} className="w-full sm:w-72 bg-white rounded-lg overflow-hidden shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 hover:translate-y-[-5px] group">
                 {/* Faculty Image */}
-                <div className="relative h-64 w-full bg-gradient-to-br from-blue-50 to-gray-100 overflow-hidden">
+                <div className="relative h-72 w-full bg-gradient-to-br from-blue-50 to-gray-100 overflow-hidden">
                   <div className="absolute inset-0 flex items-center justify-center">
                     <Image
                       src={chiefadvisor.image}
                       alt={chiefadvisor.name}
-                      width={200}
-                      height={200}
+                      width={240}
+                      height={240}
                       className="rounded-full object-cover border-4 border-white shadow-md group-hover:scale-[1.03] transition-transform duration-300"
                       onError={(e) => {
                         // Fallback for missing images
