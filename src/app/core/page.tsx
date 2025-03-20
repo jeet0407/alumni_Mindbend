@@ -1,5 +1,3 @@
-"use client";
-
 import Ccas from "@/components/Ccas";
 import ChiefAdvisor from "@/components/CheifAdvisor";
 import Convenors from "@/components/Convenors";

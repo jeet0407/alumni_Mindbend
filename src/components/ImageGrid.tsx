@@ -6,25 +6,25 @@ import Link from 'next/link';
 
 // Greatly reduced number of images
 const column1Images = [
-  { id: 1, src: "/images/poster.jpg", alt: "Campus Life" },
-  { id: 2, src: "https://res.cloudinary.com/dsh447lvk/image/upload/v1741893920/isjnsxr5faewzxvoxjwp.jpg", alt: "Campus Life" },
-  { id: 3, src: "/images/aman.png", alt: "Campus Life" },
-  { id: 4, src: "https://res.cloudinary.com/dsh447lvk/image/upload/v1741893925/ityxdubahmngfbakoyqg.jpg", alt: "Campus Life" },
-  { id: 5, src: "https://res.cloudinary.com/dsh447lvk/image/upload/v1741893923/llflr0k6pdovxafqfhz0.jpg", alt: "Campus Life" },
+  { id: 1, src: "/images/poster.jpg", alt: "img 1" },
+  { id: 2, src: "https://res.cloudinary.com/dsh447lvk/image/upload/v1741893920/isjnsxr5faewzxvoxjwp.jpg", alt: "img 2" },
+  { id: 3, src: "/images/aman.png", alt: "image 3" },
+  { id: 4, src: "https://res.cloudinary.com/dsh447lvk/image/upload/v1741893925/ityxdubahmngfbakoyqg.jpg", alt: "image 4" },
+  { id: 5, src: "https://res.cloudinary.com/dsh447lvk/image/upload/v1741893923/llflr0k6pdovxafqfhz0.jpg", alt: "image 5" },
 ];
 
 const column2Images = [
-  { id: 6, src: "/images/cookin.png", alt: "Graduation Day" },
-  { id: 7, src: "/images/img5.jpg", alt: "Graduation Day" },
-  { id: 8, src: "https://res.cloudinary.com/dsh447lvk/image/upload/v1741890347/ckghkxvwxopguuopxbcs.png", alt: "Graduation Day" },
-  { id: 9, src: "https://res.cloudinary.com/dsh447lvk/image/upload/v1741890336/n2dsaxd8adbfwjynrdno.png", alt: "Graduation Day" },
+  { id: 6, src: "/images/cookin.png", alt: "image 6" },
+  { id: 7, src: "/images/img5.jpg", alt: "image 7" },
+  { id: 8, src: "https://res.cloudinary.com/dsh447lvk/image/upload/v1741890347/ckghkxvwxopguuopxbcs.png", alt: "image 8" },
+  { id: 9, src: "https://res.cloudinary.com/dsh447lvk/image/upload/v1741890336/n2dsaxd8adbfwjynrdno.png", alt: "image 9" },
 ];
 
 const column3Images = [
-  { id: 10, src: "/images/img8.jpg", alt: "Innovation Lab" },
-  { id: 11, src: "/images/kart.png", alt: "Innovation Lab" },
-  { id: 12, src: "https://res.cloudinary.com/dsh447lvk/image/upload/v1741893925/y4cw0rgbx02dstvq8kip.jpg", alt: "Innovation Lab" },
-  { id: 13, src: "https://res.cloudinary.com/dsh447lvk/image/upload/v1741893922/zzgetv444ezhc539fx6i.jpg", alt: "Guest Lecture" },
+  { id: 10, src: "/images/img8.jpg", alt: "image 10" },
+  { id: 11, src: "/images/kart.png", alt: "image 11" },
+  { id: 12, src: "https://res.cloudinary.com/dsh447lvk/image/upload/v1741893925/y4cw0rgbx02dstvq8kip.jpg", alt: "image 12" },
+  { id: 13, src: "https://res.cloudinary.com/dsh447lvk/image/upload/v1741893922/zzgetv444ezhc539fx6i.jpg", alt: "image 13" },
 ];
 
 function ImageGrid() {
