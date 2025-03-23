@@ -63,11 +63,11 @@ export default function AlumniDashboard() {
     profilePhotoUrl: "",
   });
 
-  useEffect(() => {
-    if (status === "unauthenticated") {
-      router.push("/register")
-    }
-  }, [status, router])
+  // useEffect(() => {
+  //   if (status === "unauthenticated") {
+  //     router.push("/register")
+  //   }
+  // }, [status, router])
 
   // Fetch user profile data
   useEffect(() => {
@@ -674,16 +674,31 @@ export default function AlumniDashboard() {
                   </h3>
                 </div>
                 <div className="text-center py-6">
-                  <p className="text-gray-500 text-sm">
-                    Connect with alumni to see activity
-                  </p>
-                  <button
-                    className="mt-3 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                    onClick={() => router.push("/alumni")}
-                  >
-                    Explore Network
-                  </button>
-                </div>
+  <p className="text-gray-500 text-sm">
+    Connect with alumni to see activity
+  </p>
+
+  <div className="mt-3 flex flex-col gap-4 items-center">
+    {/* Explore Network Button */}
+    <button
+      className="w-full max-w-xs px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+      onClick={() => router.push("/alumni")}
+    >
+      Explore Network
+    </button>
+
+    {/* WhatsApp Group Button */}
+    <a 
+      href="https://chat.whatsapp.com/HChrXz0A7vD3Qt02XZ2z0V" 
+      target="_blank" 
+      rel="noopener noreferrer"
+      className="w-full max-w-xs px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 text-center"
+    >
+      Join WhatsApp Group
+    </a>
+  </div>
+</div>
+
               </div>
 
               <div className="bg-white p-6 w-1/3  rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition-shadow duration-300">
