@@ -31,7 +31,9 @@ function AlumniCount() {
           const [alumniData, setAlumniData] = useState<GroupedAlumni>({});
           const [isLoading, setIsLoading] = useState(true);
           const [error, setError] = useState<string | null>(null);
-    
+    console.log(selectedYear);
+    console.log(isLoading);
+    console.log(error);
             useEffect(() => {
               const fetchAlumni = async () => {
                 try {
@@ -110,19 +112,6 @@ function AlumniCount() {
         Object.keys(alumniData).length > 0
           ? Object.keys(alumniData).sort((a, b) => Number(b) - Number(a))
           : Array.from({ length: 11 }, (_, i) => (2024 - i).toString());
-    
-      // Generate initials for placeholder images - With null safety
-      const getInitials = (name: string | undefined | null): string => {
-        if (!name) return "AL"; // Default initials for Alumni if name is missing
-    
-        return name
-          .split(" ")
-          .map((part) => part.charAt(0))
-          .join("")
-          .toUpperCase()
-          .substring(0, 2);
-      };
-      
   return (
     <div>
         <div className="mt-12 grid grid-cols-2 gap-6">
@@ -132,6 +121,24 @@ function AlumniCount() {
                   (count, yearGroup) => count + yearGroup.length,
                   0
                 ) || "5000+"}
+                  <div className="mt-4">
+                      <label htmlFor="year-select" className="block text-sm font-medium text-gray-700">
+                          Select Year
+                      </label>
+                      <select
+                          id="year-select"
+                          name="year"
+                          className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md"
+                          value={selectedYear}
+                          onChange={handleYearChange}
+                      >
+                          {availableYears.map((year) => (
+                              <option key={year} value={year}>
+                                  {year}
+                              </option>
+                          ))}
+                      </select>
+                  </div>
               </div>
               <div className="text-sm text-gray-600 font-medium mt-1">
                 Alumni

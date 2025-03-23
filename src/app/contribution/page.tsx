@@ -18,7 +18,7 @@ export default function PaymentQRGenerator() {
   const [anonymousWarning, setAnonymousWarning] = useState(false);
 
   // Fixed payment details
-  const UPI_ID = "parthtita977@oksbi";
+  const UPI_ID = "studentcouncileventregistrationfees@sbi";
   const PAYEE_NAME = "DIRECTOR S.V.N.I.T.SURAT";
 
   // Generate UPI payment URL
