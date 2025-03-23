@@ -6,9 +6,9 @@ interface ProfilePhotoSectionProps {
     firstName?: string;
     lastName?: string;
     profilePhotoUrl?: string;
-    [key: string]: any;
+    [key: string]: string | undefined;
   };
-  setFormData: (data: any) => void;
+  setFormData: (data: { [key: string]: string | undefined }) => void;
 }
 
 const ProfilePhotoSection: React.FC<ProfilePhotoSectionProps> = ({

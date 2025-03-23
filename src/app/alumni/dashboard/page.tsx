@@ -1,51 +1,51 @@
-"use client";
-import { useState, useEffect } from "react";
-import { signOut, useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
-import Image from "next/image";
-import Link from "next/link";
-import Navbar from "@/components/Navbar";
-import ProfilePhotoSection from "@/components/ProfilePhoto";
-import Footer from "@/components/footer";
+"use client"
+import { useState, useEffect } from "react"
+import { signOut, useSession } from "next-auth/react"
+import { useRouter } from "next/navigation"
+import Image from "next/image"
+import Link from "next/link"
+import Navbar from "@/components/Navbar"
+import ProfilePhotoSection from "@/components/ProfilePhoto"
+import Footer from "@/components/footer"
 
 type ProfileData = {
-  id: string;
-  email: string;
-  firstName?: string;
-  lastName?: string;
-  phone?: string;
-  admissionNumber?: string;
-  graduationYear: number;
-  currentJobTitle?: string;
-  currentCompany?: string;
-  currentLocation?: string;
-  linkedinUrl?: string;
-  instagramUrl?: string;
-  twitterUrl?: string;
-  githubUrl?: string;
-  websiteUrl?: string;
-  bio?: string;
-  profilePhotoUrl?: string;
-};
+  id: string
+  email: string
+  firstName?: string
+  lastName?: string
+  phone?: string
+  admissionNumber?: string
+  graduationYear: number
+  currentJobTitle?: string
+  currentCompany?: string
+  currentLocation?: string
+  linkedinUrl?: string
+  instagramUrl?: string
+  twitterUrl?: string
+  githubUrl?: string
+  websiteUrl?: string
+  bio?: string
+  profilePhotoUrl?: string
+}
 
 type Transaction = {
-  id: string;
-  amount: number;
-  date: string;
-  name: string;
-  status: "completed" | "pending" | "failed";
-  transactionId: string;
-  lastUpdated?: string;
-};
+  id: string
+  amount: number
+  date: string
+  name: string
+  status: "completed" | "pending" | "failed"
+  transactionId: string
+  lastUpdated?: string
+}
 
 export default function AlumniDashboard() {
-  const { data: session, status } = useSession();
-  const router = useRouter();
-  const [loading, setLoading] = useState(true);
-  const [profileData, setProfileData] = useState<ProfileData | null>(null);
-  const [message, setMessage] = useState({ type: "", content: "" });
-  const [transactions, setTransactions] = useState<Transaction[]>([]);
-  const [transactionLoading, setTransactionLoading] = useState(true);
+  const { data: session, status } = useSession()
+  const router = useRouter()
+  const [loading, setLoading] = useState(true)
+  const [profileData, setProfileData] = useState<ProfileData | null>(null)
+  const [message, setMessage] = useState({ type: "", content: "" })
+  const [transactions, setTransactions] = useState<Transaction[]>([])
+  const [transactionLoading, setTransactionLoading] = useState(true)
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -61,7 +61,7 @@ export default function AlumniDashboard() {
     websiteUrl: "",
     bio: "",
     profilePhotoUrl: "",
-  });
+  })
 
   useEffect(() => {
     if (status === "unauthenticated") {
@@ -81,19 +81,19 @@ export default function AlumniDashboard() {
             },
             // Add credentials to ensure cookies are sent
             credentials: "include",
-          });
+          })
 
           if (!response.ok) {
-            const errorData = await response.json();
-            throw new Error(errorData.error || "Failed to fetch profile data");
+            const errorData = await response.json()
+            throw new Error(errorData.error || "Failed to fetch profile data")
           }
 
-          const data = await response.json();
+          const data = await response.json()
 
           if (!data || !data.user) {
-            throw new Error("Invalid profile data received");
+            throw new Error("Invalid profile data received")
           }
-          setProfileData(data.user);
+          setProfileData(data.user)
           // Initialize form with existing data
           setFormData({
             firstName: data.user.firstName || "",
@@ -110,59 +110,54 @@ export default function AlumniDashboard() {
             websiteUrl: data.user.websiteUrl || "",
             bio: data.user.bio || "",
             profilePhotoUrl: data.user.profilePhotoUrl || "",
-          });
+          })
         } catch (error) {
-          console.error("Error fetching profile:", error);
+          console.error("Error fetching profile:", error)
           setMessage({
             type: "error",
-            content:
-              error instanceof Error
-                ? error.message
-                : "Failed to load profile data. Please try again later.",
-          });
+            content: error instanceof Error ? error.message : "Failed to load profile data. Please try again later.",
+          })
         } finally {
-          setLoading(false);
+          setLoading(false)
         }
       } else if (status !== "loading") {
-        setLoading(false);
+        setLoading(false)
       }
-    };
+    }
 
-    fetchProfileData();
-  }, [status, session]);
+    fetchProfileData()
+  }, [status, session])
 
   // Fetch transaction history
   useEffect(() => {
     const fetchTransactions = async () => {
       if (status === "authenticated" && session?.user?.email) {
         try {
-          setTransactionLoading(true);
+          setTransactionLoading(true)
           const response = await fetch("/api/transaction", {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
             },
             credentials: "include",
-          });
+          })
 
           if (!response.ok) {
-            const errorData = await response.json();
-            throw new Error(
-              errorData.error || "Failed to fetch transaction history"
-            );
+            const errorData = await response.json()
+            throw new Error(errorData.error || "Failed to fetch transaction history")
           }
 
-          const data = await response.json();
-          console.log("Transactions data:", data); // Debug log
+          const data = await response.json()
+          console.log("Transactions data:", data) // Debug log
 
           // Map the API response to match the Transaction type
           interface ApiTransaction {
-            id: string;
-            firstName: string;
-            transactionAmount: number;
-            transactionDate: string;
-            mindbendPosition: string;
-            transactionId: string;
+            id: string
+            firstName: string
+            transactionAmount: number
+            transactionDate: string
+            mindbendPosition: string
+            transactionId: string
           }
 
           const formattedTransactions = data.map((item: ApiTransaction) => ({
@@ -173,32 +168,38 @@ export default function AlumniDashboard() {
             status: "completed",
             transactionId: item.transactionId || "Anonymous",
             lastUpdated: item.transactionDate || new Date().toISOString(),
-          }));
+          }))
 
-          setTransactions(formattedTransactions || []);
+          setTransactions(formattedTransactions || [])
         } catch (error) {
-          console.error("Error fetching transactions:", error);
+          console.error("Error fetching transactions:", error)
           // Show error message for transactions
           setMessage({
             type: "error",
-            content:
-              "Failed to load transaction history. Please try again later.",
-          });
+            content: "Failed to load transaction history. Please try again later.",
+          })
         } finally {
-          setTransactionLoading(false);
+          setTransactionLoading(false)
         }
       }
-    };
+    }
 
-    fetchTransactions();
-  }, [status, session]);
+    fetchTransactions()
+  }, [status, session])
 
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="w-16 h-16 border-4 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
       </div>
-    );
+    )
+  }
+
+  const handleFormDataChange = (data: { [key: string]: string | undefined }) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      ...data,
+    }))
   }
 
   return (
@@ -211,9 +212,7 @@ export default function AlumniDashboard() {
           {message.content && (
             <div
               className={`mb-6 p-4 rounded-md ${
-                message.type === "success"
-                  ? "bg-green-50 text-green-800"
-                  : "bg-red-50 text-red-800"
+                message.type === "success" ? "bg-green-50 text-green-800" : "bg-red-50 text-red-800"
               }`}
             >
               {message.content}
@@ -223,17 +222,12 @@ export default function AlumniDashboard() {
           <div className="container mx-auto px-4 py-8">
             <div className="flex flex-col md:flex-row gap-8">
               {/* Profile Photo */}
-              <ProfilePhotoSection
-                formData={formData}
-                setFormData={setFormData}
-              />
+              <ProfilePhotoSection formData={formData} setFormData={handleFormDataChange} />
               {/* Update Profile Card - Right Side */}
               <div className="w-full md:w-2/3">
                 <div className="bg-white rounded-lg shadow-lg p-6 border border-gray-100">
                   <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
-                    <h2 className="text-2xl font-bold text-gray-800">
-                      Your Profile
-                    </h2>
+                    <h2 className="text-2xl font-bold text-gray-800">Your Profile</h2>
                     <div className="flex gap-3 flex-wrap">
                       <Link href="/DashboardDetails">
                         <button className="flex items-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-200 shadow-sm">
@@ -283,9 +277,7 @@ export default function AlumniDashboard() {
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                           <div className="mb-4">
-                            <h4 className="text-sm font-medium text-gray-500 mb-1">
-                              Full Name
-                            </h4>
+                            <h4 className="text-sm font-medium text-gray-500 mb-1">Full Name</h4>
                             <p className="text-black text-lg font-medium">
                               {formData.firstName} {formData.lastName}
                             </p>
@@ -293,9 +285,7 @@ export default function AlumniDashboard() {
 
                           {/* Email Field (assuming email exists in formData) */}
                           <div className="mb-4">
-                            <h4 className="text-sm font-medium text-gray-500 mb-1">
-                              Email
-                            </h4>
+                            <h4 className="text-sm font-medium text-gray-500 mb-1">Email</h4>
                             <p className="text-black flex items-center">
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -315,9 +305,7 @@ export default function AlumniDashboard() {
                         <div>
                           {/* Company Name Field */}
                           <div className="mb-4">
-                            <h4 className="text-sm font-medium text-gray-500 mb-1">
-                              Company
-                            </h4>
+                            <h4 className="text-sm font-medium text-gray-500 mb-1">Company</h4>
                             <p className="text-black flex items-center">
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -337,9 +325,7 @@ export default function AlumniDashboard() {
 
                           {/* Position/Job Title Field */}
                           <div className="mb-4">
-                            <h4 className="text-sm font-medium text-gray-500 mb-1">
-                              Position
-                            </h4>
+                            <h4 className="text-sm font-medium text-gray-500 mb-1">Position</h4>
                             <p className="text-black flex items-center">
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -364,9 +350,7 @@ export default function AlumniDashboard() {
                     {/* Bio Section */}
                     <div className="pt-6">
                       <div className="flex items-center justify-between mb-4">
-                        <h3 className="text-lg font-semibold text-gray-700">
-                          About Me
-                        </h3>
+                        <h3 className="text-lg font-semibold text-gray-700">About Me</h3>
                       </div>
 
                       <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-5 border border-blue-100 shadow-sm">
@@ -380,9 +364,7 @@ export default function AlumniDashboard() {
                             >
                               <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-10zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.999v10h-9.999z" />
                             </svg>
-                            <p className="text-gray-700 leading-relaxed text-justify pl-1">
-                              {formData.bio}
-                            </p>
+                            <p className="text-gray-700 leading-relaxed text-justify pl-1">{formData.bio}</p>
                             <svg
                               className="absolute bottom-0 right-0 w-8 h-8 text-blue-300 transform translate-x-3 translate-y-3 opacity-50 rotate-180"
                               xmlns="http://www.w3.org/2000/svg"
@@ -408,9 +390,7 @@ export default function AlumniDashboard() {
                                 d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
                               ></path>
                             </svg>
-                            <p className="text-gray-500 mb-2">
-                              No bio information provided.
-                            </p>
+                            <p className="text-gray-500 mb-2">No bio information provided.</p>
                             <Link href="/DashboardDetails">
                               <button className="text-blue-600 text-sm flex items-center hover:text-blue-800 transition duration-200">
                                 <svg
@@ -493,10 +473,7 @@ export default function AlumniDashboard() {
                             className="h-2.5 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full transition-all duration-700 ease-out"
                             style={{
                               width: `${Math.round(
-                                (Object.values(formData).filter(Boolean)
-                                  .length /
-                                  Object.keys(formData).length) *
-                                  100
+                                (Object.values(formData).filter(Boolean).length / Object.keys(formData).length) * 100,
                               )}%`,
                             }}
                           ></div>
@@ -505,9 +482,7 @@ export default function AlumniDashboard() {
                         <div className="flex items-center justify-center h-12 w-12 rounded-full bg-blue-50 border-2 border-blue-100">
                           <span className="text-sm font-bold text-blue-700">
                             {Math.round(
-                              (Object.values(formData).filter(Boolean).length /
-                                Object.keys(formData).length) *
-                                100
+                              (Object.values(formData).filter(Boolean).length / Object.keys(formData).length) * 100,
                             )}
                             %
                           </span>
@@ -523,29 +498,18 @@ export default function AlumniDashboard() {
                       {/* Stats breakdown */}
                       <div className="space-y-2 text-sm">
                         <div className="flex justify-between items-center py-1 border-t border-gray-100">
-                          <span className="text-gray-600">
-                            Fields Completed
-                          </span>
+                          <span className="text-gray-600">Fields Completed</span>
                           <span className="font-medium text-gray-900">
-                            {Object.values(formData).filter(Boolean).length} /{" "}
-                            {Object.keys(formData).length}
+                            {Object.values(formData).filter(Boolean).length} / {Object.keys(formData).length}
                           </span>
                         </div>
                         <div className="flex justify-between items-center py-1 border-t border-gray-100">
-                          <span className="text-gray-600">
-                            Basic Information
-                          </span>
+                          <span className="text-gray-600">Basic Information</span>
                           <div className="flex items-center">
                             <span className="font-medium text-gray-900 mr-1">
                               {
-                                [
-                                  "firstName",
-                                  "lastName",
-                                  "phone",
-                                  "graduationYear",
-                                ].filter(
-                                  (key) =>
-                                    formData[key as keyof typeof formData]
+                                ["firstName", "lastName", "phone", "graduationYear"].filter(
+                                  (key) => formData[key as keyof typeof formData],
                                 ).length
                               }
                               /4
@@ -553,14 +517,8 @@ export default function AlumniDashboard() {
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               className={`h-4 w-4 ${
-                                [
-                                  "firstName",
-                                  "lastName",
-                                  "phone",
-                                  "graduationYear",
-                                ].filter(
-                                  (key) =>
-                                    formData[key as keyof typeof formData]
+                                ["firstName", "lastName", "phone", "graduationYear"].filter(
+                                  (key) => formData[key as keyof typeof formData],
                                 ).length === 4
                                   ? "text-green-500"
                                   : "text-amber-500"
@@ -571,14 +529,8 @@ export default function AlumniDashboard() {
                               <path
                                 fillRule="evenodd"
                                 d={
-                                  [
-                                    "firstName",
-                                    "lastName",
-                                    "phone",
-                                    "graduationYear",
-                                  ].filter(
-                                    (key) =>
-                                      formData[key as keyof typeof formData]
+                                  ["firstName", "lastName", "phone", "graduationYear"].filter(
+                                    (key) => formData[key as keyof typeof formData],
                                   ).length === 4
                                     ? "M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
                                     : "M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
@@ -593,15 +545,8 @@ export default function AlumniDashboard() {
                           <div className="flex items-center">
                             <span className="font-medium text-gray-900 mr-1">
                               {
-                                [
-                                  "linkedinUrl",
-                                  "twitterUrl",
-                                  "instagramUrl",
-                                  "githubUrl",
-                                  "websiteUrl",
-                                ].filter(
-                                  (key) =>
-                                    formData[key as keyof typeof formData]
+                                ["linkedinUrl", "twitterUrl", "instagramUrl", "githubUrl", "websiteUrl"].filter(
+                                  (key) => formData[key as keyof typeof formData],
                                 ).length
                               }
                               /5
@@ -609,15 +554,8 @@ export default function AlumniDashboard() {
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               className={`h-4 w-4 ${
-                                [
-                                  "linkedinUrl",
-                                  "twitterUrl",
-                                  "instagramUrl",
-                                  "githubUrl",
-                                  "websiteUrl",
-                                ].filter(
-                                  (key) =>
-                                    formData[key as keyof typeof formData]
+                                ["linkedinUrl", "twitterUrl", "instagramUrl", "githubUrl", "websiteUrl"].filter(
+                                  (key) => formData[key as keyof typeof formData],
                                 ).length >= 2
                                   ? "text-green-500"
                                   : "text-amber-500"
@@ -628,15 +566,8 @@ export default function AlumniDashboard() {
                               <path
                                 fillRule="evenodd"
                                 d={
-                                  [
-                                    "linkedinUrl",
-                                    "twitterUrl",
-                                    "instagramUrl",
-                                    "githubUrl",
-                                    "websiteUrl",
-                                  ].filter(
-                                    (key) =>
-                                      formData[key as keyof typeof formData]
+                                  ["linkedinUrl", "twitterUrl", "instagramUrl", "githubUrl", "websiteUrl"].filter(
+                                    (key) => formData[key as keyof typeof formData],
                                   ).length >= 2
                                     ? "M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
                                     : "M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
@@ -667,38 +598,35 @@ export default function AlumniDashboard() {
                         strokeLinecap="round"
                         strokeLinejoin="round"
                         strokeWidth={2}
-                        d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                        d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 1 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
                       />
                     </svg>
                     Network Activity
                   </h3>
                 </div>
                 <div className="text-center py-6">
-  <p className="text-gray-500 text-sm">
-    Connect with alumni to see activity
-  </p>
+                  <p className="text-gray-500 text-sm">Connect with alumni to see activity</p>
 
-  <div className="mt-3 flex flex-col gap-4 items-center">
-    {/* Explore Network Button */}
-    <button
-      className="w-full max-w-xs px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-      onClick={() => router.push("/alumni")}
-    >
-      Explore Network
-    </button>
+                  <div className="mt-3 flex flex-col gap-4 items-center">
+                    {/* Explore Network Button */}
+                    <button
+                      className="w-full max-w-xs px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                      onClick={() => router.push("/alumni")}
+                    >
+                      Explore Network
+                    </button>
 
-    {/* WhatsApp Group Button */}
-    <a 
-      href="https://chat.whatsapp.com/HChrXz0A7vD3Qt02XZ2z0V" 
-      target="_blank" 
-      rel="noopener noreferrer"
-      className="w-full max-w-xs px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 text-center"
-    >
-      Join WhatsApp Group
-    </a>
-  </div>
-</div>
-
+                    {/* WhatsApp Group Button */}
+                    <a
+                      href="https://chat.whatsapp.com/HChrXz0A7vD3Qt02XZ2z0V"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full max-w-xs px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 text-center"
+                    >
+                      Join WhatsApp Group
+                    </a>
+                  </div>
+                </div>
               </div>
 
               <div className="bg-white p-6 w-1/3  rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition-shadow duration-300">
@@ -735,12 +663,8 @@ export default function AlumniDashboard() {
                         />
                       </div>
                       <div className="ml-4">
-                        <p className="text-base font-semibold text-gray-900">
-                          Mindbend 2025
-                        </p>
-                        <p className="text-sm text-gray-700">
-                          Techno-Managerial Fest
-                        </p>
+                        <p className="text-base font-semibold text-gray-900">Mindbend 2025</p>
+                        <p className="text-sm text-gray-700">Techno-Managerial Fest</p>
                       </div>
                     </div>
                   </div>
@@ -838,14 +762,10 @@ export default function AlumniDashboard() {
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap">
                               <div className="flex items-center">
-                                <div className="text-sm font-medium text-gray-900">
-                                  {transaction.transactionId}
-                                </div>
+                                <div className="text-sm font-medium text-gray-900">{transaction.transactionId}</div>
                               </div>
                             </td>
-                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                              {transaction.name}
-                            </td>
+                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{transaction.name}</td>
                             <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                               ₹{transaction.amount.toFixed(2)}
                             </td>
@@ -856,12 +776,11 @@ export default function AlumniDashboard() {
                                 transaction.status === "completed"
                                   ? "bg-green-100 text-green-800"
                                   : transaction.status === "pending"
-                                  ? "bg-yellow-100 text-yellow-800"
-                                  : "bg-red-100 text-red-800"
+                                    ? "bg-yellow-100 text-yellow-800"
+                                    : "bg-red-100 text-red-800"
                               }`}
                               >
-                                {transaction.status.charAt(0).toUpperCase() +
-                                  transaction.status.slice(1)}
+                                {transaction.status.charAt(0).toUpperCase() + transaction.status.slice(1)}
                               </span>
                             </td>
                           </tr>
@@ -899,7 +818,7 @@ export default function AlumniDashboard() {
           </div>
         </main>
       </div>
-      <Footer/>
+      <Footer />
     </div>
-  );
+  )
 }
