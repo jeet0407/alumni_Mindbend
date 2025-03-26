@@ -63,11 +63,11 @@ export default function AlumniDashboard() {
     profilePhotoUrl: "",
   });
 
-  // useEffect(() => {
-  //   if (status === "unauthenticated") {
-  //     router.push("/register")
-  //   }
-  // }, [status, router])
+  useEffect(() => {
+    if (status === "unauthenticated") {
+      router.push("/register")
+    }
+  }, [status, router])
 
   // Fetch user profile data
   useEffect(() => {
@@ -460,9 +460,9 @@ export default function AlumniDashboard() {
             </h3>
 
             {/* Stats grid */}
-            <div className="flex flex-nowrap w-full gap-6">
+            <div className="flex flex-col md:flex-row w-full gap-6">
               {/* Profile Completion Card */}
-              <div className="bg-white w-1/3 p-6 rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition-shadow duration-300">
+              <div className="bg-white w-full md:w-1/3 p-6 rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition-shadow duration-300">
                 <div className="flex items-center justify-between mb-3">
                   <h3 className="text-lg font-medium text-gray-900 flex items-center">
                     <svg
@@ -653,7 +653,7 @@ export default function AlumniDashboard() {
               </div>
 
               {/* Additional stats cards - can be added here */}
-              <div className="bg-white w-1/3 p-6 rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition-shadow duration-300">
+              <div className="bg-white w-fill md:w-1/3 p-6 rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition-shadow duration-300">
                 <div className="flex items-center justify-between mb-3">
                   <h3 className="text-lg font-medium text-gray-900 flex items-center">
                     <svg
@@ -674,34 +674,33 @@ export default function AlumniDashboard() {
                   </h3>
                 </div>
                 <div className="text-center py-6">
-  <p className="text-gray-500 text-sm">
-    Connect with alumni to see activity
-  </p>
+                  <p className="text-gray-500 text-sm">
+                    Connect with alumni to see activity
+                  </p>
 
-  <div className="mt-3 flex flex-col gap-4 items-center">
-    {/* Explore Network Button */}
-    <button
-      className="w-full max-w-xs px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-      onClick={() => router.push("/alumni")}
-    >
-      Explore Network
-    </button>
+                  <div className="mt-3 flex flex-col gap-4 items-center">
+                    {/* Explore Network Button */}
+                    <button
+                      className="w-full max-w-xs px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                      onClick={() => router.push("/alumni")}
+                    >
+                      Explore Network
+                    </button>
 
-    {/* WhatsApp Group Button */}
-    <a 
-      href="https://chat.whatsapp.com/HChrXz0A7vD3Qt02XZ2z0V" 
-      target="_blank" 
-      rel="noopener noreferrer"
-      className="w-full max-w-xs px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 text-center"
-    >
-      Join WhatsApp Group
-    </a>
-  </div>
-</div>
-
+                    {/* WhatsApp Group Button */}
+                    <a
+                      href="https://chat.whatsapp.com/HChrXz0A7vD3Qt02XZ2z0V"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full max-w-xs px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 text-center"
+                    >
+                      Join WhatsApp Group
+                    </a>
+                  </div>
+                </div>
               </div>
 
-              <div className="bg-white p-6 w-1/3  rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition-shadow duration-300">
+              <div className="bg-white w-full p-6 md:w-1/3  rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition-shadow duration-300">
                 <div className="flex items-center justify-between mb-3">
                   <h3 className="text-lg font-medium text-gray-900 flex items-center">
                     <svg
@@ -768,6 +767,7 @@ export default function AlumniDashboard() {
                 </div>
               </div>
             </div>
+
             {/* Transaction History Section */}
             <div className="mt-8 mb-4">
               <h3 className="text-xl font-bold text-gray-800 mb-4 flex items-center">
@@ -899,7 +899,7 @@ export default function AlumniDashboard() {
           </div>
         </main>
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 }
