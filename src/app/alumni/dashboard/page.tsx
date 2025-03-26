@@ -440,9 +440,9 @@ export default function AlumniDashboard() {
             </h3>
 
             {/* Stats grid */}
-            <div className="flex flex-nowrap w-full gap-6">
+            <div className="flex flex-col md:flex-row w-full gap-6">
               {/* Profile Completion Card */}
-              <div className="bg-white w-1/3 p-6 rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition-shadow duration-300">
+              <div className="bg-white w-full md:w-1/3 p-6 rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition-shadow duration-300">
                 <div className="flex items-center justify-between mb-3">
                   <h3 className="text-lg font-medium text-gray-900 flex items-center">
                     <svg
@@ -584,7 +584,7 @@ export default function AlumniDashboard() {
               </div>
 
               {/* Additional stats cards - can be added here */}
-              <div className="bg-white w-1/3 p-6 rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition-shadow duration-300">
+              <div className="bg-white w-fill md:w-1/3 p-6 rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition-shadow duration-300">
                 <div className="flex items-center justify-between mb-3">
                   <h3 className="text-lg font-medium text-gray-900 flex items-center">
                     <svg
@@ -605,7 +605,10 @@ export default function AlumniDashboard() {
                   </h3>
                 </div>
                 <div className="text-center py-6">
-                  <p className="text-gray-500 text-sm">Connect with alumni to see activity</p>
+
+                  <p className="text-gray-500 text-sm">
+                    Connect with alumni to see activity
+                  </p>
 
                   <div className="mt-3 flex flex-col gap-4 items-center">
                     {/* Explore Network Button */}
@@ -615,6 +618,7 @@ export default function AlumniDashboard() {
                     >
                       Explore Network
                     </button>
+
 
                     {/* WhatsApp Group Button */}
                     <a
@@ -629,7 +633,7 @@ export default function AlumniDashboard() {
                 </div>
               </div>
 
-              <div className="bg-white p-6 w-1/3  rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition-shadow duration-300">
+              <div className="bg-white w-full p-6 md:w-1/3  rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition-shadow duration-300">
                 <div className="flex items-center justify-between mb-3">
                   <h3 className="text-lg font-medium text-gray-900 flex items-center">
                     <svg
@@ -692,6 +696,7 @@ export default function AlumniDashboard() {
                 </div>
               </div>
             </div>
+
             {/* Transaction History Section */}
             <div className="mt-8 mb-4">
               <h3 className="text-xl font-bold text-gray-800 mb-4 flex items-center">
