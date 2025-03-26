@@ -6,9 +6,9 @@ interface ProfilePhotoSectionProps {
     firstName?: string;
     lastName?: string;
     profilePhotoUrl?: string;
-    [key: string]: any;
+    [key: string]: string | undefined;
   };
-  setFormData: (data: any) => void;
+  setFormData: (data: { [key: string]: string | undefined }) => void;
 }
 
 const ProfilePhotoSection: React.FC<ProfilePhotoSectionProps> = ({
@@ -19,6 +19,7 @@ const ProfilePhotoSection: React.FC<ProfilePhotoSectionProps> = ({
   const [uploadError, setUploadError] = useState<string>("");
   const [showPhotoModal, setShowPhotoModal] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  console.log(uploadError);
 
   const handleFileChange = async (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
