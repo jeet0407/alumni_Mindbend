@@ -121,24 +121,8 @@ function AlumniCount() {
                   (count, yearGroup) => count + yearGroup.length,
                   0
                 ) || "5000+"}
-                  <div className="mt-4">
-                      <label htmlFor="year-select" className="block text-sm font-medium text-gray-700">
-                          Select Year
-                      </label>
-                      <select
-                          id="year-select"
-                          name="year"
-                          className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md"
-                          value={selectedYear}
-                          onChange={handleYearChange}
-                      >
-                          {availableYears.map((year) => (
-                              <option key={year} value={year}>
-                                  {year}
-                              </option>
-                          ))}
-                      </select>
-                  </div>
+                  
+                  
               </div>
               <div className="text-sm text-gray-600 font-medium mt-1">
                 Alumni
