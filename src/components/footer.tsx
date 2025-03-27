@@ -228,7 +228,7 @@ const Footer = () => {
               rel="noopener noreferrer"
               className="hover:text-white transition-colors"
             >
-              Made with ❤️ by Team MINDBEND
+              Designed & Developed with ❤️ by Vasu & Jeet
             </a>
           </div>
         </div>

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Head from "next/head";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { NextAuthProvider } from "./providers";
@@ -49,6 +50,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning={true}>
+      <Head>
+        <meta
+          name="google-site-verification"
+          content="zG6R5FqA8gjsswGeRf5_YJh4Ev53fke87na_6SF-W3U"
+        />
+      </Head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased` }
       >
