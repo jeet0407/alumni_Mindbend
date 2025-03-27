@@ -107,11 +107,7 @@ function AlumniCount() {
         setSelectedYear(e.target.value);
       };
     
-      // Get available years from data, or fallback to default range
-      const availableYears =
-        Object.keys(alumniData).length > 0
-          ? Object.keys(alumniData).sort((a, b) => Number(b) - Number(a))
-          : Array.from({ length: 11 }, (_, i) => (2024 - i).toString());
+      // Removed unused variable 'availableYears'
   return (
     <div>
         <div className="mt-12 grid grid-cols-2 gap-6">
@@ -137,6 +133,23 @@ function AlumniCount() {
               </div>
             </div>
           </div>
+        <div className="mt-4">
+          <label htmlFor="year-select" className="block text-sm font-medium text-gray-700">
+            Select Year
+          </label>
+          <select
+            id="year-select"
+            className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md"
+            value={selectedYear}
+            onChange={handleYearChange}
+          >
+            {Object.keys(alumniData).map((year) => (
+              <option key={year} value={year}>
+                {year}
+              </option>
+            ))}
+          </select>
+        </div>
     </div>
   )
 }
